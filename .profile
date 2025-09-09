@@ -52,10 +52,10 @@ if [ -d "$HOME/.deno" ]; then
 fi
 
 # fnm
-fnm env | source
+eval $(fnm env)
 
 # fzf
-fzf --fish | source
+eval $(fzf --fish)
 
 # go
 if [ -d "$HOME/.go" ]; then
