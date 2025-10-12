@@ -1,0 +1,64 @@
+[commit]
+gpgsign = true
+
+[core]
+attributesfile = ~/.gitattributes
+
+[credential]
+helper = git-credential-manager
+
+[credential "https://dev.azure.com"]
+useHttpPath = true
+
+[credential "https://gist.github.com"]
+helper =
+helper = !/usr/bin/gh auth git-credential
+
+[credential "https://github.com"]
+helper =
+helper = !/usr/bin/gh auth git-credential
+
+[diff "bun"]
+binary = true
+cachetextconv = true
+textconv = bun
+
+[fetch]
+prune = true
+
+[filter "lfs"]
+clean = git-lfs clean -- %f
+process = git-lfs filter-process
+required = true
+smudge = git-lfs smudge -- %f
+
+[gpg]
+format = ssh
+
+[gpg "ssh"]
+program = "/opt/1Password/op-ssh-sign"
+
+[init]
+defaultBranch = main
+
+[merge]
+conflictStyle = "diff3"
+
+[merge "mergiraf"]
+name = mergiraf
+driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+
+[mergetool]
+keepBackup = true
+
+[pull]
+rebase = false
+
+[tag]
+forceSignAnnotated = true
+gpgsign = true
+
+[user]
+name = Griko Nibras
+email = griko@nibras.co
+signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJFr9Y5Dy8P44I9h8VWymBjov/G3YOlDa3GjgU8F5A9R
