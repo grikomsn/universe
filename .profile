@@ -7,15 +7,15 @@ export LC_ALL="en_US.UTF-8"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
-eval $(ssh-agent)
+eval $(ssh-agent) >/dev/null 2>&1
 
 # brew (darwin only)
 # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
 if [[ "$(uname -o)" == "Darwin" ]] && [[ -n "$HOMEBREW_PREFIX" ]]; then
-    source "$HOMEBREW_PREFIX/bin/brew" shellenv
+  source "$HOMEBREW_PREFIX/bin/brew" shellenv
 
-    export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
-    export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
+  export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
+  export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
 fi
 
 # bun
@@ -40,19 +40,19 @@ fi
 if which fnm >/dev/null 2>&1; then
   eval "$(fnm env --use-on-cd)"
 else
-    if [ -d "$HOME/.fnm" ]; then
-      export FNM_PATH="$HOME/.fnm"
-    elif [ -n "$XDG_DATA_HOME" ]; then
-      export FNM_PATH="$XDG_DATA_HOME/fnm"
-    elif [[ "$(uname -o)" == "Darwin" ]]; then
-      export FNM_PATH="$HOME/Library/Application Support/fnm"
-    else
-      export FNM_PATH="$HOME/.local/share/fnm"
-    fi
-    export PATH="$FNM_PATH:$PATH"
-    if which fnm >/dev/null 2>&1; then
-      eval "$(fnm env --use-on-cd)"
-    fi
+  if [ -d "$HOME/.fnm" ]; then
+    export FNM_PATH="$HOME/.fnm"
+  elif [ -n "$XDG_DATA_HOME" ]; then
+    export FNM_PATH="$XDG_DATA_HOME/fnm"
+  elif [[ "$(uname -o)" == "Darwin" ]]; then
+    export FNM_PATH="$HOME/Library/Application Support/fnm"
+  else
+    export FNM_PATH="$HOME/.local/share/fnm"
+  fi
+  export PATH="$FNM_PATH:$PATH"
+  if which fnm >/dev/null 2>&1; then
+    eval "$(fnm env --use-on-cd)"
+  fi
 fi
 
 # fzf
@@ -100,7 +100,7 @@ export PATH="$PNPM_HOME:$PATH"
 
 # rust
 if [ -d "$HOME/.cargo" ]; then
-    source "$HOME/.cargo/env"
+  source "$HOME/.cargo/env"
 fi
 
 # yarn
