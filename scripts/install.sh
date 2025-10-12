@@ -22,7 +22,7 @@ if [[ "$(uname -o)" == "Darwin" ]]; then
         export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
     fi
 
-    curl -fsSL https://universe.nibras.co/.Brewfile >~/.Brewfile
+    curl -fsSL https://universe.nibras.co/Brewfile >~/.Brewfile
     brew bundle --global
 fi
 
