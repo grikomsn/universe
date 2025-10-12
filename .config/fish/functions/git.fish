@@ -1,3 +1,7 @@
 function git --wraps=hub --description 'alias git hub'
-    hub $argv
+    if command -q hub
+        hub $argv
+    else
+        command git $argv
+    end
 end
