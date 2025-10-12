@@ -1,1 +1,13 @@
+__pycache__
+.config/fish/completions/docker.fish
+.config/fish/completions/kubectl.fish
+.config/fish/completions/orbctl.fish
 .DS_Store
+.turbo
+.vercel
+*.env*
+*.log*
+*.tsbuildinfo
+node_modules
+
+!.env.example
