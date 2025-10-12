@@ -71,6 +71,7 @@ end
 
 # orbstack
 if test -f $HOME/.orbstack/shell/init2.fish
+    # @fish-lsp-disable-next-line 1004
     source $HOME/.orbstack/shell/init2.fish 2>/dev/null || :
 end
 
