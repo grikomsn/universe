@@ -1,8 +1,10 @@
 if test (uname -o) = Darwin
-    if test (uname -m) = arm64
-        set -gx HOMEBREW_PREFIX /opt/homebrew
-    else
-        set -gx HOMEBREW_PREFIX /usr/local
+    if not set -q HOMEBREW_PREFIX
+        if test (uname -m) = arm64
+            set -gx HOMEBREW_PREFIX /opt/homebrew
+        else
+            set -gx HOMEBREW_PREFIX /usr/local
+        end
     end
 
     # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
@@ -15,6 +17,6 @@ if test (uname -o) = Darwin
     end
 end
 
-if string match -qi linux (uname -o)
+if string match -q Linux (uname -s)
     # noop
 end

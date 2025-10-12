@@ -59,7 +59,9 @@ if test -d $HOME/.lmstudio
 end
 
 # mkcert
-set -gx NODE_EXTRA_CA_CERTS "$(mkcert -CAROOT)/rootCA.pem"
+if type -q mkcert
+    set -gx NODE_EXTRA_CA_CERTS "$(mkcert -CAROOT)/rootCA.pem"
+end
 
 # opencode
 if test -d $HOME/.opencode
@@ -77,7 +79,9 @@ set -gx PNPM_HOME $HOME/Library/pnpm
 fish_add_path $PNPM_HOME
 
 # rust
-# already set in 'rustup.fish'
+if test -d $HOME/.cargo
+    source "$HOME/.cargo/env.fish"
+end
 
 # yarn
 set -gx YARN_INSTALL $HOME/.yarn
