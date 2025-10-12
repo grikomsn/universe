@@ -47,6 +47,7 @@ confirm-close-surface = true
 font-family = "SF Mono Powerline"
 font-size = 12
 keybind = global:ctrl+shift+`=toggle_quick_terminal
+keybind = shift+enter=text:\n
 macos-secure-input-indication = false
 mouse-scroll-multiplier = 2
 selection-invert-fg-bg = true
@@ -54,5 +55,3 @@ theme = light:Apple System Colors Light,dark:Apple System Colors
 window-colorspace = display-p3
 window-padding-x = 8
 window-padding-y = 8
-
-keybind = shift+enter=text:\n
