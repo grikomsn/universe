@@ -1,0 +1,66 @@
+[
+  {
+    "key": "ctrl+shift+alt+r",
+    "command": "editor.emmet.action.updateTag"
+  },
+  {
+    "key": "ctrl+shift+alt+k",
+    "command": "cursorai.action.generateInTerminal",
+    "when": "terminalFocusInAny"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "-cursorai.action.generateInTerminal"
+  },
+  {
+    "key": "ctrl+shift+alt+k",
+    "command": "aipopup.action.modal.generate",
+    "when": "editorFocus && !composerBarIsVisible"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "-aipopup.action.modal.generate"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocusInAny"
+  },
+  {
+    "key": "ctrl+shift+alt+f",
+    "command": "editor.action.fixAll"
+  },
+  {
+    "key": "ctrl+shift+alt+meta+r",
+    "command": "workbench.action.reloadWindow"
+  },
+  {
+    "key": "ctrl+alt+meta+down",
+    "command": "editor.action.sortLinesAscending"
+  },
+  {
+    "key": "ctrl+alt+meta+up",
+    "command": "editor.action.sortLinesDescending"
+  },
+  {
+    "key": "ctrl+shift+alt+j",
+    "command": "workbench.action.createTerminalEditor"
+  },
+  {
+    "key": "ctrl+shift+alt+t",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  {
+    "key": "ctrl+shift+alt+w",
+    "command": "editor.emmet.action.wrapWithAbbreviation"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "-composer.newAgentChat"
+  },
+  {
+    "key": "alt+meta+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  }
+]
