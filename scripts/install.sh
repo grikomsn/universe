@@ -18,6 +18,8 @@ if [[ "$(uname -o)" == "Darwin" ]]; then
         read -p "Press [Enter] key after Rosetta is installed..."
     fi
 
+    sudo xcodebuild -license accept
+
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
     if [[ "$(uname -m)" == "arm64" ]]; then
         eval $(/opt/homebrew/bin/brew shellenv)
