@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+sudo -v
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
+
 mkdir -p ~/Projects ~/Scripts ~/Temporary ~/Workspace
 
 if [[ "$(uname -o)" == "Darwin" ]]; then
@@ -8,19 +15,15 @@ if [[ "$(uname -o)" == "Darwin" ]]; then
     read -p "Press [Enter] key after Xcode Command Line Tools are installed..."
 
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-    if [[ -z "${HOMEBREW_PREFIX}" ]]; then
-        if [[ "$(uname -m)" == "arm64" ]]; then
-            export HOMEBREW_PREFIX="/opt/homebrew"
-        else
-            export HOMEBREW_PREFIX="/usr/local"
-        fi
+    if [[ "$(uname -m)" == "arm64" ]]; then
+        export HOMEBREW_PREFIX="/opt/homebrew"
+    else
+        export HOMEBREW_PREFIX="/usr/local"
     fi
 
-    if [[ -d "${HOMEBREW_PREFIX}" ]]; then
-        source "$HOMEBREW_PREFIX/bin/brew" shellenv
-        export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
-        export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
-    fi
+    source "$HOMEBREW_PREFIX/bin/brew" shellenv
+    export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
+    export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
 
     curl -fsSL https://universe.nibras.co/Brewfile >~/.Brewfile
     brew bundle --global
