@@ -16,21 +16,23 @@ else
   CODE_DATA_DIR=~/.config/Code
   CURSOR_DATA_DIR=~/.config/Cursor
 fi
-mkdir -p $CODE_DATA_DIR
+
+# ensure directories exist
+mkdir -p "$CODE_DATA_DIR/User"
+mkdir -p "$CURSOR_DATA_DIR/User"
+
+# early stub if first time setup
+if [ ! -f "$CURSOR_DATA_DIR/User/settings.json" ]; then
+  echo '{}' > "$CURSOR_DATA_DIR/User/settings.json"
+fi
+if [ ! -f "$CURSOR_DATA_DIR/User/keybindings.json" ]; then
+  echo '[]' > "$CURSOR_DATA_DIR/User/keybindings.json"
+fi
+
+# create json symlinks
 ln -sf "$CURSOR_DATA_DIR/User/settings.json" "$CODE_DATA_DIR/User/settings.json"
 ln -sf "$CURSOR_DATA_DIR/User/keybindings.json" "$CODE_DATA_DIR/User/keybindings.json"
 
-# install extensions via code
-if command -v code &>/dev/null; then
-  for extension in "${EXTENSIONS[@]}"; do
-    code --install-extension "$extension"
-  done
-else
-  echo "VS Code is not installed"
-  exit 1
-fi
-
-# install extensions again but via cursor
 if command -v cursor &>/dev/null; then
   for extension in "${EXTENSIONS[@]}"; do
     cursor --install-extension "$extension"
