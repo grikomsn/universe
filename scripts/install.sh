@@ -11,19 +11,19 @@ mkdir -p ~/Projects ~/Scripts ~/Temporary ~/Workspace
 
 if [[ "$(uname -o)" == "Darwin" ]]; then
     xcode-select --install
-    softwareupdate --install-rosetta --agree-to-license
     read -p "Press [Enter] key after Xcode Command Line Tools are installed..."
+
+    if [[ "$(uname -m)" == "arm64" ]]; then
+        softwareupdate --install-rosetta --agree-to-license
+        read -p "Press [Enter] key after Rosetta is installed..."
+    fi
 
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
     if [[ "$(uname -m)" == "arm64" ]]; then
-        export HOMEBREW_PREFIX="/opt/homebrew"
+        eval $(/opt/homebrew/bin/brew shellenv)
     else
-        export HOMEBREW_PREFIX="/usr/local"
+        eval $(/usr/local/bin/brew shellenv)
     fi
-
-    source "$HOMEBREW_PREFIX/bin/brew" shellenv
-    export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
-    export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
 
     curl -fsSL https://universe.nibras.co/Brewfile >~/.Brewfile
     brew bundle --global
