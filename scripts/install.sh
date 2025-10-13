@@ -19,6 +19,7 @@ if [[ "$(uname -o)" == "Darwin" ]]; then
     fi
 
     sudo xcodebuild -license accept
+    sudo xcodebuild -runFirstLaunch
 
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
     if [[ "$(uname -m)" == "arm64" ]]; then
