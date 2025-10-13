@@ -32,6 +32,8 @@ if [[ "$(uname -o)" == "Darwin" ]]; then
     brew bundle --global
 fi
 
+mkcert -install
+
 curl -fsSL https://bun.com/install | bash
 curl -fsSL https://deno.land/install.sh | bash
 curl -fsSL https://fnm.vercel.app/install | bash
