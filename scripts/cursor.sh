@@ -4,17 +4,17 @@
 readarray -t EXTENSIONS < <(curl -fsSL https://universe.nibras.co/Brewfile | grep '^vscode' | awk '{print $2}' | sed 's/^"\(.*\)"$/\1/')
 
 # symlink cursor to others
-mkdir -p ~/.cursor
-ln -sf ~/.cursor ~/.vscode
-ln -sf ~/.cursor ~/.vscode-oss
+mkdir -p "$HOME/.cursor"
+ln -sf "$HOME/.cursor" "$HOME/.vscode"
+ln -sf "$HOME/.cursor" "$HOME/.vscode-oss"
 
 # symlink cursor configs
 if [[ "$(uname -o)" == "Darwin" ]]; then
-  CODE_DATA_DIR="~/Library/Application Support/Code"
-  CURSOR_DATA_DIR="~/Library/Application Support/Cursor"
+	CODE_DATA_DIR="$HOME/Library/Application Support/Code"
+	CURSOR_DATA_DIR="$HOME/Library/Application Support/Cursor"
 else
-  CODE_DATA_DIR=~/.config/Code
-  CURSOR_DATA_DIR=~/.config/Cursor
+	CODE_DATA_DIR="$HOME/.config/Code"
+	CURSOR_DATA_DIR="$HOME/.config/Cursor"
 fi
 
 # ensure directories exist
@@ -23,10 +23,10 @@ mkdir -p "$CURSOR_DATA_DIR/User"
 
 # early stub if first time setup
 if [ ! -f "$CURSOR_DATA_DIR/User/settings.json" ]; then
-  echo '{}' > "$CURSOR_DATA_DIR/User/settings.json"
+	echo '{}' >"$CURSOR_DATA_DIR/User/settings.json"
 fi
 if [ ! -f "$CURSOR_DATA_DIR/User/keybindings.json" ]; then
-  echo '[]' > "$CURSOR_DATA_DIR/User/keybindings.json"
+	echo '[]' >"$CURSOR_DATA_DIR/User/keybindings.json"
 fi
 
 # create json symlinks
@@ -34,7 +34,7 @@ ln -sf "$CURSOR_DATA_DIR/User/settings.json" "$CODE_DATA_DIR/User/settings.json"
 ln -sf "$CURSOR_DATA_DIR/User/keybindings.json" "$CODE_DATA_DIR/User/keybindings.json"
 
 if command -v cursor &>/dev/null; then
-  for extension in "${EXTENSIONS[@]}"; do
-    cursor --install-extension "$extension"
-  done
+	for extension in "${EXTENSIONS[@]}"; do
+		cursor --install-extension "$extension"
+	done
 fi
