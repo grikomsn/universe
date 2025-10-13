@@ -7,7 +7,9 @@ while true; do
     kill -0 "$$" || exit
 done 2>/dev/null &
 
-mkdir -p ~/Projects ~/Scripts ~/Temporary ~/Workspace
+mkdir -p ~/Projects ~/Scripts ~/Temporary ~/Workspace ~/.cursor
+ln -sf ~/.cursor ~/.vscode
+ln -sf ~/.cursor ~/.vscode-oss
 
 if [[ "$(uname -o)" == "Darwin" ]]; then
     xcode-select --install
