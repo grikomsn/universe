@@ -62,5 +62,13 @@
     "key": "alt+meta+f",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    "key": "ctrl+shift+alt+.",
+    "command": "javascriptBooster.extendSelection"
+  },
+  {
+    "key": "ctrl+shift+alt+,",
+    "command": "javascriptBooster.shrinkSelection"
   }
 ]
