@@ -34,6 +34,17 @@ fi
 
 mkcert -install
 
+curl -sSL https://raw.githubusercontent.com/yarlson/lnk/main/install.sh | bash
+lnk init -r https://github.com/grikomsn/universe.git
+lnk pull
+
+if [[ "$(uname -o)" == "Darwin" ]]; then
+    lnk pull -H darwin
+fi
+if [[ "$(uname -s)" == "Linux" ]]; then
+    lnk pull -H linux
+fi
+
 curl -fsSL https://bun.com/install | bash
 curl -fsSL https://deno.land/install.sh | bash
 curl -fsSL https://fnm.vercel.app/install | bash
@@ -41,6 +52,3 @@ curl -fsSL https://sh.rustup.rs | bash
 
 curl -fsSL https://ampcode.com/install.sh | bash
 curl -fsSL https://opencode.ai/install | bash
-
-curl -sSL https://raw.githubusercontent.com/yarlson/lnk/main/install.sh | bash
-lnk init -r https://github.com/grikomsn/universe.git
