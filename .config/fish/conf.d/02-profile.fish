@@ -42,9 +42,7 @@ else
 end
 
 # fzf
-if type -q fzf
-    fzf --fish | source
-end
+# already handled in 'completions/fzf.fish'
 
 # go
 if test -d $HOME/.go
