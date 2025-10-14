@@ -11,6 +11,9 @@
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
+  "[fish]": {
+    "editor.defaultFormatter": "ndonfris.fish-lsp"
+  },
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
@@ -72,7 +75,6 @@
   "amp.tab.enabled": true,
   "better-comments.highlightPlainText": true,
   "chat.checkpoints.showFileChanges": true,
-  "chat.disableAIFeatures": true,
   "chat.editor.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
   "cmake.options.statusBarVisibility": "visible",
   "color-highlight.markRuler": false,
@@ -151,6 +153,20 @@
   "git.showPushSuccessNotification": true,
   "git.supportCancellation": true,
   "git.useCommitInputAsStashMessage": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.executePrompt.enabled": true,
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.includeDocumentation": true,
+  "github.copilot.chat.newWorkspace.useContext7": true,
+  "github.copilot.chat.notebook.enhancedNextEditSuggestions.enabled": true,
+  "github.copilot.chat.notebook.followCellExecution.enabled": true,
+  "github.copilot.chat.scopeSelection": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
   "githubPullRequests.experimental.chat": true,
   "githubPullRequests.experimental.useQuickChat": true,
   "githubPullRequests.pullBranch": "never",
@@ -237,8 +253,8 @@
   "window.confirmBeforeClose": "always",
   "workbench.experimental.share.enabled": true,
   "workbench.iconTheme": "vs-seti",
+  "workbench.preferredDarkColorTheme": "MacOS Modern Dark - Xcode Default",
   "workbench.preferredLightColorTheme": "MacOS Modern Light - Xcode Default",
-  "workbench.productIconTheme": "icons-carbon",
   "workbench.secondarySideBar.showLabels": false,
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 12,
