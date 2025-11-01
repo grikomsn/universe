@@ -38,3 +38,9 @@ if command -v cursor &>/dev/null; then
 		cursor --install-extension "$extension"
 	done
 fi
+
+if command -v code &>/dev/null; then
+	for extension in "${EXTENSIONS[@]}"; do
+		code --install-extension "$extension"
+	done
+fi

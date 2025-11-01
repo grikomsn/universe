@@ -12,7 +12,7 @@ eval $(ssh-agent) >/dev/null 2>&1
 # brew (darwin only)
 # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
 if [[ "$(uname -o)" == "Darwin" ]] && [[ -n "$HOMEBREW_PREFIX" ]]; then
-	source "$HOMEBREW_PREFIX/bin/brew" shellenv
+	eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
 	export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 	export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
@@ -106,3 +106,8 @@ fi
 # yarn
 export YARN_INSTALL="$HOME/.yarn"
 export PATH="$YARN_INSTALL/bin:$PATH"
+
+###############################################################################
+
+# Self-mutating script to remove LM Studio CLI section from $HOME/.profile, resolving symlinks
+PROFILE_REALPATH="$(cd "$(dirname "$HOME/.profile")" && realpath "$(basename "$HOME/.profile")")"
