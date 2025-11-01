@@ -9,7 +9,7 @@ if test (uname -o) = Darwin
 
     # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
     if test -d $HOMEBREW_PREFIX
-        $HOMEBREW_PREFIX/bin/brew shellenv | source
+        eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 
         # bin extras
         set -gx PATH $HOMEBREW_PREFIX/opt/curl/bin $PATH

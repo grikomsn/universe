@@ -1,8 +1,20 @@
 [
   {
-    "key": "shift+cmd+/",
-    "command": "editor.action.blockComment",
-    "when": "editorTextFocus && !editorReadonly"
+    "key": "alt+r",
+    "command": "editor.emmet.action.updateTag"
+  },
+  {
+    "key": "cmd+k",
+    "command": "-aipopup.action.modal.generate"
+  },
+  {
+    "key": "cmd+k",
+    "command": "-cursorai.action.generateInTerminal"
+  },
+  {
+    "key": "cmd+k cmd+r",
+    "command": "git.revertSelectedRanges",
+    "when": "editorFocus || isInDiffEditor"
   },
   {
     "key": "ctrl+alt+cmd+f",
@@ -14,105 +26,75 @@
     "when": "textInputFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
   },
   {
-    "key": "ctrl+shift+cmd+[",
-    "command": "editor.action.selectToBracket",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+cmd+]",
-    "command": "editor.action.selectToBracket",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+cmd+pagedown",
-    "command": "editor.action.sortLinesAscending"
-  },
-  {
-    "key": "ctrl+shift+cmd+down",
-    "command": "editor.action.sortLinesAscending"
-  },
-  {
-    "key": "ctrl+shift+cmd+pageup",
-    "command": "editor.action.sortLinesDescending"
-  },
-  {
-    "key": "ctrl+shift+cmd+up",
-    "command": "editor.action.sortLinesDescending"
-  },
-  {
-    "key": "alt+r",
-    "command": "editor.emmet.action.updateTag"
-  },
-  {
-    "key": "ctrl+shift+cmd+w",
-    "command": "editor.emmet.action.wrapWithAbbreviation"
-  },
-  {
-    "key": "cmd+k cmd+r",
-    "command": "git.revertSelectedRanges",
-    "when": "editorFocus || isInDiffEditor"
+    "key": "ctrl+alt+cmd+j",
+    "command": "workbench.action.createTerminalEditor"
   },
   {
     "key": "ctrl+alt+cmd+r",
     "command": "runCommands",
     "args": {
-      "commands": ["eslint.restart", "typescript.restartTsServer"]
-    }
-  },
-  {
-    "key": "ctrl+shift+cmd+backspace",
-    "command": "runCommands",
-    "args": {
       "commands": [
-        "javascript.removeUnusedImports",
-        "typescript.removeUnusedImports"
+        "eslint.restart",
+        "typescript.restartTsServer"
       ]
     }
   },
   {
-    "key": "ctrl+alt+cmd+j",
-    "command": "workbench.action.createTerminalEditor"
+    "key": "shift+cmd+/",
+    "command": "editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+alt+cmd+shift+r",
+    "key": "shift+cmd+k",
+    "command": "-aipopup.action.modal.generate"
+  },
+  {
+    "key": "shift+ctrl+alt+cmd+r",
     "command": "workbench.action.reloadWindow"
   },
   {
-    "key": "ctrl+shift+cmd+r",
-    "command": "workbench.action.restartExtensionHost"
-  },
-  {
-    "key": "ctrl+shift+cmd+.",
-    "command": "javascriptBooster.extendSelection"
-  },
-  {
-    "key": "ctrl+shift+cmd+,",
+    "key": "shift+ctrl+cmd+,",
     "command": "javascriptBooster.shrinkSelection"
   },
   {
-    "key": "cmd+right",
-    "command": "-editor.action.inlineSuggest.acceptNextWord",
-    "when": "cppSuggestion && !editorReadonly || inlineSuggestionVisible && !editorReadonly"
+    "key": "shift+ctrl+cmd+.",
+    "command": "javascriptBooster.extendSelection"
   },
   {
-    "key": "ctrl+shift+cmd+k",
-    "command": "cursorai.action.generateInTerminal",
-    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalPromptBarVisible || terminalProcessSupported && terminalPromptBarVisible"
+    "key": "shift+ctrl+cmd+[",
+    "command": "editor.action.selectToBracket",
+    "when": "editorTextFocus"
   },
   {
-    "key": "cmd+k",
-    "command": "-cursorai.action.generateInTerminal",
-    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalPromptBarVisible || terminalProcessSupported && terminalPromptBarVisible"
+    "key": "shift+ctrl+cmd+]",
+    "command": "editor.action.selectToBracket",
+    "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+shift+cmd+k",
+    "key": "shift+ctrl+cmd+down",
+    "command": "editor.action.sortLinesAscending"
+  },
+  {
+    "key": "shift+ctrl+cmd+k",
     "command": "aipopup.action.modal.generate",
     "when": "editorFocus && !composerBarIsVisible"
   },
   {
-    "key": "shift+cmd+k",
-    "command": "-aipopup.action.modal.generate",
-    "when": "editorFocus && !composerBarIsVisible"
+    "key": "shift+ctrl+cmd+k",
+    "command": "cursorai.action.generateInTerminal",
+    "when": "terminalFocusInAny"
+  },
+  {
+    "key": "shift+ctrl+cmd+r",
+    "command": "workbench.action.restartExtensionHost"
+  },
+  {
+    "key": "shift+ctrl+cmd+up",
+    "command": "editor.action.sortLinesDescending"
+  },
+  {
+    "key": "shift+ctrl+cmd+w",
+    "command": "editor.emmet.action.wrapWithAbbreviation"
   },
   {
     "key": "shift+enter",
@@ -120,10 +102,6 @@
     "args": {
       "text": "\\\r\n"
     },
-    "when": "terminalFocus"
-  },
-  {
-    "key": "cmd+i",
-    "command": "composerMode.agent"
+    "when": "terminalFocusInAny"
   }
 ]
