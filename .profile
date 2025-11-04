@@ -98,6 +98,11 @@ fi
 export PNPM_HOME="$HOME/.pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
+# qmk_toolchains
+if [ -d "$HOME/.qmk_toolchains" ]; then
+	export PATH="$HOME/.qmk_toolchains/bin:$PATH"
+fi
+
 # rust
 if [ -d "$HOME/.cargo" ]; then
 	source "$HOME/.cargo/env"

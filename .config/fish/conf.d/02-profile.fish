@@ -77,6 +77,11 @@ end
 set -gx PNPM_HOME $HOME/Library/pnpm
 fish_add_path $PNPM_HOME
 
+# qmk_toolchains
+if test -d $HOME/.qmk_toolchains
+    fish_add_path $HOME/.qmk_toolchains/bin
+end
+
 # rust
 if test -d $HOME/.cargo
     source "$HOME/.cargo/env.fish"
