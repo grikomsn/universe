@@ -116,3 +116,6 @@ export PATH="$YARN_INSTALL/bin:$PATH"
 
 # Self-mutating script to remove LM Studio CLI section from $HOME/.profile, resolving symlinks
 PROFILE_REALPATH="$(cd "$(dirname "$HOME/.profile")" && realpath "$(basename "$HOME/.profile")")"
+if grep -q '^# Added by LM Studio CLI (lms)$' "$PROFILE_REALPATH"; then
+	sed -i '' '/^# Added by LM Studio CLI (lms)$/,/^# End of LM Studio CLI section$/d' "$PROFILE_REALPATH"
+fi
