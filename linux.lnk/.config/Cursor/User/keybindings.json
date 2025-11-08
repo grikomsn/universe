@@ -1,74 +1,88 @@
 [
   {
-    "key": "ctrl+shift+alt+r",
-    "command": "editor.emmet.action.updateTag"
+    "key": "ctrl+alt+meta+f",
+    "command": "editor.action.fixAll"
   },
   {
-    "key": "ctrl+shift+alt+k",
-    "command": "cursorai.action.generateInTerminal",
-    "when": "terminalFocusInAny"
+    "key": "ctrl+alt+meta+i",
+    "command": "editor.action.organizeImports",
+    "when": "textInputFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
+  },
+  {
+    "key": "ctrl+alt+meta+j",
+    "command": "workbench.action.createTerminalEditor"
+  },
+  {
+    "key": "ctrl+alt+meta+r",
+    "command": "runCommands",
+    "args": {
+      "commands": ["eslint.restart", "typescript.restartTsServer"]
+    }
+  },
+  {
+    "key": "ctrl+k",
+    "command": "-aipopup.action.modal.generate"
   },
   {
     "key": "ctrl+k",
     "command": "-cursorai.action.generateInTerminal"
   },
   {
-    "key": "ctrl+shift+alt+k",
+    "key": "meta+k",
     "command": "aipopup.action.modal.generate",
     "when": "editorFocus && !composerBarIsVisible"
   },
   {
-    "key": "ctrl+shift+k",
-    "command": "-aipopup.action.modal.generate"
+    "key": "shift+ctrl+alt+,",
+    "command": "javascriptBooster.shrinkSelection"
   },
   {
-    "key": "ctrl+k",
-    "command": "workbench.action.terminal.clear",
-    "when": "terminalFocusInAny"
-  },
-  {
-    "key": "ctrl+shift+alt+f",
-    "command": "editor.action.fixAll"
-  },
-  {
-    "key": "ctrl+shift+alt+meta+r",
-    "command": "workbench.action.reloadWindow"
-  },
-  {
-    "key": "ctrl+alt+meta+down",
-    "command": "editor.action.sortLinesAscending"
-  },
-  {
-    "key": "ctrl+alt+meta+up",
-    "command": "editor.action.sortLinesDescending"
-  },
-  {
-    "key": "ctrl+shift+alt+j",
-    "command": "workbench.action.createTerminalEditor"
-  },
-  {
-    "key": "ctrl+shift+alt+t",
-    "command": "workbench.action.toggleStatusbarVisibility"
-  },
-  {
-    "key": "ctrl+shift+alt+w",
-    "command": "editor.emmet.action.wrapWithAbbreviation"
-  },
-  {
-    "key": "ctrl+shift+i",
-    "command": "-composer.newAgentChat"
-  },
-  {
-    "key": "alt+meta+f",
-    "command": "editor.action.formatDocument",
-    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-  },
-  {
-    "key": "ctrl+shift+alt+.",
+    "key": "shift+ctrl+alt+.",
     "command": "javascriptBooster.extendSelection"
   },
   {
-    "key": "ctrl+shift+alt+,",
-    "command": "javascriptBooster.shrinkSelection"
+    "key": "shift+ctrl+alt+[",
+    "command": "editor.action.selectToBracket"
+  },
+  {
+    "key": "shift+ctrl+alt+]",
+    "command": "editor.action.selectToBracket"
+  },
+  {
+    "key": "shift+ctrl+alt+k",
+    "command": "cursorai.action.generateInTerminal",
+    "when": "terminalFocusInAny"
+  },
+  {
+    "key": "shift+ctrl+alt+meta+r",
+    "command": "workbench.action.reloadWindow"
+  },
+  {
+    "key": "shift+ctrl+alt+pagedown",
+    "command": "editor.action.sortLinesAscending"
+  },
+  {
+    "key": "shift+ctrl+alt+pageup",
+    "command": "editor.action.sortLinesDescending"
+  },
+  {
+    "key": "shift+ctrl+alt+r",
+    "command": "workbench.action.restartExtensionHost"
+  },
+  {
+    "key": "shift+ctrl+alt+w",
+    "command": "editor.emmet.action.wrapWithAbbreviation"
+  },
+  {
+    "key": "shift+ctrl+k",
+    "command": "-aipopup.action.modal.generate"
+  },
+  {
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "\\\r\n"
+    },
+    "when": "terminalFocusInAny"
   }
 ]
