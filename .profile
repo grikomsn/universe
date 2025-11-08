@@ -67,8 +67,8 @@ if which fzf >/dev/null 2>&1; then
 fi
 
 # go
-if [ -d "$HOME/.go" ]; then
-	export GOPATH="$HOME/.go"
+export GOPATH="$HOME/.go"
+if [ -d "$GOPATH" ]; then
 	export PATH="$GOPATH/bin:$PATH"
 fi
 
@@ -95,7 +95,11 @@ if [ -f "$HOME/.orbstack/shell/init2.sh" ]; then
 fi
 
 # pnpm
-export PNPM_HOME="$HOME/.pnpm"
+if [ -d "$HOME/Library" ]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
+else
+    export PNPM_HOME="$HOME/.pnpm"
+fi
 export PATH="$PNPM_HOME:$PATH"
 
 # qmk_toolchains

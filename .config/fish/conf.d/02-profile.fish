@@ -45,8 +45,8 @@ end
 # already handled in 'completions/fzf.fish'
 
 # go
-if test -d $HOME/.go
-    set -gx GOPATH $HOME/.go
+set -gx GOPATH $HOME/.go
+if test -d $GOPATH
     fish_add_path $GOPATH/bin
 end
 
@@ -74,7 +74,11 @@ if test -f $HOME/.orbstack/shell/init2.fish
 end
 
 # pnpm
-set -gx PNPM_HOME $HOME/Library/pnpm
+if test -d $HOME/Library
+    set -gx PNPM_HOME $HOME/Library/pnpm
+else
+    set -gx PNPM_HOME $HOME/.pnpm
+end
 fish_add_path $PNPM_HOME
 
 # qmk_toolchains
