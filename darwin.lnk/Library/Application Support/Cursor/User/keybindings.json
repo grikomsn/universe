@@ -17,6 +17,11 @@
     "when": "editorFocus || isInDiffEditor"
   },
   {
+    "key": "cmd+right",
+    "command": "-editor.action.inlineSuggest.acceptNextWord",
+    "when": "cppSuggestion && !editorReadonly || inlineSuggestionVisible && !editorReadonly"
+  },
+  {
     "key": "ctrl+alt+cmd+f",
     "command": "editor.action.fixAll"
   },
@@ -33,10 +38,7 @@
     "key": "ctrl+alt+cmd+r",
     "command": "runCommands",
     "args": {
-      "commands": [
-        "eslint.restart",
-        "typescript.restartTsServer"
-      ]
+      "commands": ["eslint.restart", "typescript.restartTsServer"]
     }
   },
   {
