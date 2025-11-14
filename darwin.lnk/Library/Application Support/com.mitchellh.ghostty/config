@@ -46,7 +46,6 @@ adjust-cell-height = 8
 confirm-close-surface = true
 font-family = "SF Mono Powerline"
 font-size = 12
-keybind = global:ctrl+shift+`=toggle_quick_terminal
 keybind = shift+enter=text:\n
 macos-secure-input-indication = false
 mouse-scroll-multiplier = 2
