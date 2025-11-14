@@ -51,11 +51,10 @@
 adjust-cell-height = 8
 font-family = "SF Mono Powerline"
 font-size = 10
+keybind = shift+enter=text:\n
 maximize = true
 mouse-scroll-multiplier = 2
 selection-invert-fg-bg = true
 theme = light:Apple System Colors Light,dark:Apple System Colors
 window-padding-x = 8
 window-padding-y = 8
-
-keybind = shift+enter=text:\n
