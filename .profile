@@ -96,9 +96,9 @@ fi
 
 # pnpm
 if [ -d "$HOME/Library" ]; then
-    export PNPM_HOME="$HOME/Library/pnpm"
+	export PNPM_HOME="$HOME/Library/pnpm"
 else
-    export PNPM_HOME="$HOME/.pnpm"
+	export PNPM_HOME="$HOME/.pnpm"
 fi
 export PATH="$PNPM_HOME:$PATH"
 
