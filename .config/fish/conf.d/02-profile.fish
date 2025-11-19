@@ -1,3 +1,9 @@
+# antigravity
+if test -d $HOME/.antigravity
+    set -gx ANTIGRAVITY_INSTALL $HOME/.antigravity
+    fish_add_path $ANTIGRAVITY_INSTALL/antigravity/bin
+end
+
 # bun
 if test -d $HOME/.bun
     set -gx BUN_INSTALL $HOME/.bun
