@@ -62,6 +62,9 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
@@ -121,6 +124,7 @@
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.onIgnoredFiles": "warn",
+  "extensions.autoUpdate": false,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
     "_redirects": "plaintext",
@@ -225,6 +229,7 @@
   "terminal.integrated.scrollback": 102400,
   "typescript.tsserver.maxTsServerMemory": 16384,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "update.releaseTrack": "prerelease",
   "update.showReleaseNotes": false,
   "window.autoDetectColorScheme": true,
   "window.commandCenter": true,
