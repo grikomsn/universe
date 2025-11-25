@@ -77,6 +77,7 @@
   "better-comments.highlightPlainText": true,
   "color-highlight.markRuler": false,
   "cursor.composer.collapsePaneInputBoxPills": true,
+  "cursor.composer.queueMessageDefaultBehavior": "queue",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
   "cursor.cpp.disabledLanguages": [],
   "cursor.cpp.enablePartialAccepts": true,
@@ -128,7 +129,6 @@
   "extensions.ignoreRecommendations": true,
   "files.associations": {
     "_redirects": "plaintext",
-    "*.css": "tailwindcss",
     "*.mdoc": "markdown",
     "CODEOWNERS": "plaintext"
   },
@@ -148,6 +148,7 @@
   "git.showPushSuccessNotification": true,
   "git.supportCancellation": true,
   "git.useCommitInputAsStashMessage": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
   "githubPullRequests.experimental.chat": true,
   "githubPullRequests.experimental.useQuickChat": true,
   "githubPullRequests.pullBranch": "never",
@@ -239,7 +240,6 @@
   "workbench.iconTheme": "vs-seti",
   "workbench.preferredDarkColorTheme": "Expo Dark",
   "workbench.preferredLightColorTheme": "Expo Light",
-  "workbench.secondarySideBar.showLabels": false,
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 12,
   "workbench.view.alwaysShowHeaderActions": true

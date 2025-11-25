@@ -62,6 +62,9 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
@@ -74,6 +77,7 @@
   "better-comments.highlightPlainText": true,
   "color-highlight.markRuler": false,
   "cursor.composer.collapsePaneInputBoxPills": true,
+  "cursor.composer.queueMessageDefaultBehavior": "queue",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
   "cursor.cpp.disabledLanguages": [],
   "cursor.cpp.enablePartialAccepts": true,
@@ -121,10 +125,10 @@
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.onIgnoredFiles": "warn",
+  "extensions.autoUpdate": false,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
     "_redirects": "plaintext",
-    "*.css": "tailwindcss",
     "*.mdoc": "markdown",
     "CODEOWNERS": "plaintext"
   },
@@ -144,6 +148,7 @@
   "git.showPushSuccessNotification": true,
   "git.supportCancellation": true,
   "git.useCommitInputAsStashMessage": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
   "githubPullRequests.experimental.chat": true,
   "githubPullRequests.experimental.useQuickChat": true,
   "githubPullRequests.pullBranch": "never",
@@ -225,14 +230,16 @@
   "terminal.integrated.scrollback": 102400,
   "typescript.tsserver.maxTsServerMemory": 16384,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "update.releaseTrack": "prerelease",
   "update.showReleaseNotes": false,
   "window.autoDetectColorScheme": true,
+  "window.commandCenter": true,
   "window.confirmBeforeClose": "always",
+  "workbench.activityBar.orientation": "vertical",
   "workbench.experimental.share.enabled": true,
   "workbench.iconTheme": "vs-seti",
   "workbench.preferredDarkColorTheme": "Expo Dark",
   "workbench.preferredLightColorTheme": "Expo Light",
-  "workbench.secondarySideBar.showLabels": false,
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 12,
   "workbench.view.alwaysShowHeaderActions": true
