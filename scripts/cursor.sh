@@ -6,6 +6,7 @@ readarray -t EXTENSIONS < <(curl -fsSL https://universe.nibras.co/Brewfile | gre
 # dotdir values for other vscode forks
 DOTDIR_VALUES=(
   ".antigravity"
+  ".cursor-nightly"
   ".kiro"
   ".vscode"
   ".vscode-oss"
