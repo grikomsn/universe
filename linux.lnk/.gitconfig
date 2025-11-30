@@ -54,6 +54,9 @@ keepBackup = true
 [pull]
 rebase = false
 
+[rerere]
+enabled = true
+
 [tag]
 forceSignAnnotated = true
 gpgsign = true
