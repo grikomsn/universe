@@ -79,6 +79,7 @@
   "cursor.composer.collapsePaneInputBoxPills": true,
   "cursor.composer.queueMessageDefaultBehavior": "queue",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.composer.usageSummaryDisplay": "always",
   "cursor.cpp.disabledLanguages": [],
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
@@ -240,6 +241,7 @@
   "workbench.iconTheme": "vs-seti",
   "workbench.preferredDarkColorTheme": "Expo Dark",
   "workbench.preferredLightColorTheme": "Expo Light",
+  "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 12,
   "workbench.view.alwaysShowHeaderActions": true

@@ -79,6 +79,7 @@
   "cursor.composer.collapsePaneInputBoxPills": true,
   "cursor.composer.queueMessageDefaultBehavior": "queue",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.composer.usageSummaryDisplay": "always",
   "cursor.cpp.disabledLanguages": [],
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
