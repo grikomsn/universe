@@ -12,6 +12,15 @@
     "command": "-cursorai.action.generateInTerminal"
   },
   {
+    "key": "cmd+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocusInAny"
+  },
+  {
+    "key": "cmd+k",
+    "command": "-workbench.action.terminal.clear"
+  },
+  {
     "key": "cmd+k cmd+r",
     "command": "git.revertSelectedRanges",
     "when": "editorFocus || isInDiffEditor"
@@ -55,6 +64,10 @@
     "command": "workbench.action.reloadWindow"
   },
   {
+    "key": "shift+ctrl+cmd+-",
+    "command": "editor.action.fontZoomOut"
+  },
+  {
     "key": "shift+ctrl+cmd+,",
     "command": "javascriptBooster.shrinkSelection"
   },
@@ -71,6 +84,14 @@
     "key": "shift+ctrl+cmd+]",
     "command": "editor.action.selectToBracket",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+ctrl+cmd+=",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "shift+ctrl+cmd+0",
+    "command": "editor.action.fontZoomReset"
   },
   {
     "key": "shift+ctrl+cmd+down",
@@ -105,27 +126,5 @@
       "text": "\\\r\n"
     },
     "when": "terminalFocusInAny"
-  },
-  {
-    "key": "cmd+k",
-    "command": "workbench.action.terminal.clear",
-    "when": "terminalFocusInAny"
-  },
-  {
-    "key": "cmd+k",
-    "command": "-workbench.action.terminal.clear",
-    "when": "terminalFocus && terminalHasBeenCreated && !accessibilityModeEnabled || terminalFocus && terminalProcessSupported && !accessibilityModeEnabled || accessibilityModeEnabled && accessibleViewIsShown && terminalHasBeenCreated && accessibleViewCurrentProviderId == 'terminal' || accessibilityModeEnabled && accessibleViewIsShown && terminalProcessSupported && accessibleViewCurrentProviderId == 'terminal'"
-  },
-  {
-    "key": "ctrl+shift+cmd+=",
-    "command": "editor.action.fontZoomIn"
-  },
-  {
-    "key": "ctrl+shift+cmd+-",
-    "command": "editor.action.fontZoomOut"
-  },
-  {
-    "key": "ctrl+shift+cmd+0",
-    "command": "editor.action.fontZoomReset"
   }
 ]
