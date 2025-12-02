@@ -39,10 +39,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "unifiedjs.vscode-remark"
+  },
+  "[mdc]": {
+    "editor.defaultFormatter": "unifiedjs.vscode-remark"
   },
   "[mdx]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "unifiedjs.vscode-remark"
   },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -75,6 +78,8 @@
     "sound": "on"
   },
   "better-comments.highlightPlainText": true,
+  "chat.extensionUnification.enabled": true,
+  "chat.mcp.gallery.enabled": true,
   "color-highlight.markRuler": false,
   "cursor.composer.collapsePaneInputBoxPills": true,
   "cursor.composer.queueMessageDefaultBehavior": "queue",
@@ -149,6 +154,11 @@
   "git.showPushSuccessNotification": true,
   "git.supportCancellation": true,
   "git.useCommitInputAsStashMessage": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.scopeSelection": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "githubPullRequests.experimental.chat": true,
   "githubPullRequests.experimental.useQuickChat": true,
