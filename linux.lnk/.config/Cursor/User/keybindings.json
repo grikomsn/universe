@@ -28,9 +28,21 @@
     "command": "-cursorai.action.generateInTerminal"
   },
   {
+    "key": "ctrl+l",
+    "command": "-composer.sendToAgent"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "-aichat.newchataction"
+  },
+  {
     "key": "meta+k",
     "command": "aipopup.action.modal.generate",
     "when": "editorFocus && !composerBarIsVisible"
+  },
+  {
+    "key": "shift+ctrl+alt+-",
+    "command": "editor.action.fontZoomOut"
   },
   {
     "key": "shift+ctrl+alt+,",
@@ -47,6 +59,19 @@
   {
     "key": "shift+ctrl+alt+]",
     "command": "editor.action.selectToBracket"
+  },
+  {
+    "key": "shift+ctrl+alt+=",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "shift+ctrl+alt+backspace",
+    "command": "editor.action.fontZoomReset"
+  },
+  {
+    "key": "shift+ctrl+alt+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   {
     "key": "shift+ctrl+alt+k",
