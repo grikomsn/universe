@@ -17,10 +17,6 @@
     "when": "terminalFocusInAny"
   },
   {
-    "key": "cmd+k",
-    "command": "-workbench.action.terminal.clear"
-  },
-  {
     "key": "cmd+k cmd+r",
     "command": "git.revertSelectedRanges",
     "when": "editorFocus || isInDiffEditor"
