@@ -112,6 +112,10 @@
     "command": "editor.action.sortLinesDescending"
   },
   {
+    "key": "shift+ctrl+cmd+v",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  {
     "key": "shift+ctrl+cmd+w",
     "command": "editor.emmet.action.wrapWithAbbreviation"
   },
