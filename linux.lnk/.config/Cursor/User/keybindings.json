@@ -95,6 +95,10 @@
     "command": "workbench.action.restartExtensionHost"
   },
   {
+    "key": "shift+ctrl+alt+v",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  {
     "key": "shift+ctrl+alt+w",
     "command": "editor.emmet.action.wrapWithAbbreviation"
   },

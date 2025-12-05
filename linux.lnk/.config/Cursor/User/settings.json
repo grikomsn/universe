@@ -39,13 +39,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "unifiedjs.vscode-remark"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[mdc]": {
-    "editor.defaultFormatter": "unifiedjs.vscode-remark"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[mdx]": {
-    "editor.defaultFormatter": "unifiedjs.vscode-remark"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -84,7 +84,6 @@
   "cursor.composer.collapsePaneInputBoxPills": true,
   "cursor.composer.queueMessageDefaultBehavior": "queue",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "cursor.composer.usageSummaryDisplay": "always",
   "cursor.cpp.disabledLanguages": [],
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
@@ -208,6 +207,7 @@
   "html.hover.references": false,
   "html.suggest.html5": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "jest.runMode": "on-demand",
   "json.schemaDownload.enable": true,
   "makefile.configureOnOpen": true,
   "markdown.occurrencesHighlight.enabled": true,
