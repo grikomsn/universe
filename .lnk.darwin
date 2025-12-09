@@ -1,5 +1,6 @@
 .Brewfile
 .gitconfig
-Library/Application Support/com.mitchellh.ghostty
+Library/Application Support/Cursor Personal/User/keybindings.json
 Library/Application Support/Cursor/User/keybindings.json
 Library/Application Support/Cursor/User/settings.json
+Library/Application Support/com.mitchellh.ghostty
