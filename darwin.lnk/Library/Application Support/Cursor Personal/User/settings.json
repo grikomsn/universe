@@ -1,0 +1,267 @@
+{
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockercompose]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[fish]": {
+    "editor.defaultFormatter": "ndonfris.fish-lsp"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[mdc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[snippets]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "accessibility.signals.terminalBell": {
+    "sound": "on"
+  },
+  "better-comments.highlightPlainText": true,
+  "chat.extensionUnification.enabled": true,
+  "chat.mcp.gallery.enabled": true,
+  "color-highlight.markRuler": false,
+  "cursor.composer.collapsePaneInputBoxPills": true,
+  "cursor.composer.queueMessageDefaultBehavior": "queue",
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.cpp.disabledLanguages": [],
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.diffs.useCharacterLevelDiffs": true,
+  "cursor.enable_agent_window_setting": true,
+  "cursor.inlineDiff.enablePerformanceProtection": false,
+  "debug.console.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.accessibilitySupport": "off",
+  "editor.codeLensFontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "editor.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 12,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.inlayHints.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "editor.largeFileOptimizations": false,
+  "editor.lineHeight": 1.75,
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.minimap.renderCharacters": false,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.snippetSuggestions": "inline",
+  "editor.suggest.insertMode": "replace",
+  "editor.suggest.selectionMode": "always",
+  "editor.suggest.showStatusBar": true,
+  "editor.tabSize": 2,
+  "emmet.includeLanguages": {
+    "astro": "html",
+    "edge": "html",
+    "javascript": "javascriptreact",
+    "markdown": "javascriptreact",
+    "mdx": "javascriptreact",
+    "rescript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": false,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.onIgnoredFiles": "warn",
+  "extensions.autoUpdate": false,
+  "extensions.ignoreRecommendations": true,
+  "files.associations": {
+    "_redirects": "plaintext",
+    "*.mdoc": "markdown",
+    "CODEOWNERS": "plaintext"
+  },
+  "files.exclude": {
+    "**/.git": false
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "fish-lsp.useGlobalExecutable": true,
+  "git.allowForcePush": true,
+  "git.allowNoVerifyCommit": true,
+  "git.autofetch": true,
+  "git.confirmSync": true,
+  "git.enableCommitSigning": true,
+  "git.replaceTagsWhenPull": true,
+  "git.showPushSuccessNotification": true,
+  "git.supportCancellation": true,
+  "git.useCommitInputAsStashMessage": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.scopeSelection": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "githubPullRequests.experimental.chat": true,
+  "githubPullRequests.experimental.useQuickChat": true,
+  "githubPullRequests.pullBranch": "never",
+  "gitlens.advanced.messages": {
+    "suppressIntegrationDisconnectedTooManyFailedRequestsWarning": true
+  },
+  "gitlens.blame.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "gitlens.currentLine.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "gitlens.graph.layout": "editor",
+  "gitlens.graph.minimap.additionalTypes": ["localBranches"],
+  "gitlens.graph.minimap.enabled": false,
+  "gitlens.graph.statusBar.enabled": false,
+  "gitlens.home.preview.enabled": false,
+  "gitlens.showWhatsNewAfterUpgrades": false,
+  "gitlens.telemetry.enabled": false,
+  "gitlens.views.branches.avatars": false,
+  "gitlens.views.branches.files.layout": "list",
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "gitlens.views.commits.avatars": false,
+  "gitlens.views.commits.files.layout": "tree",
+  "gitlens.views.commits.pullRequests.enabled": false,
+  "gitlens.views.commits.pullRequests.showForBranches": false,
+  "gitlens.views.commits.showBranchComparison": false,
+  "gitlens.views.remotes.avatars": false,
+  "gitlens.views.remotes.files.layout": "tree",
+  "gitlens.views.remotes.pullRequests.enabled": false,
+  "gitlens.views.remotes.pullRequests.showForBranches": false,
+  "gitlens.views.scm.grouped.views": {
+    "branches": false,
+    "commits": false,
+    "contributors": false,
+    "fileHistory": false,
+    "launchpad": false,
+    "remotes": false,
+    "repositories": false,
+    "searchAndCompare": false,
+    "stashes": false,
+    "tags": false,
+    "worktrees": true
+  },
+  "gitlens.views.stashes.files.layout": "tree",
+  "gitlens.views.tags.avatars": false,
+  "go.survey.prompt": false,
+  "html.autoClosingTags": false,
+  "html.hover.documentation": false,
+  "html.hover.references": false,
+  "html.suggest.html5": false,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "jest.runMode": "on-demand",
+  "json.schemaDownload.enable": true,
+  "makefile.configureOnOpen": true,
+  "markdown.occurrencesHighlight.enabled": true,
+  "markdown.preview.doubleClickToSwitchToEditor": false,
+  "notebook.output.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "prettier.enableDebugLogs": false,
+  "prettify-ts.enabled": false,
+  "redhat.telemetry.enabled": false,
+  "remote.SSH.remotePlatform": {
+    "dalang": "linux",
+    "dalang-mini": "linux",
+    "orb": "linux"
+  },
+  "scm.inputFontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "search.quickOpen.includeSymbols": true,
+  "search.showLineNumbers": true,
+  "security.promptForLocalFileProtocolHandling": false,
+  "shellformat.useEditorConfig": true,
+  "svg.preview.mode": "img",
+  "tailwindCSS.emmetCompletions": true,
+  "telemetry.feedback.enabled": false,
+  "telemetry.telemetryLevel": "off",
+  "terminal.external.osxExec": "Ghostty.app",
+  "terminal.integrated.confirmOnExit": "always",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.enableVisualBell": true,
+  "terminal.integrated.env.osx": {},
+  "terminal.integrated.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "terminal.integrated.persistentSessionScrollback": 102400,
+  "terminal.integrated.scrollback": 102400,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.tsserver.maxTsServerMemory": 16384,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "update.releaseTrack": "prerelease",
+  "update.showReleaseNotes": false,
+  "window.autoDetectColorScheme": true,
+  "window.commandCenter": true,
+  "window.confirmBeforeClose": "always",
+  "workbench.activityBar.orientation": "vertical",
+  "workbench.experimental.share.enabled": true,
+  "workbench.iconTheme": "vs-seti",
+  "workbench.preferredDarkColorTheme": "Expo Dark",
+  "workbench.preferredLightColorTheme": "Expo Light",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "none",
+  "workbench.tree.indent": 12,
+  "workbench.view.alwaysShowHeaderActions": true
+}
