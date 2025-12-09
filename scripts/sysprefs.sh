@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ "$(uname -o)" != "Darwin" ]]; then
-  echo "This script is intended for macOS only." >&2
-  exit 1
+	echo "This script is intended for macOS only." >&2
+	exit 1
 fi
 
 # h/t https://github.com/mathiasbynens/dotfiles/blob/main/.macos
@@ -14,17 +14,17 @@ osascript -e 'tell application "System Settings" to quit'
 # ask for the administrator password upfront and update existing `sudo` time stamp until `.macos` has finished
 sudo -v
 while true; do
-  sudo -n true
-  sleep 60
-  kill -0 "$$" || exit
+	sudo -n true
+	sleep 60
+	kill -0 "$$" || exit
 done 2>/dev/null &
 
 echo "Updating computer name..."
 if [ -n "${CUSTOM_HOSTNAME}" ]; then
-  sudo scutil --set ComputerName "${CUSTOM_HOSTNAME}"
-  sudo scutil --set HostName "${CUSTOM_HOSTNAME}"
-  sudo scutil --set LocalHostName "${CUSTOM_HOSTNAME}"
-  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "${CUSTOM_HOSTNAME}"
+	sudo scutil --set ComputerName "${CUSTOM_HOSTNAME}"
+	sudo scutil --set HostName "${CUSTOM_HOSTNAME}"
+	sudo scutil --set LocalHostName "${CUSTOM_HOSTNAME}"
+	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "${CUSTOM_HOSTNAME}"
 fi
 
 echo "Updating system configurations..."
@@ -213,9 +213,9 @@ sudo chflags nohidden /Volumes
 # expand the following file info panes:
 # "general", "open with", and "sharing & permissions"
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
-  General -bool true \
-  OpenWith -bool true \
-  Privileges -bool true
+	General -bool true \
+	OpenWith -bool true \
+	Privileges -bool true
 
 # enable highlight hover effect for the grid view of a stack (dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true

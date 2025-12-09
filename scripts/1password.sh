@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ "$(uname -o)" == "Darwin" ]]; then
-  mkdir -p ~/Library/LaunchAgents
-  cat <<EOF >~/Library/LaunchAgents/com.1password.SSH_AUTH_SOCK.plist
+	mkdir -p ~/Library/LaunchAgents
+	cat <<EOF >~/Library/LaunchAgents/com.1password.SSH_AUTH_SOCK.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -20,9 +20,9 @@ if [[ "$(uname -o)" == "Darwin" ]]; then
 </dict>
 </plist>
 EOF
-  launchctl load -w ~/Library/LaunchAgents/com.1password.SSH_AUTH_SOCK.plist
+	launchctl load -w ~/Library/LaunchAgents/com.1password.SSH_AUTH_SOCK.plist
 else
-  mkdir -p ~/.config/autostart &&
-    cp /etc/xdg/autostart/gnome-keyring-ssh.desktop ~/.config/autostart/gnome-keyring-ssh.desktop &&
-    echo "Hidden=true" >>~/.config/autostart/gnome-keyring-ssh.desktop
+	mkdir -p ~/.config/autostart &&
+		cp /etc/xdg/autostart/gnome-keyring-ssh.desktop ~/.config/autostart/gnome-keyring-ssh.desktop &&
+		echo "Hidden=true" >>~/.config/autostart/gnome-keyring-ssh.desktop
 fi
