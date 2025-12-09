@@ -65,3 +65,6 @@ gpgsign = true
 name = Griko Nibras
 email = griko@nibras.co
 signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJFr9Y5Dy8P44I9h8VWymBjov/G3YOlDa3GjgU8F5A9R
+
+[include]
+path = ~/.gitconfig-private
