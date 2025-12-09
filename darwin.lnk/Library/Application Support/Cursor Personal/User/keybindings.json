@@ -1,0 +1,130 @@
+[
+  {
+    "key": "alt+r",
+    "command": "editor.emmet.action.updateTag"
+  },
+  {
+    "key": "cmd+k",
+    "command": "-aipopup.action.modal.generate"
+  },
+  {
+    "key": "cmd+k",
+    "command": "-cursorai.action.generateInTerminal"
+  },
+  {
+    "key": "cmd+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocusInAny"
+  },
+  {
+    "key": "cmd+k cmd+r",
+    "command": "git.revertSelectedRanges",
+    "when": "editorFocus || isInDiffEditor"
+  },
+  {
+    "key": "cmd+right",
+    "command": "-editor.action.inlineSuggest.acceptNextWord",
+    "when": "cppSuggestion && !editorReadonly || inlineSuggestionVisible && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+cmd+f",
+    "command": "editor.action.fixAll"
+  },
+  {
+    "key": "ctrl+alt+cmd+i",
+    "command": "editor.action.organizeImports",
+    "when": "textInputFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
+  },
+  {
+    "key": "ctrl+alt+cmd+j",
+    "command": "workbench.action.createTerminalEditor"
+  },
+  {
+    "key": "ctrl+alt+cmd+r",
+    "command": "runCommands",
+    "args": {
+      "commands": ["eslint.restart", "typescript.restartTsServer"]
+    }
+  },
+  {
+    "key": "shift+cmd+/",
+    "command": "editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "-aipopup.action.modal.generate"
+  },
+  {
+    "key": "shift+ctrl+alt+cmd+r",
+    "command": "workbench.action.reloadWindow"
+  },
+  {
+    "key": "shift+ctrl+cmd+-",
+    "command": "editor.action.fontZoomOut"
+  },
+  {
+    "key": "shift+ctrl+cmd+,",
+    "command": "javascriptBooster.shrinkSelection"
+  },
+  {
+    "key": "shift+ctrl+cmd+.",
+    "command": "javascriptBooster.extendSelection"
+  },
+  {
+    "key": "shift+ctrl+cmd+[",
+    "command": "editor.action.selectToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+ctrl+cmd+]",
+    "command": "editor.action.selectToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+ctrl+cmd+=",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "shift+ctrl+cmd+0",
+    "command": "editor.action.fontZoomReset"
+  },
+  {
+    "key": "shift+ctrl+cmd+down",
+    "command": "editor.action.sortLinesAscending"
+  },
+  {
+    "key": "shift+ctrl+cmd+k",
+    "command": "aipopup.action.modal.generate",
+    "when": "editorFocus && !composerBarIsVisible"
+  },
+  {
+    "key": "shift+ctrl+cmd+k",
+    "command": "cursorai.action.generateInTerminal",
+    "when": "terminalFocusInAny"
+  },
+  {
+    "key": "shift+ctrl+cmd+r",
+    "command": "workbench.action.restartExtensionHost"
+  },
+  {
+    "key": "shift+ctrl+cmd+up",
+    "command": "editor.action.sortLinesDescending"
+  },
+  {
+    "key": "shift+ctrl+cmd+v",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  {
+    "key": "shift+ctrl+cmd+w",
+    "command": "editor.emmet.action.wrapWithAbbreviation"
+  },
+  {
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "\\\r\n"
+    },
+    "when": "terminalFocusInAny"
+  }
+]
