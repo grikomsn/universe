@@ -114,6 +114,7 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
+  "editor.selectionClipboard": false,
   "editor.snippetSuggestions": "inline",
   "editor.suggest.insertMode": "replace",
   "editor.suggest.selectionMode": "always",
