@@ -126,5 +126,9 @@
       "text": "\\\r\n"
     },
     "when": "terminalFocusInAny"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
   }
 ]
