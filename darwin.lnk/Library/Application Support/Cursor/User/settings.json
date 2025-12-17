@@ -113,7 +113,7 @@
   "editor.largeFileOptimizations": false,
   "editor.lineHeight": 1.75,
   "editor.linkedEditing": true,
-  "editor.minimap.autohide": true,
+  "editor.minimap.autohide": "mouseover",
   "editor.minimap.enabled": true,
   "editor.minimap.renderCharacters": false,
   "editor.quickSuggestions": {
@@ -260,7 +260,7 @@
   "window.autoDetectColorScheme": true,
   "window.commandCenter": true,
   "window.confirmBeforeClose": "always",
-  "workbench.activityBar.orientation": "horizontal",
+  "workbench.activityBar.orientation": "vertical",
   "workbench.experimental.share.enabled": true,
   "workbench.iconTheme": "vs-seti",
   "workbench.preferredDarkColorTheme": "Expo Dark",
