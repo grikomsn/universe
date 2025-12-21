@@ -1,15 +1,12 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const { globSync } = fs;
 
-const paths = [
-  path.resolve(
-    process.cwd(),
-    "darwin.lnk/Library/Application Support/Cursor/User/keybindings.json"
-  ),
-  path.resolve(process.cwd(), "linux.lnk/.config/Cursor/User/keybindings.json"),
-];
+const paths = globSync("**/keybindings.json", {
+  cwd: process.cwd(),
+  exclude: (name) => name === "node_modules",
+});
 
 function sortKeybindings(jsonPath) {
   const jsonContent = fs.readFileSync(jsonPath, "utf8");
