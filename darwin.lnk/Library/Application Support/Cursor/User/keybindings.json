@@ -1,7 +1,15 @@
 [
   {
+    "key": "alt+cmd+s",
+    "command": "-workbench.action.share"
+  },
+  {
     "key": "alt+r",
     "command": "editor.emmet.action.updateTag"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
   },
   {
     "key": "cmd+k",
@@ -126,9 +134,5 @@
       "text": "\\\r\n"
     },
     "when": "terminalFocusInAny"
-  },
-  {
-    "key": "cmd+i",
-    "command": "composerMode.agent"
   }
 ]
