@@ -4,6 +4,10 @@
     "command": "-workbench.action.share"
   },
   {
+    "key": "alt+cmd+s",
+    "command": "-workbench.action.toggleUnifiedSidebar"
+  },
+  {
     "key": "alt+r",
     "command": "editor.emmet.action.updateTag"
   },
@@ -28,6 +32,11 @@
     "key": "cmd+k cmd+r",
     "command": "git.revertSelectedRanges",
     "when": "editorFocus || isInDiffEditor"
+  },
+  {
+    "key": "cmd+k s",
+    "command": "workbench.action.toggleUnifiedSidebar",
+    "when": "cursor.agentIdeUnification.enabled && !isAuxiliaryWindowFocusedContext"
   },
   {
     "key": "cmd+right",
