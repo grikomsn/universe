@@ -1,6 +1,7 @@
 export ADBLOCK=1
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export DISABLE_OPENCOLLECTIVE=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export GPG_TTY=$TTY # https://stackoverflow.com/a/57591830/4273667
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"

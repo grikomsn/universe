@@ -121,6 +121,10 @@
     "when": "terminalFocusInAny"
   },
   {
+    "key": "shift+ctrl+cmd+o",
+    "command": "editor.action.toggleOvertypeInsertMode"
+  },
+  {
     "key": "shift+ctrl+cmd+r",
     "command": "workbench.action.restartExtensionHost"
   },
@@ -135,13 +139,5 @@
   {
     "key": "shift+ctrl+cmd+w",
     "command": "editor.emmet.action.wrapWithAbbreviation"
-  },
-  {
-    "key": "shift+enter",
-    "command": "workbench.action.terminal.sendSequence",
-    "args": {
-      "text": "\\\r\n"
-    },
-    "when": "terminalFocusInAny"
   }
 ]
