@@ -246,7 +246,9 @@
     "https://json.schemastore.org/": true,
     "https://raw.githubusercontent.com/": true,
     "https://schemastore.azurewebsites.net/": true,
-    "https://www.schemastore.org/": true
+    "https://www.schemastore.org/": true,
+    "https://opencode.ai/": true,
+    "https://models.dev/": true
   },
   "makefile.configureOnOpen": true,
   "markdown.extension.completion.enabled": true,
