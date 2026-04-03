@@ -245,12 +245,14 @@ defaults write com.apple.dock show-recents -bool false
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
 # privacy: don't send search queries to apple
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+# DISABLED: Keys no longer exist in Safari (removed in recent versions)
+# defaults write com.apple.Safari UniversalSearchEnabled -bool false
+# defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 
 # press tab to highlight each item on a web page
 defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
 
 # show the full url in the address bar (note: this still hides the scheme)
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
@@ -262,33 +264,40 @@ defaults write com.apple.Safari HomePage -string "about:blank"
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
 # hide safari's bookmarks bar by default
-defaults write com.apple.Safari ShowFavoritesBar -bool false
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari ShowFavoritesBar -bool false
 
 # hide safari's sidebar in top sites
 defaults write com.apple.Safari ShowSidebarInTopSites -bool false
 
 # disable safari's thumbnail cache for history and top sites
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
 # enable safari's debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
 # make safari's search banners default to contains instead of starts with
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
 # remove useless icons from safari's bookmarks bar
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
 # enable the develop menu and the web inspector in safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 # add a context menu item for showing the web inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # enable continuous spellchecking
-defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
 
 # disable auto-correct
 defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
@@ -300,29 +309,36 @@ defaults write com.apple.Safari AutoFillCreditCardData -bool false
 defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
 
 # warn about fraudulent websites
-defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
 
 # block pop-up windows
-defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
+# DISABLED: Keys no longer exist in Safari (feature moved to Safari Settings UI)
+# defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
 
 # disable auto-playing video
-defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false
+# DISABLED: Keys no longer exist in regular Safari (only in SafariTechnologyPreview)
 defaults write com.apple.SafariTechnologyPreview WebKitMediaPlaybackAllowsInline -bool false
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
 defaults write com.apple.SafariTechnologyPreview com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
+# defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
 
 # enable "do not track"
-defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
 # update extensions automatically
-defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+# DISABLED: Key no longer exists in Safari
+# defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 # copy email addresses as `foo@example.com` instead of `foo bar <foo@example.com>` in mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+# DISABLED: Key no longer exists in Mail (functionality moved/changed)
+# defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 # add the keyboard shortcut ⌘ + enter to send an email in mail.app
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
+# DISABLED: Key no longer exists in Mail (keyboard shortcuts managed differently)
+# defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
 # display emails in threaded mode, sorted by date (oldest at the top)
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
@@ -330,17 +346,20 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
 
 # disable inline attachments (just show the icons)
-defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
+# DISABLED: Key no longer exists in Mail
+# defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 
 # disable automatic spell checking
 defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
 # hide spotlight tray-icon (and subsequent helper)
-sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+# DISABLED: SIP (System Integrity Protection) prevents modification
+# sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
 # disable spotlight indexing for any volume that gets mounted and has not yet been indexed before.
+# DISABLED: Domain does not exist on modern macOS
 # use `sudo mdutil -i off "/volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 
 # only use utf-8 in terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
@@ -367,7 +386,8 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 defaults write com.apple.addressbook ABShowDebugMenu -bool true
 
 # enable dashboard dev mode (allows keeping widgets on the desktop)
-defaults write com.apple.dashboard devmode -bool true
+# DEPRECATED: Dashboard app was removed in macOS Catalina (10.15)
+# defaults write com.apple.dashboard devmode -bool true
 
 # enable the debug menu in ical (pre-10.8)
 defaults write com.apple.iCal IncludeDebugMenu -bool true
@@ -379,8 +399,9 @@ defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 # enable the debug menu in disk utility
-defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
-defaults write com.apple.DiskUtility advanced-image-options -bool true
+# NOTE: Debug menu may not work in modern Disk Utility versions
+# defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
+# defaults write com.apple.DiskUtility advanced-image-options -bool true
 
 # enable the webkit developer tools in the mac app store
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
@@ -401,7 +422,8 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool false
 
 # prevent photos from opening automatically when devices are plugged in
-defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+# NOTE: Key may not work as expected in modern macOS
+# defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 # disable smart quotes as it's annoying for messages that contain code
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
