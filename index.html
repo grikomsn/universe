@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>universe — dotfiles by grikomsn</title>
+    <meta name="description" content="Cross-platform dotfiles managed with lnk. Opinionated macOS and Linux configurations for development.">
+    <meta property="og:title" content="universe — dotfiles by grikomsn">
+    <meta property="og:description" content="Cross-platform dotfiles managed with lnk. Opinionated macOS and Linux configurations for development.">
+    <meta property="og:url" content="https://universe.nibras.co">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="universe — dotfiles by grikomsn">
+    <meta name="twitter:description" content="Cross-platform dotfiles managed with lnk. Opinionated macOS and Linux configurations for development.">
+    <link rel="canonical" href="https://universe.nibras.co">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "universe",
+        "description": "Cross-platform dotfiles managed with lnk. Opinionated macOS and Linux configurations for development.",
+        "url": "https://universe.nibras.co",
+        "codeRepository": "https://github.com/grikomsn/universe",
+        "programmingLanguage": ["Shell", "Fish"],
+        "author": {
+            "@type": "Person",
+            "name": "Griko Nibras",
+            "url": "https://github.com/grikomsn"
+        },
+        "license": "https://opensource.org/licenses/MIT"
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #fafafa;
+            --bg-secondary: #f5f5f5;
+            --text: #1a1a1a;
+            --text-secondary: #666;
+            --text-muted: #888;
+            --accent: #6366f1;
+            --border: #e5e5e5;
+            --code-bg: #1a1a1a;
+            --code-text: #e5e5e5;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0a;
+                --bg-secondary: #141414;
+                --text: #e5e5e5;
+                --text-secondary: #a0a0a0;
+                --text-muted: #666;
+                --accent: #818cf8;
+                --border: #262626;
+                --code-bg: #141414;
+                --code-text: #e5e5e5;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "IBM Plex Mono", monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            font-size: 14px;
+        }
+
+        header { margin-bottom: 3rem; }
+
+        .badge {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge::before { content: "[*] "; }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .install {
+            margin: 2.5rem 0;
+        }
+
+        .label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        pre:hover {
+            opacity: 0.9;
+        }
+
+        section {
+            margin: 2.5rem 0;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h2::before { content: "[*] "; }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        code {
+            color: var(--accent);
+            font-size: 12px;
+        }
+
+        a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+        }
+
+        a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-muted);
+            border: none;
+        }
+
+        footer a:hover {
+            color: var(--text);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 2rem 1rem; }
+            h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span class="badge">dotfiles</span>
+        <h1>universe</h1>
+        <p class="subtitle">Cross-platform dotfiles managed with <a href="https://github.com/grikomsn/lnk">lnk</a>. Opinionated macOS and Linux configurations for development.</p>
+    </header>
+
+    <div class="install">
+        <p class="label">Quick Install</p>
+        <pre onclick="copy(this)">curl -fsSL https://universe.nibras.co/install.sh | bash</pre>
+    </div>
+
+    <section>
+        <h2>Features</h2>
+        <ul>
+            <li>Cross-platform via <code>lnk</code> manifests</li>
+            <li>Fish shell with custom functions</li>
+            <li>Homebrew bundle for macOS</li>
+            <li>Cursor/VS Code settings sync</li>
+            <li>Idempotent installation scripts</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Structure</h2>
+        <ul>
+            <li><code>darwin.lnk</code> — macOS-specific symlinks</li>
+            <li><code>linux.lnk</code> — Linux-specific symlinks</li>
+            <li><code>scripts/</code> — setup and utility scripts</li>
+            <li><code>.config/</code> — application configs</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Usage</h2>
+        <ul>
+            <li><code>lnk pull</code> — apply dotfiles</li>
+            <li><code>lnk pull -H darwin</code> — macOS only</li>
+            <li><code>brew bundle --global</code> — install packages</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Links</h2>
+        <ul>
+            <li><a href="https://github.com/grikomsn/universe">github.com/grikomsn/universe</a></li>
+            <li><a href="https://github.com/grikomsn/lnk">github.com/grikomsn/lnk</a></li>
+            <li><a href="https://nbr.st">nbr.st</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>MIT License · <a href="https://github.com/grikomsn">grikomsn</a></p>
+    </footer>
+
+    <script>
+        function copy(el) {
+            navigator.clipboard.writeText(el.textContent.trim());
+        }
+    </script>
+</body>
+</html>
