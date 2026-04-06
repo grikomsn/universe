@@ -44,7 +44,7 @@ Treat "tests" here as syntax/format validation of dotfiles and scripts.
 ### Run A Single "Test" (One File)
 
 - Bash syntax: `bash -n scripts/cursor.sh`
-- Fish syntax: `fish -n .config/fish/conf.d/01-brew.fish`
+- Fish syntax: `fish -n .config/fish/conf.d/01-brew.fish` or `fish -n .config/fish/functions/git-save-me.fish`
 - Node syntax: `node --check scripts/sort-keybinds.js`
 
 ### Validate Everything (Suggested)
@@ -102,15 +102,19 @@ Treat "tests" here as syntax/format validation of dotfiles and scripts.
 ### Fish
 
 - Functions:
-  - Use `function name --description '...'; ...; end`.
+  - Use `function name --description '...' --wraps=...; ...; end`.
   - Prefer kebab-case for function names (matches existing `brew-everything`, `git-save-me`, etc.).
+  - Place custom functions in `.config/fish/functions/` (symlinked).
 - Variables:
   - Prefer `set -l` for locals; `set -gx` for exported globals.
 - Command checks:
   - Prefer `type -q tool` generally.
   - Use `command -q tool` when you must avoid picking up functions/wrappers.
+- Platform checks:
+  - macOS: `test (uname -o) = Darwin`
+  - Linux: `string match -q Linux (uname -s)`
 - Formatting:
-  - Use `fish_indent -w` for consistent indentation.
+  - Use `fish_indent -w` for consistent 2-space indentation.
 - LSP directives:
   - Keep existing `# @fish-lsp-disable ...` where it is intentionally suppressing warnings.
 - When wrapping builtins (e.g. `cat`), use `command ...` to avoid recursive calls.
