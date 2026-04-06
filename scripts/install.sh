@@ -5,6 +5,9 @@
 
 set -euo pipefail
 
+REPO_URL="https://github.com/grikomsn/universe.git"
+REPO_DIR="$HOME/.config/lnk"
+
 sudo -v
 while true; do
 	sudo -n true
@@ -44,7 +47,7 @@ if command -v mkcert >/dev/null 2>&1; then
 fi
 
 curl -sSL https://raw.githubusercontent.com/yarlson/lnk/main/install.sh | bash
-lnk init -r https://github.com/grikomsn/universe.git
+lnk init -r "$REPO_URL"
 lnk pull
 
 if [[ "$(uname -o)" == "Darwin" ]]; then
