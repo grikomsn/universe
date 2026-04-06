@@ -49,10 +49,29 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 	lnk pull -H linux
 fi
 
-cat >~/.npmrc <<'EOF'
-audit=false
-fund=false
-EOF
+# Ensure npmrc has audit=false and fund=false without clobbering existing content
+npmrc_file="$HOME/.npmrc"
+ensure_npmrc_setting() {
+	local key="$1"
+	local value="$2"
+	local line="${key}=${value}"
+	
+	if [[ -f "$npmrc_file" ]]; then
+		if grep -q "^${key}=" "$npmrc_file" 2>/dev/null; then
+			# Key exists, update if value differs
+			sed -i.bak "s/^${key}=.*/${line}/" "$npmrc_file" && rm -f "${npmrc_file}.bak"
+		else
+			# Key doesn't exist, append it
+			echo "$line" >> "$npmrc_file"
+		fi
+	else
+		# File doesn't exist, create it
+		echo "$line" > "$npmrc_file"
+	fi
+}
+
+ensure_npmrc_setting "audit" "false"
+ensure_npmrc_setting "fund" "false"
 
 curl -fsSL https://bun.com/install | bash
 curl -fsSL https://deno.land/install.sh | bash
