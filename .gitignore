@@ -5,6 +5,7 @@ __pycache__
 .config/fish/completions/orbctl.fish
 .config/fish/fish_variables
 .DS_Store
+.npmrc
 .turbo
 .vercel
 *.bak
