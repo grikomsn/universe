@@ -49,6 +49,11 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 	lnk pull -H linux
 fi
 
+cat >~/.npmrc <<'EOF'
+audit=false
+fund=false
+EOF
+
 curl -fsSL https://bun.com/install | bash
 curl -fsSL https://deno.land/install.sh | bash
 curl -fsSL https://fnm.vercel.app/install | bash
