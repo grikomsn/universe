@@ -9,33 +9,26 @@ REPO_URL="https://github.com/grikomsn/universe.git"
 REPO_DIR="$HOME/.config/lnk"
 BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 
-error() {
-	echo "[migrate] Error: $*" >&2
-	exit 1
-}
-
-info() {
-	echo "[migrate] $*"
-}
-
 check_remote_mismatch() {
 	if [[ ! -d "$REPO_DIR/.git" ]]; then
-		error "lnk repo not found at $REPO_DIR"
+		echo "Error: lnk repo not found at $REPO_DIR" >&2
+		exit 1
 	fi
 
 	cd "$REPO_DIR"
 
 	if ! git remote get-url origin >/dev/null 2>&1; then
-		error "No origin remote configured"
+		echo "Error: No origin remote configured" >&2
+		exit 1
 	fi
 
-	local_remote=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
+	local_local=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
 	remote_head=$(git ls-remote origin HEAD 2>/dev/null | awk '{print $1}' || echo "unknown")
 
-	if [[ "$local_remote" != "$remote_head" && "$remote_head" != "unknown" ]]; then
-		info "Detected git tree mismatch:"
-		info "  Local HEAD:  $local_remote"
-		info "  Remote HEAD: $remote_head"
+	if [[ "$local_local" != "$remote_head" && "$remote_head" != "unknown" ]]; then
+		echo "Detected git tree mismatch:"
+		echo "  Local HEAD:  $local_local"
+		echo "  Remote HEAD: $remote_head"
 		return 1
 	fi
 
@@ -45,9 +38,8 @@ check_remote_mismatch() {
 check_symlink_health() {
 	local issues=0
 
-	info "Checking symlink health..."
+	echo "Checking symlink health..."
 
-	# Read all manifests and check if symlinks are valid
 	local manifests=(".lnk" ".lnk.darwin" ".lnk.linux")
 
 	for manifest in "${manifests[@]}"; do
@@ -60,27 +52,23 @@ check_symlink_health() {
 			local target="$HOME/$path"
 			local source="$REPO_DIR/$path"
 
-			# Skip if source doesn't exist (might be platform-specific)
 			[[ -e "$source" ]] || continue
 
 			if [[ -L "$target" ]]; then
-				# It's a symlink, check if it points to the right place
 				local current_link
 				current_link=$(readlink "$target")
 				if [[ "$current_link" != "$source" ]]; then
-					info "  Wrong symlink: $target -> $current_link (expected: $source)"
+					echo "  Wrong symlink: $target -> $current_link (expected: $source)"
 					((issues++))
 				elif [[ ! -e "$target" ]]; then
-					info "  Broken symlink: $target -> $current_link"
+					echo "  Broken symlink: $target -> $current_link"
 					((issues++))
 				fi
 			elif [[ -e "$target" ]]; then
-				# Regular file exists instead of symlink
-				info "  Regular file (not symlink): $target"
+				echo "  Regular file (not symlink): $target"
 				((issues++))
 			else
-				# Missing entirely
-				info "  Missing: $target should link to $source"
+				echo "  Missing: $target should link to $source"
 				((issues++))
 			fi
 		done <"$REPO_DIR/$manifest"
@@ -90,7 +78,7 @@ check_symlink_health() {
 }
 
 backup_existing_files() {
-	info "Backing up existing dotfiles to $BACKUP_DIR..."
+	echo "Backing up existing dotfiles to $BACKUP_DIR..."
 	mkdir -p "$BACKUP_DIR"
 
 	local manifests=(".lnk" ".lnk.darwin" ".lnk.linux")
@@ -108,27 +96,25 @@ backup_existing_files() {
 				local backup_path="$BACKUP_DIR/$path"
 				mkdir -p "$(dirname "$backup_path")"
 				cp -R "$target" "$backup_path" 2>/dev/null || true
-				info "  Backed up: $path"
+				echo "  Backed up: $path"
 			fi
 		done <"$REPO_DIR/$manifest"
 	done
 }
 
 reclone_and_sync() {
-	info "Re-cloning lnk repo..."
+	echo "Re-cloning lnk repo..."
 
-	# Backup current repo if needed
 	if [[ -d "$REPO_DIR" ]]; then
 		local old_repo="${REPO_DIR}.old-$(date +%Y%m%d-%H%M%S)"
 		mv "$REPO_DIR" "$old_repo"
-		info "Old repo moved to: $old_repo"
+		echo "Old repo moved to: $old_repo"
 	fi
 
-	# Fresh clone
 	mkdir -p "$(dirname "$REPO_DIR")"
 	git clone --depth 1 "$REPO_URL" "$REPO_DIR"
 
-	info "Running lnk pull..."
+	echo "Running lnk pull..."
 	lnk init -r "$REPO_URL"
 	lnk pull
 
@@ -139,32 +125,30 @@ reclone_and_sync() {
 		lnk pull -H linux
 	fi
 
-	info "Migration complete!"
-	info "Your old repo is at: $old_repo (if you need to recover anything)"
-	info "Backup of regular files (non-symlinks) is at: $BACKUP_DIR"
+	echo "Migration complete!"
+	echo "Your old repo is at: $old_repo (if you need to recover anything)"
+	echo "Backup of regular files (non-symlinks) is at: $BACKUP_DIR"
 }
 
 perform_sync() {
-	info "Performing lnk sync..."
+	echo "Performing lnk sync..."
 
 	cd "$REPO_DIR"
 
-	# Try to fetch and see if we can fast-forward
 	if git fetch origin 2>/dev/null; then
 		local local_commit remote_commit
 		local_commit=$(git rev-parse HEAD)
 		remote_commit=$(git rev-parse origin/main 2>/dev/null || git rev-parse origin/master 2>/dev/null)
 
 		if [[ "$local_commit" != "$remote_commit" ]]; then
-			info "Attempting to reset to origin..."
+			echo "Attempting to reset to origin..."
 			git reset --hard "$remote_commit" || {
-				info "Reset failed. Re-cloning recommended."
+				echo "Reset failed. Re-cloning recommended."
 				return 1
 			}
 		fi
 	fi
 
-	# Re-run lnk
 	lnk pull
 	if [[ "$(uname -o)" == "Darwin" ]]; then
 		lnk pull -H darwin
@@ -173,32 +157,28 @@ perform_sync() {
 		lnk pull -H linux
 	fi
 
-	info "Sync complete!"
+	echo "Sync complete!"
 }
 
 main() {
-	info "Checking lnk repo at $REPO_DIR..."
+	echo "Checking lnk repo at $REPO_DIR..."
 
 	local mismatch=0
 	local symlink_issues=0
 
-	# Check for git tree mismatch
 	if ! check_remote_mismatch; then
 		mismatch=1
 	fi
 
-	# Check symlink health
 	if ! check_symlink_health; then
 		symlink_issues=1
 	fi
 
-	# If no issues, exit early
 	if [[ $mismatch -eq 0 && $symlink_issues -eq 0 ]]; then
-		info "No issues detected. Everything looks good!"
+		echo "No issues detected. Everything looks good!"
 		exit 0
 	fi
 
-	# Report issues and ask what to do
 	echo ""
 	echo "Issues detected:"
 	[[ $mismatch -eq 1 ]] && echo "  - Git tree mismatch (history was likely rewritten)"
@@ -220,7 +200,7 @@ main() {
 				backup_existing_files
 				reclone_and_sync
 			else
-				info "Cancelled."
+				echo "Cancelled."
 				exit 0
 			fi
 			;;
@@ -230,12 +210,12 @@ main() {
 			if [[ "$confirm" =~ ^[Yy]$ ]]; then
 				perform_sync
 			else
-				info "Cancelled."
+				echo "Cancelled."
 				exit 0
 			fi
 			;;
 		3|*)
-			info "Exiting. You can re-run this script anytime."
+			echo "Exiting. You can re-run this script anytime."
 			exit 0
 			;;
 	esac
