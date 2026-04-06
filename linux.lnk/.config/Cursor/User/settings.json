@@ -295,8 +295,6 @@
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.tsserver.maxTsServerMemory": 16384,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "update.mode": "silentlyApplyOnQuit",
-  "update.releaseTrack": "dev",
   "update.showReleaseNotes": false,
   "window.autoDetectColorScheme": true,
   "window.commandCenter": true,
