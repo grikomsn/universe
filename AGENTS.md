@@ -137,9 +137,6 @@ Treat "tests" here as syntax/format validation of dotfiles and scripts.
 ## Safety Notes
 
 - Destructive/bootstrap scripts exist (e.g. `scripts/install.sh`, `scripts/sysprefs.sh`, `scripts/fonts.sh`). Do not run them unless explicitly asked; they may prompt for sudo, change system settings, install software, and download from the network.
-- This repo currently contains an npm auth token in `.npmrc`; treat it as sensitive:
-  - Do not paste it into issues/PRs/chat logs.
-  - Avoid commands that would print it (e.g. `cat .npmrc` in output).
 
 ## Editor/Assistant Rules
 
