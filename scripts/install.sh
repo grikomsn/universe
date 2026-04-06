@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+# install.sh - Bootstrap script for fresh macOS/Linux installations
+# Installs development tools, package managers, and dotfiles via lnk
+
+set -euo pipefail
 
 sudo -v
 while true; do
