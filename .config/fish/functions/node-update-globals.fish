@@ -1,39 +1,67 @@
 function node-update-globals --description 'update node related package managers and global packages'
+    # Remove stray package files in home that can interfere with global installs
+    for f in ~/package.json ~/package-lock.json
+        if test -f $f
+            echo "removing stray $f"
+            rm $f
+        end
+    end
+
     npm -g i npm@latest corepack@latest
     corepack enable pnpm
     corepack enable yarn
     corepack prepare --activate pnpm@latest
     corepack prepare --activate yarn@1.22.22
 
-    set -l all_packages
+    # npm global packages (consolidated - moved from pnpm)
+    set -l npm_pkgs @mariozechner/pi-coding-agent fish-lsp neovim prettier serve tsx turbo vercel
 
-    # Node.js helper to extract package names from npm/pnpm JSON output
-    # Handles both npm's single object and pnpm's array format
-    set -l extract_script 'const fs=require("node:fs");const input=fs.readFileSync(0,"utf8").trim();if(!input)process.exit(0);const data=JSON.parse(input);const packages=new Set();for(const entry of(Array.isArray(data)?data:[data])){const deps=entry?.dependencies||{};for(const name of Object.keys(deps)){if(!["npm","pnpm","corepack","yarn"].includes(name))packages.add(name);}}process.stdout.write([...packages].join("\n"));'
-
-    # Detect npm globals
+    # Update npm globals (skip npm update to avoid .DS_Store issues)
     if type -q npm
-        set -l npm_packages (npm ls -g --depth=0 --json 2>/dev/null | node -e $extract_script | string split '\n')
-        set -a all_packages $npm_packages
+        npm -g install $npm_pkgs
     end
 
-    # Detect pnpm globals
+    # Ensure npm packages are not in pnpm
     if type -q pnpm
-        set -l pnpm_packages (pnpm --global list --depth 0 --json 2>/dev/null | node -e $extract_script | string split '\n')
-        set -a all_packages $pnpm_packages
+        set -l pnpm_dups
+        for pkg in $npm_pkgs
+            if pnpm --global list $pkg 2>/dev/null | grep -q $pkg
+                set -a pnpm_dups $pkg
+            end
+        end
+        if set -q pnpm_dups[1]
+            echo "removing from pnpm (should be in npm only): $pnpm_dups"
+            pnpm --global remove $pnpm_dups 2>/dev/null
+        end
     end
 
-    # Detect bun globals
-    # bun pm ls -g outputs: /path/to/global\n├── name@version\n└── name@version
+    # Ensure npm packages are not in yarn
+    if type -q yarn
+        set -l yarn_dups
+        for pkg in $npm_pkgs
+            if yarn global list 2>/dev/null | grep -q $pkg
+                set -a yarn_dups $pkg
+            end
+        end
+        if set -q yarn_dups[1]
+            echo "removing from yarn (should be in npm only): $yarn_dups"
+            yarn global remove $yarn_dups 2>/dev/null
+        end
+        yarn global upgrade
+    end
+
+    # Ensure npm packages are not in bun
     if type -q bun
-        set -l bun_packages (bun pm ls -g 2>/dev/null | string replace -r '^[├└]──\s+([^@]+)@.*' '$1' | string match -v '^/')
-        set -a all_packages $bun_packages
-    end
-
-    # Deduplicate and remove empty entries
-    set -l unique_packages (printf "%s\n" $all_packages | sort -u | string trim | string match -v '^$')
-
-    if set -q unique_packages[1]
-        pnpm --global add $unique_packages
+        set -l bun_dups
+        for pkg in $npm_pkgs
+            if bun pm ls -g 2>/dev/null | grep -q $pkg
+                set -a bun_dups $pkg
+            end
+        end
+        if set -q bun_dups[1]
+            echo "removing from bun (should be in npm only): $bun_dups"
+            bun remove --global $bun_dups 2>/dev/null
+        end
+        bun update --global
     end
 end
