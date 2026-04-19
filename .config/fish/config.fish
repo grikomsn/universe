@@ -21,3 +21,14 @@ if grep -q '^# Added by LM Studio CLI (lms)$' $config_realpath
         sed -i '/^# Added by LM Studio CLI (lms)$/,/^# End of LM Studio CLI section\n$/d' $config_realpath
     end
 end
+
+# Self-mutating script to remove OpenCode bin path section from $HOME/.config/fish/config.fish, resolving symlinks
+if grep -q '^# opencode$' $config_realpath
+    if test (uname -o) = Darwin
+        sed -i '' '/^# opencode$/,/^fish_add_path .*\/\.opencode\/bin$/d' $config_realpath
+    else
+        sed -i '/^# opencode$/,/^fish_add_path .*\/\.opencode\/bin$/d' $config_realpath
+    end
+end
+
+
