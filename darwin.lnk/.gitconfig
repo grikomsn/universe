@@ -3,6 +3,7 @@ gpgsign = true
 
 [core]
 attributesfile = ~/.gitattributes
+editor = true
 
 [credential]
 helper =

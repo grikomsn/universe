@@ -3,6 +3,7 @@ gpgsign = true
 
 [core]
 attributesfile = ~/.gitattributes
+editor = true
 
 [credential]
 helper = git-credential-manager
@@ -31,6 +32,9 @@ clean = git-lfs clean -- %f
 process = git-lfs filter-process
 required = true
 smudge = git-lfs smudge -- %f
+
+[gitbutler]
+gitbutlerCommitter = 1
 
 [gpg]
 format = ssh
