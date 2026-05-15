@@ -139,5 +139,9 @@
   {
     "key": "shift+ctrl+cmd+w",
     "command": "editor.emmet.action.wrapWithAbbreviation"
+  },
+  {
+    "key": "ctrl+shift+cmd+l",
+    "command": "chatgpt.addToThread"
   }
 ]
