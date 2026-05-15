@@ -30,5 +30,3 @@ if grep -q '^# opencode$' $config_realpath
         sed -i '/^# opencode$/,/^fish_add_path .*\/\.opencode\/bin$/d' $config_realpath
     end
 end
-
-
