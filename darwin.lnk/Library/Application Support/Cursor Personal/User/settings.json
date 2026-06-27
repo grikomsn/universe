@@ -24,7 +24,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -83,13 +83,16 @@
   "accessibility.signals.terminalBell": {
     "sound": "on"
   },
-  "amp.tab.enabled": false,
-  "amp.tab.experimental.showHotStreakProgress": true,
-  "amp.tab.experimental.unobtrusiveDiffs": true,
-  "amp.tab.hoverDiagnosticSuggestions": true,
-  "amp.url": "https://ampcode.com/",
   "better-comments.highlightPlainText": true,
-  "chat.disableAIFeatures": false,
+  "chat.agent.thinkingStyle": "collapsed",
+  "chat.agentSessionProjection.enabled": true,
+  "chat.checkpoints.showFileChanges": true,
+  "chat.editing.explainChanges.enabled": true,
+  "chat.editor.copilotCli.hideExtensionHost": true,
+  "chat.mcp.gallery.enabled": true,
+  "chat.requestQueuing.defaultAction": "queue",
+  "chat.viewProgressBadge.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
   "chatgpt.composerEnterBehavior": "cmdIfMultiline",
   "codium.codeCompletion.enable": true,
   "color-highlight.markRuler": false,
@@ -112,7 +115,7 @@
   "debug.console.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
   "diffEditor.experimental.showMoves": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": true,
   "editor.accessibilitySupport": "off",
   "editor.codeLensFontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
@@ -154,7 +157,7 @@
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.onIgnoredFiles": "warn",
-  "extensions.autoUpdate": false,
+  "extensions.autoUpdate": "off",
   "extensions.ignoreRecommendations": true,
   "files.associations": {
     "_redirects": "plaintext",
@@ -186,7 +189,8 @@
     "*": true,
     "markdown": true,
     "plaintext": false,
-    "scminput": false
+    "scminput": false,
+    "typescript": true
   },
   "github.copilot.nextEditSuggestions.enabled": true,
   "githubPullRequests.experimental.chat": true,
@@ -195,6 +199,8 @@
   "gitlens.advanced.messages": {
     "suppressIntegrationDisconnectedTooManyFailedRequestsWarning": true
   },
+  "gitlens.ai.gitkraken.model": "gemini:gemini-2.5-flash",
+  "gitlens.ai.model": "gitkraken",
   "gitlens.blame.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
   "gitlens.currentLine.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
   "gitlens.gitkraken.mcp.autoEnabled": false,
@@ -233,11 +239,13 @@
   "gitlens.views.tags.avatars": false,
   "go.formatTool": "goimports",
   "go.survey.prompt": false,
+  "go.toolsManagement.autoUpdate": true,
   "go.useLanguageServer": true,
   "html.autoClosingTags": false,
   "html.hover.documentation": false,
   "html.hover.references": false,
   "html.suggest.html5": false,
+  "inlineChat.affordance": "editor",
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "javascript.inlayHints.parameterNames.enabled": "all",
   "javascript.inlayHints.parameterTypes.enabled": true,
@@ -251,12 +259,18 @@
   "json.schemaDownload.enable": true,
   "json.schemaDownload.trustedDomains": {
     "https://biomejs.dev": true,
+    "https://developer.microsoft.com/json-schemas/": true,
     "https://json-schema.org/": true,
     "https://json.schemastore.org/": true,
     "https://models.dev/": true,
     "https://opencode.ai/": true,
     "https://raw.githubusercontent.com/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
     "https://schemastore.azurewebsites.net/": true,
+    "https://turborepo.org": true,
+    "https://ui.shadcn.com": true,
+    "https://unpkg.com": true,
     "https://www.schemastore.org/": true
   },
   "makefile.configureOnOpen": true,
@@ -265,6 +279,7 @@
   "markdown.occurrencesHighlight.enabled": true,
   "markdown.preview.doubleClickToSwitchToEditor": false,
   "notebook.output.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
+  "opencodego.visionProxyThinking": true,
   "prettier.enableDebugLogs": false,
   "prettify-ts.enabled": false,
   "quokka.suppressExpirationNotifications": true,
@@ -302,7 +317,7 @@
   "update.releaseTrack": "dev",
   "update.showReleaseNotes": false,
   "window.autoDetectColorScheme": true,
-  "window.commandCenter": false,
+  "window.customTitleBarVisibility": "never",
   "window.nativeTabs": true,
   "workbench.activityBar.orientation": "vertical",
   "workbench.agentsWindowButton.enabled": false,
@@ -311,6 +326,7 @@
   "workbench.iconTheme": "vs-seti",
   "workbench.layoutControl.enabled": false,
   "workbench.navigationControl.enabled": false,
+  "workbench.preferredLightColorTheme": "Expo Light",
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 12,
