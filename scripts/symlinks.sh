@@ -16,6 +16,14 @@ backup_suffix="$(date +%Y%m%d_%H%M%S)"
 
 for path in "${managed_paths[@]}"; do
   source="$repo_dir/$path"
+  if [[ ! -e "$source" ]]; then
+    echo "Managed source does not exist: $source" >&2
+    exit 1
+  fi
+done
+
+for path in "${managed_paths[@]}"; do
+  source="$repo_dir/$path"
   target="$HOME/$path"
 
   mkdir -p "$(dirname "$target")"
