@@ -48,7 +48,7 @@ DATA_DIR_VALUES=(
 )
 
 # define CURSOR_DATA_DIR based on platform
-if [[ "$(uname -o)" == "Darwin" ]]; then
+if [[ "$(uname -s)" == "Darwin" ]]; then
   CURSOR_DATA_DIR="$HOME/Library/Application Support/Cursor"
 else
   CURSOR_DATA_DIR="$HOME/.config/Cursor"
@@ -73,7 +73,7 @@ USER_SYMLINK_TARGETS=(
 
 # iterate on target data directories
 for DATA_DIR_VALUE in "${DATA_DIR_VALUES[@]}"; do
-  if [[ "$(uname -o)" == "Darwin" ]]; then
+  if [[ "$(uname -s)" == "Darwin" ]]; then
     TARGET_DATA_DIR="$HOME/Library/Application Support/$DATA_DIR_VALUE"
   else
     TARGET_DATA_DIR="$HOME/.config/$DATA_DIR_VALUE"
@@ -96,7 +96,7 @@ if command -v cursor &>/dev/null; then
     INSTALLED_EXTENSIONS+=("$extension")
   done <<<"$installed_data"
   for extension in "${EXTENSIONS[@]}"; do
-    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -qx "$extension"; then
+    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
       cursor --install-extension "$extension"
     fi
   done
@@ -111,7 +111,7 @@ if command -v code &>/dev/null; then
     INSTALLED_EXTENSIONS+=("$extension")
   done <<<"$installed_data"
   for extension in "${EXTENSIONS[@]}"; do
-    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -qx "$extension"; then
+    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
       code --install-extension "$extension"
     fi
   done

@@ -7,6 +7,10 @@ export LC_ALL="en_US.UTF-8"
 
 path_prepend() {
   [ -d "$1" ] || return
+  if [ -z "${PATH:-}" ]; then
+    PATH="$1"
+    return
+  fi
   case ":$PATH:" in
     *":$1:"*) ;;
     *) PATH="$1:$PATH" ;;

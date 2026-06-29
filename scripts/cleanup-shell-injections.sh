@@ -13,11 +13,16 @@ remove_section() {
 
   real_file="$(realpath "$file")"
   temporary="$(mktemp)"
-  awk -v start="$start_pattern" -v end="$end_pattern" '
+  if ! awk -v start="$start_pattern" -v end="$end_pattern" '
     $0 ~ start { skipping = 1; next }
     skipping && $0 ~ end { skipping = 0; next }
     !skipping { print }
-  ' "$real_file" >"$temporary"
+    END { if (skipping) exit 2 }
+  ' "$real_file" >"$temporary"; then
+    rm -f "$temporary"
+    echo "Refusing to modify $file: matching end marker not found." >&2
+    return 1
+  fi
 
   if ! cmp -s "$real_file" "$temporary"; then
     cp "$temporary" "$real_file"

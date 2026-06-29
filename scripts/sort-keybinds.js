@@ -65,7 +65,9 @@ function sortKeybindings(jsonPath) {
     return a.key.localeCompare(b.key);
   });
 
-  const sortedContent = JSON.stringify(normalizedKeybindings, null, 2);
+  const trailingNewline = jsonContent.endsWith("\n") ? "\n" : "";
+  const sortedContent =
+    JSON.stringify(normalizedKeybindings, null, 2) + trailingNewline;
 
   if (sortedContent !== jsonContent) {
     hasChanges = true;

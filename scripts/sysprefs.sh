@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [[ "$(uname -o)" != "Darwin" ]]; then
+if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "This script is intended for macOS only." >&2
   exit 1
 fi

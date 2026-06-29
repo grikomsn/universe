@@ -34,7 +34,7 @@ if not type -q fnm
         set -gx FNM_PATH $HOME/.fnm
     else if test -n "$XDG_DATA_HOME"
         set -gx FNM_PATH $XDG_DATA_HOME/fnm
-    else if test (uname -o) = Darwin
+    else if test (uname -s) = Darwin
         set -gx FNM_PATH "$HOME/Library/Application Support/fnm"
     else
         set -gx FNM_PATH $HOME/.local/share/fnm
@@ -62,7 +62,10 @@ end
 
 # mkcert
 if status is-login; and type -q mkcert
-    set -gx NODE_EXTRA_CA_CERTS "$(mkcert -CAROOT)/rootCA.pem"
+    set -l root_ca "$(mkcert -CAROOT)/rootCA.pem"
+    if test -f $root_ca
+        set -gx NODE_EXTRA_CA_CERTS $root_ca
+    end
 end
 
 # opencode

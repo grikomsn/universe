@@ -42,10 +42,13 @@ EOF
 else
   autostart_dir="$HOME/.config/autostart"
   autostart_file="$autostart_dir/gnome-keyring-ssh.desktop"
+  autostart_source="/etc/xdg/autostart/gnome-keyring-ssh.desktop"
 
-  mkdir -p "$autostart_dir"
-  cp /etc/xdg/autostart/gnome-keyring-ssh.desktop "$autostart_file"
-  if ! grep -qx 'Hidden=true' "$autostart_file"; then
-    echo "Hidden=true" >>"$autostart_file"
+  if [[ -f "$autostart_source" ]]; then
+    mkdir -p "$autostart_dir"
+    cp "$autostart_source" "$autostart_file"
+    if ! grep -Fqx -- 'Hidden=true' "$autostart_file"; then
+      echo "Hidden=true" >>"$autostart_file"
+    fi
   fi
 fi
