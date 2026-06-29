@@ -7,13 +7,16 @@ if test (uname -o) = Darwin
         end
     end
 
-    # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
     if test -d $HOMEBREW_PREFIX
-        eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+        fish_add_path $HOMEBREW_PREFIX/bin
+        fish_add_path $HOMEBREW_PREFIX/sbin
+        fish_add_path $HOMEBREW_PREFIX/opt/curl/bin
+        fish_add_path $HOMEBREW_PREFIX/opt/dotnet/libexec
 
-        # bin extras
-        set -gx PATH $HOMEBREW_PREFIX/opt/curl/bin $PATH
-        set -gx PATH $HOMEBREW_PREFIX/opt/dotnet/libexec $PATH
+        # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
+        if status is-login
+            eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+        end
     end
 end
 

@@ -1,0 +1,33 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  dotfiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install shell formatters
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes fish shfmt
+
+      - name: Validate Bash syntax
+        run: git ls-files '*.sh' | xargs -n 1 bash -n
+
+      - name: Validate Bash formatting
+        run: git ls-files '*.sh' | xargs shfmt -d -i 2
+
+      - name: Validate Fish syntax
+        run: git ls-files '*.fish' | xargs -n 1 fish -n
+
+      - name: Validate keybinding order
+        run: node scripts/sort-keybinds.js --check

@@ -9,24 +9,8 @@ if status is-interactive
     function fish_greeting
         # noop
     end
-end
 
-# Self-mutating script to remove LM Studio CLI section from $HOME/.config/fish/config.fish, resolving symlinks
-set -l config_file "$HOME/.config/fish/config.fish"
-set -l config_realpath "$(realpath "$config_file")"
-if grep -q '^# Added by LM Studio CLI (lms)$' $config_realpath
-    if test (uname -o) = Darwin
-        sed -i '' '/^# Added by LM Studio CLI (lms)$/,/^# End of LM Studio CLI section\n$/d' $config_realpath
-    else
-        sed -i '/^# Added by LM Studio CLI (lms)$/,/^# End of LM Studio CLI section\n$/d' $config_realpath
-    end
-end
-
-# Self-mutating script to remove OpenCode bin path section from $HOME/.config/fish/config.fish, resolving symlinks
-if grep -q '^# opencode$' $config_realpath
-    if test (uname -o) = Darwin
-        sed -i '' '/^# opencode$/,/^fish_add_path .*\/\.opencode\/bin$/d' $config_realpath
-    else
-        sed -i '/^# opencode$/,/^fish_add_path .*\/\.opencode\/bin$/d' $config_realpath
+    if set -l gpg_tty (tty 2>/dev/null)
+        set -gx GPG_TTY $gpg_tty
     end
 end

@@ -2,6 +2,8 @@
 
 const fs = require("node:fs");
 const { globSync } = fs;
+const checkOnly = process.argv.includes("--check");
+let hasChanges = false;
 
 const paths = globSync("**/keybindings.json", {
   cwd: process.cwd(),
@@ -65,11 +67,23 @@ function sortKeybindings(jsonPath) {
 
   const sortedContent = JSON.stringify(normalizedKeybindings, null, 2);
 
-  fs.writeFileSync(jsonPath, sortedContent, "utf8");
+  if (sortedContent !== jsonContent) {
+    hasChanges = true;
+    if (checkOnly) {
+      console.error(`${jsonPath} is not sorted`);
+    } else {
+      fs.writeFileSync(jsonPath, sortedContent, "utf8");
+    }
+  }
 }
 
 for (const jsonPath of paths) {
   sortKeybindings(jsonPath);
 }
 
-console.log("Keybindings sorted and saved! 🎉");
+if (checkOnly) {
+  if (hasChanges) process.exit(1);
+  console.log("Keybindings are sorted.");
+} else {
+  console.log("Keybindings sorted and saved! 🎉");
+}
