@@ -68,7 +68,7 @@ echo "Running lnk pull..."
 lnk init -r "$REPO_URL"
 lnk pull
 
-if [[ "$(uname -o)" == "Darwin" ]]; then
+if [[ "$(uname -s)" == "Darwin" ]]; then
   lnk pull -H darwin
 fi
 if [[ "$(uname -s)" == "Linux" ]]; then

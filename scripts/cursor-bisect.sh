@@ -42,7 +42,7 @@ done <<<"$installed_data"
 echo "=== Extensions in source but NOT installed ==="
 NOT_INSTALLED=()
 for extension in "${EXTENSIONS[@]}"; do
-  if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -qx "$extension"; then
+  if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
     NOT_INSTALLED+=("$extension")
   fi
 done
@@ -57,7 +57,7 @@ echo
 echo "=== Extensions installed but NOT in source ==="
 EXTRA_INSTALLED=()
 for extension in "${INSTALLED_EXTENSIONS[@]}"; do
-  if ! printf '%s\n' "${EXTENSIONS[@]}" | grep -qx "$extension"; then
+  if ! printf '%s\n' "${EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
     EXTRA_INSTALLED+=("$extension")
   fi
 done

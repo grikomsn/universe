@@ -38,13 +38,13 @@ sync_editor() {
   done <<<"$installed_data"
 
   for extension in "${EXTENSIONS[@]}"; do
-    if ! printf '%s\n' "${installed_extensions[@]}" | grep -qx "$extension"; then
+    if ! printf '%s\n' "${installed_extensions[@]}" | grep -Fqx -- "$extension"; then
       "$editor" --install-extension "$extension"
     fi
   done
 
   for extension in "${installed_extensions[@]}"; do
-    if ! printf '%s\n' "${EXTENSIONS[@]}" | grep -qx "$extension"; then
+    if ! printf '%s\n' "${EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
       "$editor" --uninstall-extension "$extension"
     fi
   done
