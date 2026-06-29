@@ -29,9 +29,7 @@ if test -d $HOME/.filen-cli
 end
 
 # fnm
-if type -q fnm
-    fnm env --use-on-cd | source
-else
+if not type -q fnm
     if test -d $HOME/.fnm
         set -gx FNM_PATH $HOME/.fnm
     else if test -n "$XDG_DATA_HOME"
@@ -42,9 +40,9 @@ else
         set -gx FNM_PATH $HOME/.local/share/fnm
     end
     fish_add_path $FNM_PATH
-    if type -q fnm
-        fnm env --use-on-cd | source
-    end
+end
+if status is-interactive; and type -q fnm
+    fnm env --use-on-cd | source
 end
 
 # fzf
@@ -63,7 +61,7 @@ if test -d $HOME/.lmstudio
 end
 
 # mkcert
-if type -q mkcert
+if status is-login; and type -q mkcert
     set -gx NODE_EXTRA_CA_CERTS "$(mkcert -CAROOT)/rootCA.pem"
 end
 
@@ -74,7 +72,7 @@ if test -d $HOME/.opencode
 end
 
 # orbstack
-if test -f $HOME/.orbstack/shell/init2.fish
+if status is-login; and test -f $HOME/.orbstack/shell/init2.fish
     # @fish-lsp-disable-next-line 1004
     source $HOME/.orbstack/shell/init2.fish 2>/dev/null || :
 end

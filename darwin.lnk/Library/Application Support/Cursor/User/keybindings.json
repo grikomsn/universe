@@ -60,7 +60,10 @@
     "key": "ctrl+alt+cmd+r",
     "command": "runCommands",
     "args": {
-      "commands": ["eslint.restart", "typescript.restartTsServer"]
+      "commands": [
+        "eslint.restart",
+        "typescript.restartTsServer"
+      ]
     }
   },
   {
@@ -121,6 +124,10 @@
     "when": "terminalFocusInAny"
   },
   {
+    "key": "shift+ctrl+cmd+l",
+    "command": "chatgpt.addToThread"
+  },
+  {
     "key": "shift+ctrl+cmd+o",
     "command": "editor.action.toggleOvertypeInsertMode"
   },
@@ -139,9 +146,5 @@
   {
     "key": "shift+ctrl+cmd+w",
     "command": "editor.emmet.action.wrapWithAbbreviation"
-  },
-  {
-    "key": "ctrl+shift+cmd+l",
-    "command": "chatgpt.addToThread"
   }
 ]

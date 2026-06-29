@@ -1,44 +1,69 @@
 #!/usr/bin/env bash
 
-# get extensions from brewfile
-readarray -t EXTENSIONS < <(curl -fsSL https://universe.nibras.co/Brewfile | grep '^vscode' | awk '{print $2}' | sed 's/^"\(.*\)"$/\1/')
+set -euo pipefail
 
-if command -v cursor &>/dev/null; then
-	readarray -t INSTALLED_EXTENSIONS < <(cursor --list-extensions)
-elif command -v code &>/dev/null; then
-	readarray -t INSTALLED_EXTENSIONS < <(code --list-extensions)
-else
-	INSTALLED_EXTENSIONS=()
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_brewfile="$script_dir/../Brewfile"
+
+extension_source() {
+  if [[ -f "$repo_brewfile" ]]; then
+    cat "$repo_brewfile"
+  else
+    curl -fsSL https://universe.nibras.co/Brewfile
+  fi
+}
+
+EXTENSIONS=()
+extension_data="$(extension_source)"
+while IFS= read -r extension; do
+  EXTENSIONS+=("$extension")
+done < <(printf '%s\n' "$extension_data" | awk '/^vscode / { gsub(/"/, "", $2); print $2 }')
+if [[ ${#EXTENSIONS[@]} -eq 0 ]]; then
+  echo "No VS Code extensions found in the Brewfile." >&2
+  exit 1
 fi
 
-# Find extensions in source but not installed
+if command -v cursor >/dev/null 2>&1; then
+  editor="cursor"
+elif command -v code >/dev/null 2>&1; then
+  editor="code"
+else
+  echo "Neither cursor nor code is installed." >&2
+  exit 1
+fi
+
+INSTALLED_EXTENSIONS=()
+installed_data="$("$editor" --list-extensions)"
+while IFS= read -r extension; do
+  [[ -n "$extension" ]] || continue
+  INSTALLED_EXTENSIONS+=("$extension")
+done <<<"$installed_data"
+
 echo "=== Extensions in source but NOT installed ==="
 NOT_INSTALLED=()
 for extension in "${EXTENSIONS[@]}"; do
-	if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -qx "$extension"; then
-		NOT_INSTALLED+=("$extension")
-	fi
+  if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -qx "$extension"; then
+    NOT_INSTALLED+=("$extension")
+  fi
 done
 
 if [[ ${#NOT_INSTALLED[@]} -eq 0 ]]; then
-	echo "(none)"
+  echo "(none)"
 else
-	printf '%s\n' "${NOT_INSTALLED[@]}"
+  printf '%s\n' "${NOT_INSTALLED[@]}"
 fi
 
-echo ""
-
-# Find extensions installed but not in source
+echo
 echo "=== Extensions installed but NOT in source ==="
 EXTRA_INSTALLED=()
-for ext in "${INSTALLED_EXTENSIONS[@]}"; do
-	if ! printf '%s\n' "${EXTENSIONS[@]}" | grep -qx "$ext"; then
-		EXTRA_INSTALLED+=("$ext")
-	fi
+for extension in "${INSTALLED_EXTENSIONS[@]}"; do
+  if ! printf '%s\n' "${EXTENSIONS[@]}" | grep -qx "$extension"; then
+    EXTRA_INSTALLED+=("$extension")
+  fi
 done
 
 if [[ ${#EXTRA_INSTALLED[@]} -eq 0 ]]; then
-	echo "(none)"
+  echo "(none)"
 else
-	printf '%s\n' "${EXTRA_INSTALLED[@]}"
+  printf '%s\n' "${EXTRA_INSTALLED[@]}"
 fi

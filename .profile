@@ -2,129 +2,87 @@ export ADBLOCK=1
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export DISABLE_OPENCOLLECTIVE=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export GPG_TTY=$TTY # https://stackoverflow.com/a/57591830/4273667
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/.local/bin:$PATH
 
-eval $(ssh-agent) >/dev/null 2>&1
+path_prepend() {
+  [ -d "$1" ] || return
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="$1:$PATH" ;;
+  esac
+}
 
-# brew (darwin only)
-# https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
-if [[ "$(uname -o)" == "Darwin" ]] && [[ -n "$HOMEBREW_PREFIX" ]]; then
-	eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+path_prepend "/usr/local/sbin"
+path_prepend "/usr/local/bin"
+path_prepend "$HOME/.local/bin"
 
-	export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
-	export PATH="$HOMEBREW_PREFIX/opt/dotnet/libexec:$PATH"
+if [ -x /opt/homebrew/bin/brew ]; then
+  export HOMEBREW_PREFIX="/opt/homebrew"
+elif [ -x /usr/local/bin/brew ]; then
+  export HOMEBREW_PREFIX="/usr/local"
 fi
 
-# bun
+if [ -n "${HOMEBREW_PREFIX:-}" ]; then
+  path_prepend "$HOMEBREW_PREFIX/bin"
+  path_prepend "$HOMEBREW_PREFIX/sbin"
+  path_prepend "$HOMEBREW_PREFIX/opt/curl/bin"
+  path_prepend "$HOMEBREW_PREFIX/opt/dotnet/libexec"
+fi
+
 if [ -d "$HOME/.bun" ]; then
-	export BUN_INSTALL="$HOME/.bun"
-	export PATH="$BUN_INSTALL/bin:$PATH"
+  export BUN_INSTALL="$HOME/.bun"
+  path_prepend "$BUN_INSTALL/bin"
 fi
 
-# deno
 if [ -d "$HOME/.deno" ]; then
-	export DENO_INSTALL="$HOME/.deno"
-	export PATH="$DENO_INSTALL/bin:$PATH"
+  export DENO_INSTALL="$HOME/.deno"
+  path_prepend "$DENO_INSTALL/bin"
 fi
 
-# filen-cli
 if [ -d "$HOME/.filen-cli" ]; then
-	export FILEN_CLI_INSTALL="$HOME/.filen-cli"
-	export PATH="$FILEN_CLI_INSTALL/bin:$PATH"
+  export FILEN_CLI_INSTALL="$HOME/.filen-cli"
+  path_prepend "$FILEN_CLI_INSTALL/bin"
 fi
 
-# fnm
-if which fnm >/dev/null 2>&1; then
-	eval "$(fnm env --use-on-cd)"
-else
-	if [ -d "$HOME/.fnm" ]; then
-		export FNM_PATH="$HOME/.fnm"
-	elif [ -n "$XDG_DATA_HOME" ]; then
-		export FNM_PATH="$XDG_DATA_HOME/fnm"
-	elif [[ "$(uname -o)" == "Darwin" ]]; then
-		export FNM_PATH="$HOME/Library/Application Support/fnm"
-	else
-		export FNM_PATH="$HOME/.local/share/fnm"
-	fi
-	export PATH="$FNM_PATH:$PATH"
-	if which fnm >/dev/null 2>&1; then
-		eval "$(fnm env --use-on-cd)"
-	fi
+if [ -d "$HOME/.fnm" ]; then
+  export FNM_PATH="$HOME/.fnm"
+elif [ -n "${XDG_DATA_HOME:-}" ] && [ -d "$XDG_DATA_HOME/fnm" ]; then
+  export FNM_PATH="$XDG_DATA_HOME/fnm"
+elif [ -d "$HOME/Library/Application Support/fnm" ]; then
+  export FNM_PATH="$HOME/Library/Application Support/fnm"
+elif [ -d "$HOME/.local/share/fnm" ]; then
+  export FNM_PATH="$HOME/.local/share/fnm"
+fi
+if [ -n "${FNM_PATH:-}" ]; then
+  path_prepend "$FNM_PATH"
 fi
 
-# fzf
-if which fzf >/dev/null 2>&1; then
-	if [[ -n "$BASH_VERSION" ]]; then
-		eval "$(fzf --bash)"
-	elif [[ -n "$FISH_VERSION" ]]; then
-		eval "$(fzf --fish)"
-	elif [[ -n "$ZSH_VERSION" ]]; then
-		eval "$(fzf --zsh)"
-	fi
-fi
-
-# go
 export GOPATH="$HOME/.go"
-if [ -d "$GOPATH" ]; then
-	export PATH="$GOPATH/bin:$PATH"
-fi
+path_prepend "$GOPATH/bin"
 
-# lmstudio
 if [ -d "$HOME/.lmstudio" ]; then
-	export LM_STUDIO_INSTALL="$HOME/.lmstudio"
-	export PATH="$LM_STUDIO_INSTALL/bin:$PATH"
+  export LM_STUDIO_INSTALL="$HOME/.lmstudio"
+  path_prepend "$LM_STUDIO_INSTALL/bin"
 fi
 
-# mkcert
-if which mkcert >/dev/null 2>&1; then
-	export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
-fi
-
-# opencode
 if [ -d "$HOME/.opencode" ]; then
-	export OPENCODE_INSTALL="$HOME/.opencode"
-	export PATH="$OPENCODE_INSTALL/bin:$PATH"
+  export OPENCODE_INSTALL="$HOME/.opencode"
+  path_prepend "$OPENCODE_INSTALL/bin"
 fi
 
-# orbstack
-if [ -f "$HOME/.orbstack/shell/init2.sh" ]; then
-	source "$HOME/.orbstack/shell/init2.sh" 2>/dev/null || :
-fi
-
-# pnpm
 if [ -d "$HOME/Library" ]; then
-	export PNPM_HOME="$HOME/Library/pnpm"
+  export PNPM_HOME="$HOME/Library/pnpm"
 else
-	export PNPM_HOME="$HOME/.pnpm"
+  export PNPM_HOME="$HOME/.pnpm"
 fi
-export PATH="$PNPM_HOME:$PATH"
+path_prepend "$PNPM_HOME"
 
-# qmk_toolchains
-if [ -d "$HOME/.qmk_toolchains" ]; then
-	export PATH="$HOME/.qmk_toolchains/bin:$PATH"
-fi
+path_prepend "$HOME/.qmk_toolchains/bin"
+path_prepend "$HOME/.cargo/bin"
 
-# rust
-if [ -d "$HOME/.cargo" ]; then
-	source "$HOME/.cargo/env"
-fi
-
-# yarn
 export YARN_INSTALL="$HOME/.yarn"
-export PATH="$YARN_INSTALL/bin:$PATH"
+path_prepend "$YARN_INSTALL/bin"
 
-###############################################################################
-
-# Self-mutating script to remove LM Studio CLI section from $HOME/.profile, resolving symlinks
-PROFILE_REALPATH="$(realpath "$HOME/.profile")"
-if grep -q '^# Added by LM Studio CLI (lms)$' "$PROFILE_REALPATH"; then
-	if [[ "$(uname -o)" == "Darwin" ]]; then
-		sed -i '' '/^# Added by LM Studio CLI (lms)$/,/^# End of LM Studio CLI section\n$/d' "$PROFILE_REALPATH"
-	else
-		sed -i '/^# Added by LM Studio CLI (lms)$/,/^# End of LM Studio CLI section\n$/d' "$PROFILE_REALPATH"
-	fi
-fi
+export PATH
+unset -f path_prepend 2>/dev/null || unset path_prepend

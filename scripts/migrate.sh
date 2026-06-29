@@ -12,15 +12,15 @@ BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 echo "Checking lnk repo at $REPO_DIR..."
 
 if [[ ! -d "$REPO_DIR/.git" ]]; then
-	echo "Error: lnk repo not found at $REPO_DIR" >&2
-	exit 1
+  echo "Error: lnk repo not found at $REPO_DIR" >&2
+  exit 1
 fi
 
 cd "$REPO_DIR"
 
 if ! git remote get-url origin >/dev/null 2>&1; then
-	echo "Error: No origin remote configured" >&2
-	exit 1
+  echo "Error: No origin remote configured" >&2
+  exit 1
 fi
 
 local_head=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
@@ -28,10 +28,10 @@ remote_head=$(git ls-remote origin HEAD 2>/dev/null | awk '{print $1}' || echo "
 mismatch=0
 
 if [[ "$local_head" != "$remote_head" && "$remote_head" != "unknown" ]]; then
-	echo "Detected git tree mismatch:"
-	echo "  Local HEAD:  $local_head"
-	echo "  Remote HEAD: $remote_head"
-	mismatch=1
+  echo "Detected git tree mismatch:"
+  echo "  Local HEAD:  $local_head"
+  echo "  Remote HEAD: $remote_head"
+  mismatch=1
 fi
 
 echo "Re-cloning lnk repo..."
@@ -47,21 +47,21 @@ echo "Backing up existing dotfiles to $BACKUP_DIR..."
 mkdir -p "$BACKUP_DIR"
 
 for manifest in ".lnk" ".lnk.darwin" ".lnk.linux"; do
-	[[ -f "$REPO_DIR/$manifest" ]] || continue
+  [[ -f "$REPO_DIR/$manifest" ]] || continue
 
-	while IFS= read -r path; do
-		[[ -z "$path" ]] && continue
-		[[ "$path" =~ ^# ]] && continue
+  while IFS= read -r path; do
+    [[ -z "$path" ]] && continue
+    [[ "$path" =~ ^# ]] && continue
 
-		target="$HOME/$path"
+    target="$HOME/$path"
 
-		if [[ -e "$target" && ! -L "$target" ]]; then
-			backup_path="$BACKUP_DIR/$path"
-			mkdir -p "$(dirname "$backup_path")"
-			cp -R "$target" "$backup_path" 2>/dev/null || true
-			echo "  Backed up: $path"
-		fi
-	done <"$REPO_DIR/$manifest"
+    if [[ -e "$target" && ! -L "$target" ]]; then
+      backup_path="$BACKUP_DIR/$path"
+      mkdir -p "$(dirname "$backup_path")"
+      cp -R "$target" "$backup_path" 2>/dev/null || true
+      echo "  Backed up: $path"
+    fi
+  done <"$REPO_DIR/$manifest"
 done
 
 echo "Running lnk pull..."
@@ -69,10 +69,10 @@ lnk init -r "$REPO_URL"
 lnk pull
 
 if [[ "$(uname -o)" == "Darwin" ]]; then
-	lnk pull -H darwin
+  lnk pull -H darwin
 fi
 if [[ "$(uname -s)" == "Linux" ]]; then
-	lnk pull -H linux
+  lnk pull -H linux
 fi
 
 echo ""
