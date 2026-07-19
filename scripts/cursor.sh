@@ -14,6 +14,7 @@ extension_source() {
 }
 
 EXTENSIONS=()
+FAILED_EXTENSION_OPERATIONS=()
 extension_data="$(extension_source)"
 while IFS= read -r extension; do
   EXTENSIONS+=("$extension")
@@ -97,7 +98,9 @@ if command -v cursor &>/dev/null; then
   done <<<"$installed_data"
   for extension in "${EXTENSIONS[@]}"; do
     if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
-      cursor --install-extension "$extension"
+      if ! cursor --install-extension "$extension"; then
+        FAILED_EXTENSION_OPERATIONS+=("cursor install $extension")
+      fi
     fi
   done
 fi
@@ -112,7 +115,15 @@ if command -v code &>/dev/null; then
   done <<<"$installed_data"
   for extension in "${EXTENSIONS[@]}"; do
     if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
-      code --install-extension "$extension"
+      if ! code --install-extension "$extension"; then
+        FAILED_EXTENSION_OPERATIONS+=("code install $extension")
+      fi
     fi
   done
+fi
+
+if [[ ${#FAILED_EXTENSION_OPERATIONS[@]} -gt 0 ]]; then
+  echo "Extension operations failed:" >&2
+  printf '  %s\n' "${FAILED_EXTENSION_OPERATIONS[@]}" >&2
+  exit 1
 fi

@@ -7,3 +7,8 @@ set -gx LANG "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
 set -gx PATH /usr/local/bin /usr/local/sbin $PATH
 set -gx PATH $HOME/.local/bin $PATH
+
+set -l onepassword_ssh_auth_sock "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+if test -S $onepassword_ssh_auth_sock
+    set -gx SSH_AUTH_SOCK $onepassword_ssh_auth_sock
+end

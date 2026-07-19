@@ -1,4 +1,5 @@
 tap "atlassian/acli"
+tap "parallel-web/tap"
 tap "supabase/tap"
 tap "tw93/tap"
 tap "yarlson/lnk"
@@ -64,6 +65,8 @@ brew "go"
 brew "graphviz"
 # GNU grep, egrep and fgrep
 brew "grep"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Add GitHub support to git on the command-line
 brew "hub"
 # Tools and libraries to manipulate images in select formats
@@ -86,8 +89,6 @@ brew "mergiraf"
 brew "mkcert"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Create, run, and share large language models (LLMs)
-brew "ollama"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Swiss-army knife of markup format conversion
@@ -144,6 +145,8 @@ cask "cleanshot"
 cask "clop"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Claude code parallelisation
+cask "conductor"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Server and cloud storage browser
@@ -179,6 +182,8 @@ cask "keyboardcleantool"
 cask "lm-studio"
 # Cable-free audio router
 cask "loopback"
+# Open-source firewall to block unknown outgoing connections
+cask "lulu"
 # Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
 cask "mac-mouse-fix"
 # File system integration
@@ -199,6 +204,8 @@ cask "opencode-desktop"
 cask "openlogi"
 # Replacement for Docker Desktop
 cask "orbstack"
+# CLI for the Parallel API - search, extract, research, and enrich data
+cask "parallel-web/tap/parallel-cli", trusted: true
 # Desktop virtualization software
 cask "parallels"
 # HTTP debugging proxy
@@ -215,8 +222,12 @@ cask "slack"
 cask "steam"
 # Application for inspecting installer packages
 cask "suspicious-package"
+# Minimal GUI for AI code agents
+cask "t3-code"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
+# Editor for .tldr files
+cask "tldraw"
 # File system and storage management software
 cask "tuxera-ntfs"
 # Open-source code editor
@@ -242,6 +253,7 @@ mas "Entity Pro", id: 1503988785
 mas "Equinox", id: 1591510203
 mas "Harvest", id: 506189836
 mas "Lungo", id: 1263070803
+mas "Mirage", id: 6757893115
 mas "Monodraw", id: 920404675
 mas "NextDNS", id: 1464122853
 mas "Noir", id: 1592917505
@@ -251,6 +263,7 @@ mas "Refined GitHub", id: 1519867270
 mas "Telegram", id: 747648890
 mas "TestFlight", id: 899247664
 mas "The Unarchiver", id: 425424353
+mas "Transporter", id: 1450874784
 mas "Velja", id: 1607635845
 vscode "1password.op-vscode"
 vscode "aaron-bond.better-comments"
@@ -295,16 +308,17 @@ vscode "gitpod.gitpod-theme"
 vscode "golang.go"
 vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
+vscode "grikomsn.grok-copilot-chat"
+vscode "grikomsn.openai-oauth-copilot-chat"
 vscode "jock.svg"
 vscode "llvm-vs-code-extensions.lldb-dap"
-vscode "marp-team.marp-vscode"
+vscode "ltmoerdani.opencode-copilot-chat"
 vscode "matthewpi.caddyfile-support"
 vscode "mikestead.dotenv"
 vscode "mkhl.shfmt"
 vscode "motion.motion-vscode-extension"
 vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-docker"
-vscode "ms-ossdata.vscode-pgsql"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
 vscode "ms-python.vscode-python-envs"
@@ -326,7 +340,6 @@ vscode "ms-vsliveshare.vsliveshare"
 vscode "mylesmurphy.prettify-ts"
 vscode "ndonfris.fish-lsp"
 vscode "nuxt.mdc"
-vscode "onesoftqwq.opencode-go-copilot-provider"
 vscode "openai.chatgpt"
 vscode "orta.vscode-jest"
 vscode "orta.vscode-twoslash-queries"
@@ -338,6 +351,7 @@ vscode "redhat.vscode-xml"
 vscode "redhat.vscode-yaml"
 vscode "repreng.csv"
 vscode "rust-lang.rust-analyzer"
+vscode "sanity-io.vscode-sanity"
 vscode "sburg.vscode-javascript-booster"
 vscode "sonarsource.sonarlint-vscode"
 vscode "styled-components.vscode-styled-components"
@@ -356,8 +370,6 @@ vscode "yunduo.color-highlight-css-color-4"
 vscode "yzhang.markdown-all-in-one"
 vscode "zachhardesty.convert-object-to-jsx-vscode"
 vscode "zengxingxin.sort-js-object-keys"
-go "github.com/mvanhorn/cli-printing-press/v4/cmd/cli-printing-press"
-go "github.com/grikomsn/codex-chat-manager/cmd/codex-chat-manager"
 go "golang.org/x/tools/cmd/goimports"
 go "golang.org/x/tools/gopls"
 go "honnef.co/go/tools/cmd/staticcheck"
@@ -365,7 +377,6 @@ uv "marker-pdf[full]"
 uv "markitdown[all]"
 uv "streamlit"
 npm "@earendil-works/pi-coding-agent"
-npm "command-code"
 npm "corepack"
 npm "fish-lsp"
 npm "neovim"

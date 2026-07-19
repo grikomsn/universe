@@ -7,13 +7,14 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   launch_agents_dir="$HOME/Library/LaunchAgents"
   plist="$launch_agents_dir/$label.plist"
   source_socket="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-  target_socket="$(launchctl getenv SSH_AUTH_SOCK)"
   domain="gui/$(id -u)"
 
-  if [[ -z "$target_socket" ]]; then
-    echo "SSH_AUTH_SOCK is not registered in the launchd environment." >&2
+  if [[ ! -S "$source_socket" ]]; then
+    echo "1Password SSH agent socket does not exist: $source_socket" >&2
     exit 1
   fi
+
+  launchctl setenv SSH_AUTH_SOCK "$source_socket"
 
   mkdir -p "$launch_agents_dir"
   cat <<EOF >"$plist"
@@ -25,10 +26,10 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   <string>$label</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/bin/ln</string>
-    <string>-sf</string>
+    <string>/bin/launchctl</string>
+    <string>setenv</string>
+    <string>SSH_AUTH_SOCK</string>
     <string>$source_socket</string>
-    <string>$target_socket</string>
   </array>
   <key>RunAtLoad</key>
   <true/>

@@ -5,6 +5,12 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+onepassword_ssh_auth_sock="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+if [ -S "$onepassword_ssh_auth_sock" ]; then
+  export SSH_AUTH_SOCK="$onepassword_ssh_auth_sock"
+fi
+unset onepassword_ssh_auth_sock
+
 path_prepend() {
   [ -d "$1" ] || return
   if [ -z "${PATH:-}" ]; then

@@ -14,6 +14,7 @@ extension_source() {
 }
 
 EXTENSIONS=()
+FAILED_EXTENSION_OPERATIONS=()
 extension_data="$(extension_source)"
 while IFS= read -r extension; do
   EXTENSIONS+=("$extension")
@@ -39,16 +40,26 @@ sync_editor() {
 
   for extension in "${EXTENSIONS[@]}"; do
     if ! printf '%s\n' "${installed_extensions[@]}" | grep -Fqx -- "$extension"; then
-      "$editor" --install-extension "$extension"
+      if ! "$editor" --install-extension "$extension"; then
+        FAILED_EXTENSION_OPERATIONS+=("$editor install $extension")
+      fi
     fi
   done
 
   for extension in "${installed_extensions[@]}"; do
     if ! printf '%s\n' "${EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
-      "$editor" --uninstall-extension "$extension"
+      if ! "$editor" --uninstall-extension "$extension"; then
+        FAILED_EXTENSION_OPERATIONS+=("$editor uninstall $extension")
+      fi
     fi
   done
 }
 
 sync_editor cursor
 sync_editor code
+
+if [[ ${#FAILED_EXTENSION_OPERATIONS[@]} -gt 0 ]]; then
+  echo "Extension operations failed:" >&2
+  printf '  %s\n' "${FAILED_EXTENSION_OPERATIONS[@]}" >&2
+  exit 1
+fi
