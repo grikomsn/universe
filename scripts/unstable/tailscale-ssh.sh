@@ -62,7 +62,7 @@ status() {
     printf 'Server capability:     unsupported platform\n'
   fi
   printf 'Node:\n'
-  tailscale status --self 2>/dev/null | sed '/^# Health check:/,$d' || true
+  tailscale status --self 2>/dev/null | sed -n '1p' || true
   health="$(tailscale status 2>/dev/null | sed -n '/^# Health check:/,$p' || true)"
   if [[ -n "$health" ]]; then
     printf '%s\n' "$health"
