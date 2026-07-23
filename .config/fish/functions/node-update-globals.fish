@@ -18,7 +18,7 @@ function node-update-globals --description 'update node related package managers
 
     # Update npm globals (skip npm update to avoid .DS_Store issues)
     if type -q npm
-        npm -g install $npm_pkgs
+        npm -g install $npm_pkgs $argv
     end
 
     # Ensure npm packages are not in pnpm
