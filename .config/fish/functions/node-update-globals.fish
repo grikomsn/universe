@@ -14,7 +14,7 @@ function node-update-globals --description 'update node related package managers
     corepack prepare --activate yarn@1.22.22
 
     # npm global packages (consolidated - moved from pnpm)
-    set -l npm_pkgs @earendil-works/pi-coding-agent fish-lsp neovim prettier serve tsx turbo vercel
+    set -l npm_pkgs fish-lsp neovim prettier serve tsx turbo vercel
 
     # Update npm globals (skip npm update to avoid .DS_Store issues)
     if type -q npm
@@ -50,18 +50,25 @@ function node-update-globals --description 'update node related package managers
         # yarn global upgrade
     end
 
-    # Ensure npm packages are not in bun
+    # bun global packages
+    set -l bun_pkgs @earendil-works/pi-coding-agent
+
+    # Update bun globals
     if type -q bun
-        set -l bun_dups
-        for pkg in $npm_pkgs
-            if bun pm ls -g 2>/dev/null | grep -q $pkg
-                set -a bun_dups $pkg
+        bun install --global $bun_pkgs $argv
+    end
+
+    # Ensure bun packages are not in npm
+    if type -q npm
+        set -l npm_dups
+        for pkg in $bun_pkgs
+            if npm -g list $pkg 2>/dev/null | grep -q $pkg
+                set -a npm_dups $pkg
             end
         end
-        if set -q bun_dups[1]
-            echo "removing from bun (should be in npm only): $bun_dups"
-            bun remove --global $bun_dups 2>/dev/null
+        if set -q npm_dups[1]
+            echo "removing from npm (should be in bun only): $npm_dups"
+            npm -g remove $npm_dups 2>/dev/null
         end
-        # bun update --global
     end
 end
