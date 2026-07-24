@@ -13,45 +13,45 @@ OUTPUT_FILE="${INPUT_FILE}.cleaned"
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
-    case $1 in
-        --max-repetitions=*)
-            MAX_REPETITIONS="${1#*=}"
-            shift
-            ;;
-        --max-repetitions)
-            MAX_REPETITIONS="$2"
-            shift 2
-            ;;
-        --dry-run)
-            DRY_RUN=true
-            shift
-            ;;
-        -h|--help)
-            echo "Usage: $0 [OPTIONS] [INPUT_FILE]"
-            echo ""
-            echo "Options:"
-            echo "  --max-repetitions N  Keep only N recent executions of each command (default: $MAX_REPETITIONS)"
-            echo "  --dry-run            Show what would be done without writing"
-            echo "  -h, --help           Show this help message"
-            echo ""
-            echo "Without INPUT_FILE, operates on ~/.local/share/fish/fish_history"
-            exit 0
-            ;;
-        -*)
-            echo "Unknown option: $1" >&2
-            exit 1
-            ;;
-        *)
-            INPUT_FILE="$1"
-            shift
-            ;;
-    esac
+  case $1 in
+  --max-repetitions=*)
+    MAX_REPETITIONS="${1#*=}"
+    shift
+    ;;
+  --max-repetitions)
+    MAX_REPETITIONS="$2"
+    shift 2
+    ;;
+  --dry-run)
+    DRY_RUN=true
+    shift
+    ;;
+  -h | --help)
+    echo "Usage: $0 [OPTIONS] [INPUT_FILE]"
+    echo ""
+    echo "Options:"
+    echo "  --max-repetitions N  Keep only N recent executions of each command (default: $MAX_REPETITIONS)"
+    echo "  --dry-run            Show what would be done without writing"
+    echo "  -h, --help           Show this help message"
+    echo ""
+    echo "Without INPUT_FILE, operates on ~/.local/share/fish/fish_history"
+    exit 0
+    ;;
+  -*)
+    echo "Unknown option: $1" >&2
+    exit 1
+    ;;
+  *)
+    INPUT_FILE="$1"
+    shift
+    ;;
+  esac
 done
 
 # Verify input file exists
 if [[ ! -f "$INPUT_FILE" ]]; then
-    echo "Error: Input file '$INPUT_FILE' not found" >&2
-    exit 1
+  echo "Error: Input file '$INPUT_FILE' not found" >&2
+  exit 1
 fi
 
 echo "=== Fish History Cleanup ===" >&2
@@ -61,7 +61,7 @@ echo "" >&2
 
 # Count original entries
 ORIGINAL_LINES=$(grep -c "^- cmd:" "$INPUT_FILE" 2>/dev/null || echo 0)
-ORIGINAL_FILE_LINES=$(wc -l < "$INPUT_FILE")
+ORIGINAL_FILE_LINES=$(wc -l <"$INPUT_FILE")
 echo "Original entries: $ORIGINAL_LINES commands, $ORIGINAL_FILE_LINES total lines" >&2
 
 # Run Python cleanup script
@@ -69,7 +69,7 @@ echo "Original entries: $ORIGINAL_LINES commands, $ORIGINAL_FILE_LINES total lin
 export MAX_REPETITIONS
 
 create_python_script() {
-    cat << 'PYTHON_SCRIPT'
+  cat <<'PYTHON_SCRIPT'
 import sys
 import os
 from collections import OrderedDict
@@ -168,19 +168,19 @@ PYTHON_SCRIPT
 }
 
 if $DRY_RUN; then
-    create_python_script | python3 - "$INPUT_FILE"
-    echo "" >&2
-    echo "Dry run - no changes written" >&2
+  create_python_script | python3 - "$INPUT_FILE"
+  echo "" >&2
+  echo "Dry run - no changes written" >&2
 else
-    create_python_script | python3 - "$INPUT_FILE" > "$OUTPUT_FILE"
-    
-    # Backup and replace
-    cp "$INPUT_FILE" "${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
-    mv "$OUTPUT_FILE" "$INPUT_FILE"
-    OUTPUT_LINES=$(grep -c "^- cmd:" "$INPUT_FILE" 2>/dev/null || echo 0)
-    OUTPUT_FILE_LINES=$(wc -l < "$INPUT_FILE")
-    echo "Backup saved to ${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)" >&2
-    echo "Wrote: $OUTPUT_LINES commands, $OUTPUT_FILE_LINES total lines" >&2
+  create_python_script | python3 - "$INPUT_FILE" >"$OUTPUT_FILE"
+
+  # Backup and replace
+  cp "$INPUT_FILE" "${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
+  mv "$OUTPUT_FILE" "$INPUT_FILE"
+  OUTPUT_LINES=$(grep -c "^- cmd:" "$INPUT_FILE" 2>/dev/null || echo 0)
+  OUTPUT_FILE_LINES=$(wc -l <"$INPUT_FILE")
+  echo "Backup saved to ${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)" >&2
+  echo "Wrote: $OUTPUT_LINES commands, $OUTPUT_FILE_LINES total lines" >&2
 fi
 
 echo "Done." >&2
