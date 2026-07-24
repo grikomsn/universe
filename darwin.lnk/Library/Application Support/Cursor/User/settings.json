@@ -84,6 +84,7 @@
     "sound": "on"
   },
   "better-comments.highlightPlainText": true,
+  "chat.agent.maxRequests": 9999,
   "chat.agent.thinkingStyle": "collapsed",
   "chat.agentSessionProjection.enabled": true,
   "chat.byokUtilityModelDefault": "mainAgent",
@@ -97,6 +98,7 @@
   "chat.mcp.gallery.enabled": true,
   "chat.requestQueuing.defaultAction": "queue",
   "chat.viewProgressBadge.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
   "chatgpt.composerEnterBehavior": "cmdIfMultiline",
   "codium.codeCompletion.enable": true,
   "color-highlight.markRuler": false,
@@ -298,7 +300,6 @@
   "quokka.suppressExpirationNotifications": true,
   "redhat.telemetry.enabled": false,
   "remote.SSH.remotePlatform": {
-    "dalang": "linux",
     "dalang-mini": "linux",
     "orb": "linux"
   },
@@ -341,11 +342,16 @@
   "workbench.iconTheme": "vs-seti",
   "workbench.layoutControl.enabled": false,
   "workbench.navigationControl.enabled": false,
-  "workbench.preferredLightColorTheme": "Expo Light",
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "none",
   "workbench.tree.indent": 12,
   "workbench.view.alwaysShowHeaderActions": true,
-  "chat.viewSessions.orientation": "stacked",
-  "chat.agent.maxRequests": 9999
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ]
 }
