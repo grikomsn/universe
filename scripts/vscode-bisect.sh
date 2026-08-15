@@ -23,13 +23,19 @@ if [[ ${#EXTENSIONS[@]} -eq 0 ]]; then
   exit 1
 fi
 
-if command -v cursor >/dev/null 2>&1; then
-  editor="cursor"
-elif command -v code >/dev/null 2>&1; then
-  editor="code"
-else
-  echo "Neither cursor nor code is installed." >&2
+editor="${1:-code}"
+if [[ "$editor" != "code" && "$editor" != "cursor" ]]; then
+  echo "Usage: $0 [code|cursor]" >&2
   exit 1
+fi
+
+if ! command -v "$editor" >/dev/null 2>&1; then
+  if [[ $# -eq 0 && "$editor" == "code" ]] && command -v cursor >/dev/null 2>&1; then
+    editor="cursor"
+  else
+    echo "$editor is not installed." >&2
+    exit 1
+  fi
 fi
 
 INSTALLED_EXTENSIONS=()

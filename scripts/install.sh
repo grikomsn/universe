@@ -42,9 +42,7 @@ while true; do
   kill -0 "$$" || exit
 done 2>/dev/null &
 
-mkdir -p ~/Projects ~/Scripts ~/Temporary ~/Workspace ~/.cursor
-ln -sf ~/.cursor ~/.vscode
-ln -sf ~/.cursor ~/.vscode-oss
+mkdir -p ~/Projects ~/Scripts ~/Temporary ~/Workspace ~/.vscode ~/.vscode-shared
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
   xcode-select --install
@@ -89,6 +87,8 @@ fi
 if [[ "$(uname -s)" == "Linux" ]]; then
   lnk pull -H linux
 fi
+
+bash "$REPO_DIR/scripts/vscode-migrate.sh"
 
 # Ensure npmrc has audit=false and fund=false without clobbering existing content
 npmrc_file="$HOME/.npmrc"

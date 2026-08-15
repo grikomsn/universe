@@ -55,8 +55,8 @@ sync_editor() {
   done
 }
 
-sync_editor cursor
 sync_editor code
+sync_editor cursor
 
 if [[ ${#FAILED_EXTENSION_OPERATIONS[@]} -gt 0 ]]; then
   echo "Extension operations failed:" >&2

@@ -24,46 +24,31 @@ if [[ ${#EXTENSIONS[@]} -eq 0 ]]; then
   exit 1
 fi
 
-# dotdir values for other vscode forks
-DOTDIR_VALUES=(
-  ".antigravity"
-  ".cursor-nightly"
-  ".kiro"
-  ".vscode"
-  ".vscode-oss"
-  ".windsurf"
-)
-
-# symlink cursor dotdir to others
-mkdir -p "$HOME/.cursor"
-for DOTDIR_VALUE in "${DOTDIR_VALUES[@]}"; do
-  ln -sf "$HOME/.cursor" "$HOME/$DOTDIR_VALUE"
-done
+bash "$script_dir/vscode-migrate.sh"
 
 # early stub directories
 DATA_DIR_VALUES=(
   "Antigravity"
-  "Code"
+  "Cursor"
   "Kiro"
   "Windsurf"
 )
 
-# define CURSOR_DATA_DIR based on platform
+# Define the VS Code data directory based on platform.
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  CURSOR_DATA_DIR="$HOME/Library/Application Support/Cursor"
+  VSCODE_DATA_DIR="$HOME/Library/Application Support/Code"
 else
-  CURSOR_DATA_DIR="$HOME/.config/Cursor"
+  VSCODE_DATA_DIR="$HOME/.config/Code"
 fi
 
-# early stub cursor data directory
-mkdir -p "$CURSOR_DATA_DIR/User"
+# Create the canonical VS Code user data directory and config stubs.
+mkdir -p "$VSCODE_DATA_DIR/User"
 
-# early stub json configs
-if [ ! -f "$CURSOR_DATA_DIR/User/settings.json" ]; then
-  echo '{}' >"$CURSOR_DATA_DIR/User/settings.json"
+if [[ ! -f "$VSCODE_DATA_DIR/User/settings.json" ]]; then
+  echo '{}' >"$VSCODE_DATA_DIR/User/settings.json"
 fi
-if [ ! -f "$CURSOR_DATA_DIR/User/keybindings.json" ]; then
-  echo '[]' >"$CURSOR_DATA_DIR/User/keybindings.json"
+if [[ ! -f "$VSCODE_DATA_DIR/User/keybindings.json" ]]; then
+  echo '[]' >"$VSCODE_DATA_DIR/User/keybindings.json"
 fi
 
 # define targets to symlink (not everything will be symlink'd)
@@ -84,28 +69,11 @@ for DATA_DIR_VALUE in "${DATA_DIR_VALUES[@]}"; do
 
   # iterate on user symlink targets
   for USER_SYMLINK_TARGET in "${USER_SYMLINK_TARGETS[@]}"; do
-    ln -sf "$CURSOR_DATA_DIR/User/$USER_SYMLINK_TARGET" "$TARGET_DATA_DIR/User/$USER_SYMLINK_TARGET"
+    ln -sf "$VSCODE_DATA_DIR/User/$USER_SYMLINK_TARGET" "$TARGET_DATA_DIR/User/$USER_SYMLINK_TARGET"
   done
 done
 
-# install only non-existing extensions via `cursor`
-if command -v cursor &>/dev/null; then
-  INSTALLED_EXTENSIONS=()
-  installed_data="$(cursor --list-extensions)"
-  while IFS= read -r extension; do
-    [[ -n "$extension" ]] || continue
-    INSTALLED_EXTENSIONS+=("$extension")
-  done <<<"$installed_data"
-  for extension in "${EXTENSIONS[@]}"; do
-    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
-      if ! cursor --install-extension "$extension"; then
-        FAILED_EXTENSION_OPERATIONS+=("cursor install $extension")
-      fi
-    fi
-  done
-fi
-
-# install only non-existing extensions via `code`
+# Install only non-existing extensions via `code`.
 if command -v code &>/dev/null; then
   INSTALLED_EXTENSIONS=()
   installed_data="$(code --list-extensions)"
@@ -117,6 +85,23 @@ if command -v code &>/dev/null; then
     if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
       if ! code --install-extension "$extension"; then
         FAILED_EXTENSION_OPERATIONS+=("code install $extension")
+      fi
+    fi
+  done
+fi
+
+# Install only non-existing extensions via `cursor`.
+if command -v cursor &>/dev/null; then
+  INSTALLED_EXTENSIONS=()
+  installed_data="$(cursor --list-extensions)"
+  while IFS= read -r extension; do
+    [[ -n "$extension" ]] || continue
+    INSTALLED_EXTENSIONS+=("$extension")
+  done <<<"$installed_data"
+  for extension in "${EXTENSIONS[@]}"; do
+    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
+      if ! cursor --install-extension "$extension"; then
+        FAILED_EXTENSION_OPERATIONS+=("cursor install $extension")
       fi
     fi
   done

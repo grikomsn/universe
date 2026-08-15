@@ -9,9 +9,10 @@ lnk pull                      # apply dotfiles
 lnk pull -H darwin           # macOS only
 lnk pull -H linux            # Linux only
 brew bundle --global         # update Homebrew packages
-bash scripts/cursor.sh       # setup Cursor/VS Code
-bash scripts/cursor-sync.sh  # sync extensions
-bash scripts/cursor-bisect.sh # check drift
+bash scripts/vscode.sh        # setup VS Code-compatible editors
+bash scripts/vscode-migrate.sh # migrate filesystem links
+bash scripts/vscode-sync.sh   # sync extensions
+bash scripts/vscode-bisect.sh # check drift
 ```
 
 Validate + format after changes:
