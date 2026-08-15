@@ -30,6 +30,7 @@ bash "$script_dir/vscode-migrate.sh"
 DATA_DIR_VALUES=(
   "Antigravity"
   "Cursor"
+  "Devin"
   "Kiro"
   "Windsurf"
 )
