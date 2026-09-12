@@ -17,6 +17,12 @@ run_remote_installer() {
   local installer="$TEMP_DIR/$name.sh"
   local actual_sha256
 
+  shift 3
+  local extra_args=()
+  if [[ $# -gt 0 ]]; then
+    extra_args=("$@")
+  fi
+
   curl -fsSL "$url" -o "$installer"
   if [[ -n "$expected_sha256" ]]; then
     if command -v sha256sum >/dev/null 2>&1; then
@@ -32,7 +38,7 @@ run_remote_installer() {
       exit 1
     fi
   fi
-  bash "$installer"
+  bash "$installer" "${extra_args[@]+"${extra_args[@]}"}"
 }
 
 sudo -v
@@ -127,8 +133,11 @@ run_remote_installer rustup "${RUSTUP_INSTALL_URL:-https://sh.rustup.rs}" \
 
 run_remote_installer amp "${AMP_INSTALL_URL:-https://ampcode.com/install.sh}" \
   "${AMP_INSTALL_SHA256:-8fcc17808b55b1a6ec6b54aa28877dbff9a5cab4fef8e992c1cf82d8ceaf1e46}"
-run_remote_installer opencode "${OPENCODE_INSTALL_URL:-https://opencode.ai/install}" \
-  "${OPENCODE_INSTALL_SHA256:-fc3c1b2123f49b6df545a7622e5127d21cd794b15134fc3b66e1ca49f7fb297e}"
+# OpenCode v2 CLI. The installer self-modifies shell rc files unless told not
+# to; cleanup-shell-injections.sh remains a backstop for older installs.
+run_remote_installer opencode "${OPENCODE_INSTALL_URL:-https://opencode.ai/v2/install}" \
+  "${OPENCODE_INSTALL_SHA256:-21647f544916c2ebac4ea67f83ac202ece58007b6f2d6f04c41bddb39c7be0c2}" \
+  --no-modify-path
 run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh/uv/install.sh}" \
   "${UV_INSTALL_SHA256:-ca2de1bca2913ba30ce88658b6d90a663c627ecac378803aa58084a9adb35a46}"
 
