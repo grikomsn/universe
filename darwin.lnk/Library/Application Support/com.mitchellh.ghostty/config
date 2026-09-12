@@ -50,7 +50,7 @@ keybind = shift+enter=text:\n
 macos-secure-input-indication = false
 mouse-scroll-multiplier = 2
 selection-invert-fg-bg = true
-theme = light:Apple System Colors Light,dark:Apple System Colors
+theme = Apple System Colors
 window-colorspace = display-p3
 window-padding-x = 8
 window-padding-y = 8
