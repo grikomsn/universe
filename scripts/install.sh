@@ -131,8 +131,6 @@ run_remote_installer fnm "${FNM_INSTALL_URL:-https://fnm.vercel.app/install}" \
 run_remote_installer rustup "${RUSTUP_INSTALL_URL:-https://sh.rustup.rs}" \
   "${RUSTUP_INSTALL_SHA256:-6c30b75a75b28a96fd913a037c8581b580080b6ee9b8169a3c0feb1af7fe8caf}"
 
-run_remote_installer amp "${AMP_INSTALL_URL:-https://ampcode.com/install.sh}" \
-  "${AMP_INSTALL_SHA256:-8fcc17808b55b1a6ec6b54aa28877dbff9a5cab4fef8e992c1cf82d8ceaf1e46}"
 # OpenCode v2 CLI. The installer self-modifies shell rc files unless told not
 # to; cleanup-shell-injections.sh remains a backstop for older installs.
 run_remote_installer opencode "${OPENCODE_INSTALL_URL:-https://opencode.ai/v2/install}" \
