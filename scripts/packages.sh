@@ -29,7 +29,17 @@ Linux)
       echo "no packages listed in $linuxfile" >&2
       exit 1
     }
-    sudo dnf install -y "${packages[@]}"
+    # dnf5 aborts the whole transaction on a single unknown name;
+    # --skip-unavailable installs the resolvable ones and reports the rest.
+    if ! sudo dnf install -y --skip-unavailable "${packages[@]}"; then
+      echo "dnf install failed" >&2
+      exit 1
+    fi
+    for package in "${packages[@]}"; do
+      if ! dnf -q repoquery "$package" 2>/dev/null | grep -q .; then
+        echo "skipped (not in repos): $package" >&2
+      fi
+    done
   else
     echo "dnf not found; only Fedora-family Linux is supported." >&2
     exit 1
