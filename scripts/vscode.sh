@@ -3,26 +3,6 @@
 set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-repo_brewfile="$script_dir/../Brewfile"
-
-extension_source() {
-  if [[ -f "$repo_brewfile" ]]; then
-    cat "$repo_brewfile"
-  else
-    curl -fsSL https://universe.nibras.co/Brewfile
-  fi
-}
-
-EXTENSIONS=()
-FAILED_EXTENSION_OPERATIONS=()
-extension_data="$(extension_source)"
-while IFS= read -r extension; do
-  EXTENSIONS+=("$extension")
-done < <(printf '%s\n' "$extension_data" | awk '/^vscode / { gsub(/"/, "", $2); print $2 }')
-if [[ ${#EXTENSIONS[@]} -eq 0 ]]; then
-  echo "No VS Code extensions found in the Brewfile." >&2
-  exit 1
-fi
 
 bash "$script_dir/vscode-migrate.sh"
 
@@ -74,42 +54,5 @@ for DATA_DIR_VALUE in "${DATA_DIR_VALUES[@]}"; do
   done
 done
 
-# Install only non-existing extensions via `code`.
-if command -v code &>/dev/null; then
-  INSTALLED_EXTENSIONS=()
-  installed_data="$(code --list-extensions)"
-  while IFS= read -r extension; do
-    [[ -n "$extension" ]] || continue
-    INSTALLED_EXTENSIONS+=("$extension")
-  done <<<"$installed_data"
-  for extension in "${EXTENSIONS[@]}"; do
-    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
-      if ! code --install-extension "$extension"; then
-        FAILED_EXTENSION_OPERATIONS+=("code install $extension")
-      fi
-    fi
-  done
-fi
-
-# Install only non-existing extensions via `cursor`.
-if command -v cursor &>/dev/null; then
-  INSTALLED_EXTENSIONS=()
-  installed_data="$(cursor --list-extensions)"
-  while IFS= read -r extension; do
-    [[ -n "$extension" ]] || continue
-    INSTALLED_EXTENSIONS+=("$extension")
-  done <<<"$installed_data"
-  for extension in "${EXTENSIONS[@]}"; do
-    if ! printf '%s\n' "${INSTALLED_EXTENSIONS[@]}" | grep -Fqx -- "$extension"; then
-      if ! cursor --install-extension "$extension"; then
-        FAILED_EXTENSION_OPERATIONS+=("cursor install $extension")
-      fi
-    fi
-  done
-fi
-
-if [[ ${#FAILED_EXTENSION_OPERATIONS[@]} -gt 0 ]]; then
-  echo "Extension operations failed:" >&2
-  printf '  %s\n' "${FAILED_EXTENSION_OPERATIONS[@]}" >&2
-  exit 1
-fi
+# Install missing (and prune extra) extensions via vscode-sync.
+exec bash "$script_dir/vscode-sync.sh"

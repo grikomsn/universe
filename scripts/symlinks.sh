@@ -3,6 +3,7 @@
 set -euo pipefail
 
 managed_paths=(
+  .agents
   .bash_profile
   .bashrc
   .profile
@@ -10,6 +11,7 @@ managed_paths=(
   .zshenv
   .zshrc
   .config/fish
+  .pi/agent/settings.json
 )
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 backup_suffix="$(date +%Y%m%d_%H%M%S)"

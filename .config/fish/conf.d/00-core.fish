@@ -8,7 +8,19 @@ set -gx LC_ALL "en_US.UTF-8"
 set -gx PATH /usr/local/bin /usr/local/sbin $PATH
 set -gx PATH $HOME/.local/bin $PATH
 
-set -l onepassword_ssh_auth_sock "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+set -l onepassword_ssh_auth_sock "$HOME/.1password/agent.sock"
+if not test -S $onepassword_ssh_auth_sock
+    set -l macos_onepassword_ssh_auth_sock "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    if test -S $macos_onepassword_ssh_auth_sock
+        set onepassword_ssh_auth_sock $macos_onepassword_ssh_auth_sock
+    end
+end
 if test -S $onepassword_ssh_auth_sock
     set -gx SSH_AUTH_SOCK $onepassword_ssh_auth_sock
+end
+
+if test -d /opt/homebrew
+    set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
+else if test -d /home/linuxbrew/.linuxbrew
+    set -gx PATH /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin $PATH
 end

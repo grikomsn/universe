@@ -76,6 +76,12 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   brew bundle --global
 fi
 
+if [[ "$(uname -s)" == "Linux" ]]; then
+  if command -v dnf >/dev/null 2>&1; then
+    sudo dnf install -y fish git jq curl wget
+  fi
+fi
+
 if command -v mkcert >/dev/null 2>&1; then
   mkcert -install
 fi
@@ -140,3 +146,7 @@ run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh/uv/install.sh}" \
   "${UV_INSTALL_SHA256:-ca2de1bca2913ba30ce88658b6d90a663c627ecac378803aa58084a9adb35a46}"
 
 "$REPO_DIR/scripts/cleanup-shell-injections.sh"
+
+if [[ -f "$REPO_DIR/scripts/skills-restore.sh" ]]; then
+  bash "$REPO_DIR/scripts/skills-restore.sh" || true
+fi

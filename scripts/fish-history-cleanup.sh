@@ -179,7 +179,8 @@ else
   mv "$OUTPUT_FILE" "$INPUT_FILE"
   OUTPUT_LINES=$(grep -c "^- cmd:" "$INPUT_FILE" 2>/dev/null || echo 0)
   OUTPUT_FILE_LINES=$(wc -l <"$INPUT_FILE")
-  echo "Backup saved to ${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)" >&2
+  backup_file="${INPUT_FILE}".backup.*
+  echo "Backup saved to $(ls -t $backup_file | head -n 1)" >&2
   echo "Wrote: $OUTPUT_LINES commands, $OUTPUT_FILE_LINES total lines" >&2
 fi
 
