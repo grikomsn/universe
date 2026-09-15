@@ -1,7 +1,8 @@
+tap "abue-ammar/tinycast", trusted: true
 tap "atlassian/acli"
 tap "parallel-web/tap"
 tap "supabase/tap"
-tap "tw93/tap"
+tap "tw93/tap", trusted: { formulae: ["mole"] }
 tap "yarlson/lnk"
 # Run your GitHub Actions locally
 brew "act"
@@ -41,8 +42,12 @@ brew "fish"
 brew "flarectl"
 # Fast and simple Node.js version manager
 brew "fnm"
+# X11 implementation of the Remote Desktop Protocol (RDP)
+brew "freerdp"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# TIFF library and utilities
+brew "libtiff"
 # GitHub command-line tool
 brew "gh"
 # Multi-platform software reverse engineering framework
@@ -87,8 +92,12 @@ brew "mas"
 brew "mergiraf"
 # Simple tool to make locally trusted development certificates
 brew "mkcert"
+# Deep clean and optimize your Mac
+brew "mole"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Create, run, and share large language models (LLMs)
+brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Swiss-army knife of markup format conversion
@@ -123,8 +132,6 @@ brew "zsh"
 brew "atlassian/acli/acli", trusted: true
 # Supabase CLI
 brew "supabase/tap/supabase", trusted: true
-# Comprehensive macOS cleanup and application uninstall tool
-brew "tw93/tap/mole", trusted: true
 # Git-native dotfiles management that doesn't suck
 brew "yarlson/lnk/lnk", trusted: true
 # Password manager that keeps all passwords secure behind one password
@@ -145,10 +152,6 @@ cask "cleanshot"
 cask "clop"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# Claude code parallelisation
-cask "conductor"
-# Write, edit, and chat about your code with AI
-cask "cursor"
 # Server and cloud storage browser
 cask "cyberduck"
 # Database version management tool
@@ -157,6 +160,9 @@ cask "dbngin"
 cask "discord"
 # Collaborative team software
 cask "figma"
+cask "font-geist"
+cask "font-geist-mono"
+cask "font-geist-mono-nerd-font"
 cask "font-inter"
 cask "font-inter-tight"
 cask "font-sf-mono-for-powerline"
@@ -168,8 +174,8 @@ cask "ghostty"
 cask "git-credential-manager"
 # Tools to protect your files
 cask "gpg-suite-no-mail"
-# Chromium-based web browser
-cask "helium-browser"
+# Homebrew's official GUI
+cask "homebrew-app"
 # Keyboard shortcuts for every button on your screen
 cask "homerow"
 # Tool to optimise images to a smaller size
@@ -178,8 +184,8 @@ cask "imageoptim"
 cask "jetbrains-toolbox"
 # Blocks all Keyboard and TouchBar input
 cask "keyboardcleantool"
-# Discover, download, and run local LLMs
-cask "lm-studio"
+# Software for Logitech devices
+cask "logi-options+"
 # Cable-free audio router
 cask "loopback"
 # Open-source firewall to block unknown outgoing connections
@@ -196,10 +202,10 @@ cask "master-pdf-editor"
 cask "mist"
 # Open-source software for live streaming and screen recording
 cask "obs"
+# Get up and running with large language models locally
+cask "ollama-app"
 # Professional webcam software for the Opal C1
 cask "opal-composer"
-# AI coding agent desktop client
-cask "opencode-desktop"
 # Local-first alternative to Logitech Options+ for HID++ devices
 cask "openlogi"
 # Replacement for Docker Desktop
@@ -226,8 +232,8 @@ cask "suspicious-package"
 cask "t3-code"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
-# Editor for .tldr files
-cask "tldraw"
+# Tiny, fully native launcher, hotkeys, and clipboard history
+cask "abue-ammar/tinycast/tinycast"
 # File system and storage management software
 cask "tuxera-ntfs"
 # Open-source code editor
@@ -238,6 +244,8 @@ cask "vlc"
 cask "webtorrent"
 # Native desktop client for WhatsApp
 cask "whatsapp"
+# Open-source version of the X.Org X Window System
+cask "xquartz"
 # REST, GraphQL and gRPC client
 cask "yaak"
 # Video communication and virtual meeting platform
@@ -253,7 +261,6 @@ mas "Entity Pro", id: 1503988785
 mas "Equinox", id: 1591510203
 mas "Harvest", id: 506189836
 mas "Lungo", id: 1263070803
-mas "Mirage", id: 6757893115
 mas "Monodraw", id: 920404675
 mas "NextDNS", id: 1464122853
 mas "Noir", id: 1592917505
@@ -268,11 +275,9 @@ mas "Velja", id: 1607635845
 vscode "1password.op-vscode"
 vscode "aaron-bond.better-comments"
 vscode "adpyke.vscode-userscript"
-vscode "anysphere.cursorpyright"
-vscode "anysphere.remote-containers"
-vscode "anysphere.remote-ssh"
 vscode "astro-build.astro-vscode"
 vscode "bierner.comment-tagged-templates"
+vscode "bierner.emojisense"
 vscode "bierner.folder-source-actions"
 vscode "bierner.github-markdown-preview"
 vscode "bierner.markdown-checkbox"
@@ -296,7 +301,6 @@ vscode "drknoxy.eslint-disable-snippets"
 vscode "eamodio.gitlens"
 vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
-vscode "expo.vscode-expo-theme"
 vscode "expo.vscode-expo-tools"
 vscode "foxundermoon.shell-format"
 vscode "github.codespaces"
@@ -304,15 +308,17 @@ vscode "github.github-vscode-theme"
 vscode "github.remotehub"
 vscode "github.vscode-github-actions"
 vscode "github.vscode-pull-request-github"
-vscode "gitpod.gitpod-theme"
 vscode "golang.go"
 vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
 vscode "grikomsn.grok-copilot-chat"
+vscode "grikomsn.ollama-cloud-copilot-chat"
 vscode "grikomsn.openai-oauth-copilot-chat"
+vscode "grikomsn.opencode-bridge-copilot-chat"
+vscode "grikomsn.orvix-copilot-chat"
+vscode "grikomsn.poolside-copilot-chat"
 vscode "jock.svg"
 vscode "llvm-vs-code-extensions.lldb-dap"
-vscode "ltmoerdani.opencode-copilot-chat"
 vscode "matthewpi.caddyfile-support"
 vscode "mikestead.dotenv"
 vscode "mkhl.shfmt"
@@ -321,6 +327,7 @@ vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
 vscode "ms-toolsai.jupyter"
 vscode "ms-toolsai.jupyter-keymap"
@@ -330,6 +337,7 @@ vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode.azure-repos"
 vscode "ms-vscode.hexeditor"
 vscode "ms-vscode.makefile-tools"
 vscode "ms-vscode.remote-explorer"
@@ -376,7 +384,6 @@ go "honnef.co/go/tools/cmd/staticcheck"
 uv "marker-pdf[full]"
 uv "markitdown[all]"
 uv "streamlit"
-npm "@earendil-works/pi-coding-agent"
 npm "corepack"
 npm "fish-lsp"
 npm "neovim"

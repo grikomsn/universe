@@ -307,6 +307,7 @@
   "markdown.extension.tableFormatter.normalizeIndentation": true,
   "markdown.occurrencesHighlight.enabled": true,
   "markdown.preview.doubleClickToSwitchToEditor": false,
+  "microsoft-authentication.implementation": "msal-no-broker",
   "notebook.output.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
   "ollamaCloudCopilot.showUsageStatusBar": false,
   "openaiCodex.showUsageStatusBar": false,

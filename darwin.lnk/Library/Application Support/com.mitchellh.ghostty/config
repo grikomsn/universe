@@ -43,6 +43,7 @@
 # resize-overlay-duration = 4s 200ms
 
 adjust-cell-height = 8
+command = /opt/homebrew/bin/herdr
 confirm-close-surface = true
 font-family = "SF Mono Powerline"
 font-size = 12
