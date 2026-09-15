@@ -1,0 +1,54 @@
+# Linux package manifest — dnf (Fedora) equivalents of the Brewfile CLI layer.
+# One package per line; lines starting with # are comments.
+# Consumed by scripts/packages.sh.
+
+# Run your GitHub Actions locally
+act
+# Record and share terminal sessions
+asciinema
+# Code searching, linting, rewriting
+ast-grep
+# Searches a binary image for embedded files and executable code
+binwalk
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+cloudflared
+# Cross-platform make
+cmake
+# Play, record, convert, and stream select audio and video codecs
+ffmpeg
+# Quickly rewrite git repository history
+git-filter-repo
+# GNU Privacy Guard (OpenPGP)
+gnupg
+# Graph visualization software from AT&T and Bell Labs
+graphviz
+# Add GitHub support to git on the command-line
+hub
+# Tools and libraries to manipulate images in select formats
+imagemagick
+# Tool to unpack installers created by Inno Setup
+innoextract
+# Send files easily, securely, and reliably
+magic-wormhole
+# Generate local development certificates
+mkcert
+# Hyperflexible text editor (Brewfile: neovim)
+neovim
+# Universal document converter
+pandoc
+# Line-oriented search tool (Rust)
+ripgrep
+# Shell script formatter and parser
+shfmt
+# Simple and flexible tool for managing secrets
+sops
+# Fast real-time text search (Brewfile: the_silver_searcher)
+the_silver_searcher
+# Share terminals over the web
+ttyd
+# Z shell, a UNIX command interpreter
+zsh
+# Open source programming language to build simple/reliable/efficient software
+golang
+# Official Amazon AWS command-line interface
+awscli

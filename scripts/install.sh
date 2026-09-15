@@ -147,6 +147,14 @@ run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh/uv/install.sh}" \
 
 "$REPO_DIR/scripts/cleanup-shell-injections.sh"
 
+if [[ -f "$REPO_DIR/scripts/packages.sh" ]]; then
+  bash "$REPO_DIR/scripts/packages.sh" || true
+fi
+
 if [[ -f "$REPO_DIR/scripts/skills-restore.sh" ]]; then
   bash "$REPO_DIR/scripts/skills-restore.sh" || true
+fi
+
+if [[ -f "$REPO_DIR/scripts/globals.sh" ]]; then
+  bash "$REPO_DIR/scripts/globals.sh" || true
 fi
