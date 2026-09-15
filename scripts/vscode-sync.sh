@@ -32,6 +32,13 @@ sync_editor() {
 
   command -v "$editor" >/dev/null 2>&1 || return
 
+  # Some editor names resolve to unrelated CLI stubs that reject extension
+  # operations; treat those as absent instead of erroring per call.
+  if ! "$editor" --version >/dev/null 2>&1; then
+    echo "Skipping $editor: not a functional editor CLI (no --version support)." >&2
+    return
+  fi
+
   installed_data="$("$editor" --list-extensions)"
   while IFS= read -r extension; do
     [[ -n "$extension" ]] || continue
