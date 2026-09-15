@@ -19,10 +19,15 @@ command -v bunx >/dev/null || {
   exit 1
 }
 
-jq -r '.skills | to_entries[] | "\(.key)\t\(.value.source)"' "$lock" |
-  while IFS=$'\t' read -r skill source; do
-    echo "restoring $skill from $source"
-    bunx skills add "$source" -g -s "$skill" -y
-  done
+# </dev/null: the skills CLI consumes stdin, which would eat the remaining
+# piped lockfile entries and silently stop the loop after the first skill.
+installed=0
+while IFS=$'\t' read -r skill source; do
+  echo "restoring $skill from $source"
+  bunx skills add "$source" -g -s "$skill" -y </dev/null &&
+    [[ -f "$repo/.agents/skills/$skill/SKILL.md" ]] && installed=$((installed + 1)) ||
+    echo "FAILED to restore $skill" >&2
+done < <(jq -r '.skills | to_entries[] | "\(.key)\t\(.value.source)"' "$lock")
 
-echo "skills restored: $(jq -r '.skills | keys | length' "$lock")"
+echo "skills installed: $installed"
+[[ "$installed" -gt 0 ]]
