@@ -14,4 +14,10 @@ __pycache__
 *.tsbuildinfo
 node_modules
 
+# skills-CLI-managed: restored from .agents/.skill-lock.json via scripts/skills-restore.sh
+# boxes-sync-mcp and bb-cli are generated/hand-written, keep them tracked
+.agents/skills/*
+!.agents/skills/boxes-sync-mcp
+!.agents/skills/bb-cli
+
 !.env.example

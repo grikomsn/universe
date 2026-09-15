@@ -1,3 +1,4 @@
+.agents
 .config/fish
 .bash_profile
 .bashrc
@@ -6,3 +7,4 @@
 .zprofile
 .zshenv
 .zshrc
+.pi/agent/settings.json

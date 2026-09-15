@@ -1,0 +1,59 @@
+{
+  "version": 3,
+  "skills": {
+    "gh-stack": {
+      "source": "github/gh-stack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/gh-stack.git",
+      "skillPath": "skills/gh-stack/SKILL.md",
+      "skillFolderHash": "6bfe555e89a6b264e09d5ece7c4040226458c8e5",
+      "installedAt": "2026-04-13T20:02:01.461Z",
+      "updatedAt": "2026-09-15T07:26:17.965Z"
+    },
+    "parallel-web-search": {
+      "source": "parallel-web/parallel-agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/parallel-web/parallel-agent-skills.git",
+      "skillPath": "skills/parallel-web-search/SKILL.md",
+      "skillFolderHash": "48f031bb0a2c28edb72edfcb78f0fbc65a21edb4",
+      "installedAt": "2026-07-06T13:46:42.600Z",
+      "updatedAt": "2026-09-12T05:31:01.348Z"
+    },
+    "grilling": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/grilling/SKILL.md",
+      "skillFolderHash": "f0732035b8b1b60ae39454e4191caef32fa91903",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-09-12T05:33:47.562Z",
+      "updatedAt": "2026-09-12T05:33:47.562Z"
+    },
+    "git-hunk": {
+      "source": "nexxeln/git-hunk",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/nexxeln/git-hunk.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "2d00a577cc1a7946737e36b318923639facd25b3",
+      "installedAt": "2026-09-12T18:26:01.198Z",
+      "updatedAt": "2026-09-12T18:26:08.298Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
+  ]
+}

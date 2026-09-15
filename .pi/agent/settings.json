@@ -1,0 +1,38 @@
+{
+  "collapseChangelog": true,
+  "defaultModel": "glm-5.3-flash",
+  "defaultProjectTrust": "ask",
+  "defaultProvider": "ollama-cloud",
+  "defaultThinkingLevel": "high",
+  "editorPaddingX": 0,
+  "enableInstallTelemetry": false,
+  "fullscreenScrollbar": "auto",
+  "hideThinkingBlock": true,
+  "lastChangelogVersion": "0.85.1",
+  "outputPad": 1,
+  "packages": [
+    "npm:@ff-labs/pi-fff",
+    "npm:@plannotator/pi-extension",
+    "npm:@samfp/pi-essentials",
+    "npm:@tintinweb/pi-subagents",
+    "npm:pi-codex-goal",
+    "npm:pi-gpt-fast-mode",
+    "npm:pi-mcp-adapter",
+    "npm:pi-ollama-cloud",
+    "npm:pi-provider-opencode-console",
+    "npm:pi-thinking-steps",
+    "npm:pi-unified-exec",
+    "npm:pi-web-extension"
+  ],
+  "quietStartup": false,
+  "showCacheMissNotices": true,
+  "showHardwareCursor": true,
+  "steeringMode": "one-at-a-time",
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "theme": "dark",
+  "transport": "auto",
+  "treeFilterMode": "default",
+  "tuiMode": "regular"
+}
