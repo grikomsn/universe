@@ -7,5 +7,4 @@
 .zprofile
 .zshenv
 .zshrc
-fleet
 .pi/agent/settings.json
