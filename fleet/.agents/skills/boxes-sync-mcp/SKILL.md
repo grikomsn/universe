@@ -1,9 +1,9 @@
 ---
-name: boxes-sync-mcp
+name: fleet-boxes-sync-mcp
 description: Use when syncing, auditing, or editing MCP server configs across the user's two machines (local darwin laptop + a remote linux box over ssh) and multiple harnesses. Covers config paths, per-harness JSON/TOML conventions, enable/disable flag semantics, and known drift traps. Deliberately omits server names, keys, hostnames, and absolute paths.
 ---
 
-# Boxes sync MCP
+# Fleet boxes sync MCP
 
 Two machines: **local** (macOS) and **remote** (linux). Several harnesses with
 MCP configs exist on both — treat any of their config files as the sync
