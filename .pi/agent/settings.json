@@ -8,7 +8,7 @@
   "enableInstallTelemetry": false,
   "fullscreenScrollbar": "auto",
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "0.99.2",
+  "lastChangelogVersion": "1.0.0",
   "outputPad": 1,
   "packages": [
     "npm:@ff-labs/pi-fff",
