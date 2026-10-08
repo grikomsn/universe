@@ -83,7 +83,6 @@
   "accessibility.signals.terminalBell": {
     "sound": "on"
   },
-  "aiandCopilot.showUsageStatusBar": false,
   "better-comments.highlightPlainText": true,
   "chat.agent.maxRequests": 9999,
   "chat.agent.thinkingStyle": "collapsed",
@@ -307,9 +306,7 @@
   "markdown.preview.doubleClickToSwitchToEditor": false,
   "microsoft-authentication.implementation": "msal-no-broker",
   "notebook.output.fontFamily": "'SF Mono Powerline', 'SF Mono', Consolas, Monaco, monospace",
-  "opencode.defaultMode": "console",
   "opencode.freeOnly": false,
-  "opencode.showUsageStatusBar": false,
   "opencodego.enabled": true,
   "orvixCopilot.showUsageStatusBar": false,
   "poolside.showMermaidDiagrams": true,
@@ -387,5 +384,12 @@
     "**/.forgejo/workflows/*.yaml"
   ],
   "grokCopilot.showUsageStatusBar": false,
-  "terminal.integrated.initialHint": false
+  "terminal.integrated.initialHint": false,
+  "openaiCodex.showUsageStatusBar": false,
+  "ollamaCloudCopilot.showUsageStatusBar": false,
+  "aiandCopilot.showUsageStatusBar": false,
+  "opencode.inlineSuggestionsGateway": "console",
+  "opencode.showUsageStatusBar": false,
+  "opencode.defaultMode": "console",
+  "chat.viewSessions.orientation": "stacked"
 }
