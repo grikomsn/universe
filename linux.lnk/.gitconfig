@@ -2,6 +2,7 @@
 gpgsign = true
 
 [core]
+	hooksPath = /home/griko/.githooks
 attributesfile = ~/.gitattributes
 editor = true
 
