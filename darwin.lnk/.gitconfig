@@ -4,14 +4,6 @@ gpgsign = true
 [core]
 attributesfile = ~/.gitattributes
 editor = true
-
-[credential]
-helper =
-helper = /usr/local/share/gcm-core/git-credential-manager
-
-[credential "https://dev.azure.com"]
-useHttpPath = true
-
 [credential "https://gist.github.com"]
 helper =
 helper = !/opt/homebrew/bin/gh auth git-credential
@@ -73,3 +65,8 @@ signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJFr9Y5Dy8P44I9h8VWymBjov/G3YOl
 
 [include]
 path = ~/.gitconfig-private
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
