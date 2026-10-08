@@ -8,13 +8,17 @@
   "enableInstallTelemetry": false,
   "fullscreenScrollbar": "auto",
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "1.0.0",
+  "lastChangelogVersion": "1.1.0",
   "outputPad": 1,
   "packages": [
     "npm:@ff-labs/pi-fff",
     "npm:pi-ollama-cloud",
     "npm:pi-provider-opencode-console",
-    "npm:pi-web-extension"
+    "npm:pi-web-extension",
+    "npm:pi-thinking-steps",
+    "npm:pi-subagents",
+    "npm:pi-goal-x",
+    "npm:pi-unified-exec"
   ],
   "quietStartup": false,
   "showCacheMissNotices": true,
