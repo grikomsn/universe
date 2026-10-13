@@ -12,6 +12,7 @@ DOTDIR_LINKS=(
   ".cursor-nightly"
   ".devin"
   ".kiro"
+  ".vscode-insiders"
   ".vscode-oss"
   ".windsurf"
 )
@@ -81,5 +82,6 @@ for dotdir in "${DOTDIR_LINKS[@]}"; do
   ensure_link "$VSCODE_DOTDIR" "$HOME/$dotdir"
 done
 ensure_link "$VSCODE_SHARED_DOTDIR" "$HOME/.devin-shared"
+ensure_link "$VSCODE_SHARED_DOTDIR" "$HOME/.vscode-insiders-shared"
 
 echo "VS Code filesystem migration complete."
