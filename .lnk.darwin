@@ -2,4 +2,6 @@
 .gitconfig
 Library/Application Support/Code/User/keybindings.json
 Library/Application Support/Code/User/settings.json
+Library/Application Support/Code - Insiders/User/keybindings.json
+Library/Application Support/Code - Insiders/User/settings.json
 Library/Application Support/com.mitchellh.ghostty
