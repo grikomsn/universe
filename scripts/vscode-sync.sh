@@ -63,6 +63,7 @@ sync_editor() {
 }
 
 sync_editor code
+sync_editor code-insiders
 sync_editor cursor
 
 if [[ ${#FAILED_EXTENSION_OPERATIONS[@]} -gt 0 ]]; then
