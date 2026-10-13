@@ -10,14 +10,14 @@ brew "act"
 brew "asciinema"
 # Code searching, linting, rewriting
 brew "ast-grep"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Text-based UI library
 brew "ncurses"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Searches a binary image for embedded files and executable code
@@ -116,6 +116,8 @@ brew "rtk"
 brew "shfmt"
 # Editor of encrypted files
 brew "sops"
+# Tool to enforce Swift style and conventions
+brew "swiftlint"
 # Code-search similar to ack
 brew "the_silver_searcher"
 # Terminal multiplexer
@@ -126,6 +128,8 @@ brew "tree"
 brew "ttyd"
 # Internet file retriever
 brew "wget"
+# Generate your Xcode project from a spec file and your folder structure
+brew "xcodegen"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Software to interact with Atlassian Cloud from the terminal
@@ -158,8 +162,6 @@ cask "cyberduck"
 cask "dbngin"
 # Voice and text chat software
 cask "discord"
-# Collaborative team software
-cask "figma"
 cask "font-geist"
 cask "font-geist-mono"
 cask "font-geist-mono-nerd-font"
@@ -184,8 +186,6 @@ cask "imageoptim"
 cask "jetbrains-toolbox"
 # Blocks all Keyboard and TouchBar input
 cask "keyboardcleantool"
-# Software for Logitech devices
-cask "logi-options+"
 # Cable-free audio router
 cask "loopback"
 # Open-source firewall to block unknown outgoing connections
@@ -228,8 +228,6 @@ cask "slack"
 cask "steam"
 # Application for inspecting installer packages
 cask "suspicious-package"
-# Minimal GUI for AI code agents
-cask "t3-code"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
 # Tiny, fully native launcher, hotkeys, and clipboard history
@@ -238,6 +236,8 @@ cask "abue-ammar/tinycast/tinycast"
 cask "tuxera-ntfs"
 # Open-source code editor
 cask "visual-studio-code"
+# Open-source code editor
+cask "visual-studio-code@insiders"
 # Multimedia player
 cask "vlc"
 # Torrent streaming application
@@ -314,7 +314,7 @@ vscode "graphql.vscode-graphql-syntax"
 vscode "grikomsn.grok-copilot-chat"
 vscode "grikomsn.ollama-cloud-copilot-chat"
 vscode "grikomsn.openai-oauth-copilot-chat"
-vscode "grikomsn.opencode-bridge-copilot-chat"
+vscode "grikomsn.opencode-bridge-for-copilot-chat"
 vscode "grikomsn.orvix-copilot-chat"
 vscode "grikomsn.poolside-copilot-chat"
 vscode "jock.svg"
