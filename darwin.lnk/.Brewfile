@@ -110,8 +110,6 @@ brew "premake"
 brew "python@3.12"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# CLI proxy to minimize LLM token consumption
-brew "rtk"
 # Autoformat shell script source code
 brew "shfmt"
 # Editor of encrypted files
@@ -188,6 +186,10 @@ cask "imageoptim"
 cask "jetbrains-toolbox"
 # Blocks all Keyboard and TouchBar input
 cask "keyboardcleantool"
+# Agent-centric IDE with spec-driven development
+cask "kiro"
+# Persistent AI development workspace with multi-agent support
+cask "kirocrew"
 # Cable-free audio router
 cask "loopback"
 # Open-source firewall to block unknown outgoing connections
@@ -246,8 +248,6 @@ cask "vlc"
 cask "webtorrent"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-# Open-source version of the X.Org X Window System
-cask "xquartz"
 # REST, GraphQL and gRPC client
 cask "yaak"
 # Video communication and virtual meeting platform
