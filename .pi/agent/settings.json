@@ -4,21 +4,24 @@
   "defaultProjectTrust": "ask",
   "defaultProvider": "ollama-cloud",
   "defaultThinkingLevel": "high",
+  "doubleEscapeAction": "tree",
   "editorPaddingX": 0,
   "enableInstallTelemetry": false,
   "fullscreenScrollbar": "auto",
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "1.1.0",
+  "lastChangelogVersion": "1.3.0",
   "outputPad": 1,
   "packages": [
     "npm:@ff-labs/pi-fff",
-    "npm:pi-ollama-cloud",
-    "npm:pi-provider-opencode-console",
-    "npm:pi-web-extension",
-    "npm:pi-thinking-steps",
-    "npm:pi-subagents",
+    "npm:@plannotator/pi-extension",
     "npm:pi-goal-x",
-    "npm:pi-unified-exec"
+    "npm:pi-ollama-cloud",
+    "npm:pi-provider-ampersand-bridge",
+    "npm:pi-provider-opencode-console",
+    "npm:pi-subagents",
+    "npm:pi-thinking-steps",
+    "npm:pi-unified-exec",
+    "npm:pi-web-extension"
   ],
   "quietStartup": false,
   "showCacheMissNotices": true,
@@ -27,7 +30,7 @@
   "terminal": {
     "showTerminalProgress": true
   },
-  "theme": "dark",
+  "theme": "system",
   "transport": "auto",
   "treeFilterMode": "default",
   "tuiMode": "regular"
