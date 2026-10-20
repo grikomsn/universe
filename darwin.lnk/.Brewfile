@@ -146,8 +146,6 @@ cask "airbuddy"
 cask "balenaetcher"
 # Display management tool
 cask "betterdisplay"
-# Tool to remove unnecessary files and folders from disk
-cask "cleanmymac"
 # Screen capturing tool
 cask "cleanshot"
 # Image, video and clipboard optimiser
@@ -316,12 +314,11 @@ vscode "golang.go"
 vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
 vscode "grikomsn.ampersand-bridge-copilot-chat"
-vscode "grikomsn.grok-copilot-chat"
+vscode "grikomsn.inception-copilot-chat"
 vscode "grikomsn.ollama-cloud-copilot-chat"
 vscode "grikomsn.openai-oauth-copilot-chat"
 vscode "grikomsn.opencode-bridge-for-copilot-chat"
-vscode "grikomsn.orvix-copilot-chat"
-vscode "grikomsn.poolside-copilot-chat"
+vscode "grikomsn.wayfindr-theme"
 vscode "jock.svg"
 vscode "llvm-vs-code-extensions.lldb-dap"
 vscode "matthewpi.caddyfile-support"
