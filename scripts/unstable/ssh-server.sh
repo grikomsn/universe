@@ -113,7 +113,9 @@ require_apply_context() {
     echo "Public key file must contain exactly one non-empty key line." >&2
     exit 1
   fi
-  sudo -v
+  # sudo -v fails headless ("a terminal is required") on hosts where sudo
+  # itself works without a password; prefer a non-interactive check.
+  sudo -n true 2>/dev/null || sudo -v
 }
 
 native_service_state() {

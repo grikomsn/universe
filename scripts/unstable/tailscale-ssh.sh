@@ -102,7 +102,10 @@ set_preference() {
   echo "Tailnet network grants and SSH policy must independently permit access."
   if [[ "$value" == "true" ]]; then
     confirm ENABLE || exit 1
-    sudo tailscale set --ssh
+    echo "If you are connected over Tailscale, this session may drop as SSH reroutes to Tailscale SSH."
+    # The ENABLE confirm above is the consent; --accept-risk=lose-ssh skips
+    # tailscale's own interactive re-confirmation, which cannot run headless.
+    sudo tailscale set --ssh --accept-risk=lose-ssh
   else
     confirm DISABLE || exit 1
     sudo tailscale set --ssh=false
