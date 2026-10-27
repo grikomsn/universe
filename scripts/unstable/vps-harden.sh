@@ -126,7 +126,9 @@ zone_has_icmp_block() {
 }
 
 zone_masquerade() {
-  sudo firewall-cmd --zone="$zone" --query-masquerade 2>/dev/null
+  # --query-masquerade prints yes/no on stdout; keep the socket clean and
+  # rely on the exit code alone.
+  sudo firewall-cmd --zone="$zone" --query-masquerade >/dev/null 2>&1
 }
 
 write_state() {
