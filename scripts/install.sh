@@ -129,21 +129,21 @@ ensure_npmrc_setting "fund" "false"
 # Mutable installer endpoints are pinned by content hash. Update the URL and
 # corresponding default hash together when upgrading an installer.
 run_remote_installer bun "${BUN_INSTALL_URL:-https://bun.com/install}" \
-  "${BUN_INSTALL_SHA256:-bab8acfb046aac8c72407bdcce903957665d655d7acaa3e11c7c4616beae68dd}"
+  "${BUN_INSTALL_SHA256:-04882bf41679d49d9af108657a1e5515bf04fdf2940d12c0d0b1e5d79dc53be8}"
 run_remote_installer deno "${DENO_INSTALL_URL:-https://deno.land/install.sh}" \
   "${DENO_INSTALL_SHA256:-83f19ea13f6d7884f4dc0e2f92e7e08e7589204138d9b6edfcd53c3f07b3273b}"
 run_remote_installer fnm "${FNM_INSTALL_URL:-https://fnm.vercel.app/install}" \
   "${FNM_INSTALL_SHA256:-8431644b1c205ad25d4b09cfe10e0688944d1d2cd542f38d7b3b10e954db8ad9}"
 run_remote_installer rustup "${RUSTUP_INSTALL_URL:-https://sh.rustup.rs}" \
-  "${RUSTUP_INSTALL_SHA256:-6c30b75a75b28a96fd913a037c8581b580080b6ee9b8169a3c0feb1af7fe8caf}"
+  "${RUSTUP_INSTALL_SHA256:-9502b514362a21096210d498f143b8cdacda365d3dfcf45e8f5541e089ccafc0}"
 
 # OpenCode v2 CLI. The installer self-modifies shell rc files unless told not
 # to; cleanup-shell-injections.sh remains a backstop for older installs.
 run_remote_installer opencode "${OPENCODE_INSTALL_URL:-https://opencode.ai/v2/install}" \
-  "${OPENCODE_INSTALL_SHA256:-21647f544916c2ebac4ea67f83ac202ece58007b6f2d6f04c41bddb39c7be0c2}" \
+  "${OPENCODE_INSTALL_SHA256:-1cde9fc3503fd89a2cec67f5f84d7a59e51fc5cdadce06819aa64af573a80136}" \
   --no-modify-path
 run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh/uv/install.sh}" \
-  "${UV_INSTALL_SHA256:-ca2de1bca2913ba30ce88658b6d90a663c627ecac378803aa58084a9adb35a46}"
+  "${UV_INSTALL_SHA256:-f7a56e7afaec49a3bcbc3ac3cdbe917e7c6ce30e0d815308a12e531aa5ef23b7}"
 
 "$REPO_DIR/scripts/cleanup-shell-injections.sh"
 
