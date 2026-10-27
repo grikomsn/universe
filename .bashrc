@@ -1,3 +1,5 @@
+export DO_NOT_TRACK=1
+
 if gpg_tty="$(tty 2>/dev/null)"; then
   export GPG_TTY="$gpg_tty"
 fi

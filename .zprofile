@@ -1,3 +1,5 @@
+export DO_NOT_TRACK=1
+
 if [[ -n "${HOMEBREW_PREFIX:-}" && -x "$HOMEBREW_PREFIX/bin/brew" ]]; then
   eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
 fi
