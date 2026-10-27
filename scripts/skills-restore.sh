@@ -14,10 +14,12 @@ lock="$repo/.agents/.skill-lock.json"
   exit 1
 }
 
-command -v bunx >/dev/null || {
-  echo "bunx not found" >&2
-  exit 1
-}
+if ! command -v bunx >/dev/null; then
+  # Fresh boxes run bootstrap before the toolchain stage installs bun;
+  # skip now and let a later invocation restore skills.
+  echo "bunx not found; skipping skills restore (re-run after bun is installed)" >&2
+  exit 0
+fi
 
 # </dev/null: the skills CLI consumes stdin, which would eat the remaining
 # piped lockfile entries and silently stop the loop after the first skill.

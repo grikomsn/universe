@@ -20,6 +20,9 @@ cmake
 ffmpeg
 # Quickly rewrite git repository history
 git-filter-repo
+# C/C++ toolchain for native build scripts (e.g. node-pty postinstall)
+gcc
+gcc-c++
 # GitHub CLI (auth, PRs, and git credential helper for github.com)
 gh
 # GNU Privacy Guard (OpenPGP)
@@ -32,6 +35,8 @@ graphviz
 ImageMagick
 # Tool to unpack installers created by Inno Setup
 innoextract
+# GNU make (native builds, e.g. node-gyp)
+make
 # Send files easily, securely, and reliably (not in Fedora repos; use pipx)
 # magic-wormhole
 # Generate local development certificates
@@ -40,6 +45,8 @@ mkcert
 neovim
 # Universal document converter
 pandoc
+# Python 3 runtime (node-gyp and misc scripting)
+python3
 # Line-oriented search tool (Rust)
 ripgrep
 # Shell script formatter and parser

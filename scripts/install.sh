@@ -41,7 +41,9 @@ run_remote_installer() {
   bash "$installer" "${extra_args[@]+"${extra_args[@]}"}"
 }
 
-sudo -v
+# Headless-safe sudo refresh: sudo -v demands a TTY on hosts where sudo
+# itself works via NOPASSWD, which would abort the whole bootstrap.
+sudo -n true 2>/dev/null || sudo -v
 while true; do
   sudo -n true
   sleep 60
@@ -77,8 +79,16 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 fi
 
 if [[ "$(uname -s)" == "Linux" ]]; then
+  # Headless-safe defaults: skip the ~10 GB CUDA marker-pdf wheels, and
+  # keep rustup's TTY-gated prompt out of non-interactive installs.
+  export SKIP_MARKER_PDF="${SKIP_MARKER_PDF:-1}"
   if command -v dnf >/dev/null 2>&1; then
     sudo dnf install -y fish git jq curl wget
+  fi
+  if command -v fish >/dev/null 2>&1; then
+    fish_path="$(command -v fish)"
+    grep -qx "$fish_path" /etc/shells 2>/dev/null || echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+    sudo chsh -s "$fish_path" "$(id -un)" || true
   fi
 fi
 
@@ -90,7 +100,7 @@ run_remote_installer \
   lnk \
   "${LNK_INSTALL_URL:-https://raw.githubusercontent.com/yarlson/lnk/c5db74b2f514d886e8bf5e3bf4de4ba4979ad313/install.sh}" \
   "${LNK_INSTALL_SHA256:-}"
-lnk init -r "$REPO_URL"
+lnk init -r "$REPO_URL" 2>/dev/null || lnk pull
 lnk pull
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -135,7 +145,8 @@ run_remote_installer deno "${DENO_INSTALL_URL:-https://deno.land/install.sh}" \
 run_remote_installer fnm "${FNM_INSTALL_URL:-https://fnm.vercel.app/install}" \
   "${FNM_INSTALL_SHA256:-8431644b1c205ad25d4b09cfe10e0688944d1d2cd542f38d7b3b10e954db8ad9}"
 run_remote_installer rustup "${RUSTUP_INSTALL_URL:-https://sh.rustup.rs}" \
-  "${RUSTUP_INSTALL_SHA256:-9502b514362a21096210d498f143b8cdacda365d3dfcf45e8f5541e089ccafc0}"
+  "${RUSTUP_INSTALL_SHA256:-9502b514362a21096210d498f143b8cdacda365d3dfcf45e8f5541e089ccafc0}" \
+  -y
 
 # OpenCode v2 CLI. The installer self-modifies shell rc files unless told not
 # to; cleanup-shell-injections.sh remains a backstop for older installs.
