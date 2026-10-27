@@ -124,4 +124,16 @@ if [[ -f "/var/spool/mail/$old_user" ]]; then
   mv "/var/spool/mail/$old_user" "/var/spool/mail/$new_user"
 fi
 
+echo "== cloud-init"
+if [[ -f /etc/cloud/cloud.cfg ]]; then
+  if grep -rn "\b$old_user\b" /etc/cloud/cloud.cfg /etc/cloud/cloud.cfg.d/ 2>/dev/null; then
+    echo "WARNING: cloud-init still references $old_user; edit the files above" >&2
+    echo "WARNING or a future cloud-init run may recreate the old account." >&2
+  else
+    echo "(no cloud-init references to $old_user)"
+  fi
+else
+  echo "(no /etc/cloud/cloud.cfg)"
+fi
+
 echo "== done; verify a fresh login for $new_user (and sudo) before closing this session"
