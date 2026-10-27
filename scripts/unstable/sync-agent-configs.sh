@@ -50,14 +50,15 @@ ssh -o BatchMode=yes -o ConnectTimeout=10 "$target" true || {
 }
 
 r_run() {
-  ssh -o BatchMode=yes "$target" bash -s
+  printf '%s\n' "$*" | ssh -o BatchMode=yes "$target" bash -s
 }
 
 # --- pi mcp.json (ported; secrets carried verbatim, never printed) ----------
 tmp="$(mktemp)"
 trap 'rm -f "$tmp"' EXIT
 jq 'del(.mcpServers["codex-cu"], .mcpServers["sonarqube"])' "$HOME/.pi/agent/mcp.json" >"$tmp"
-r_run 'mkdir -p ~/.pi/agent && cat > ~/.pi/agent/mcp.json && chmod 600 ~/.pi/agent/mcp.json' <"$tmp"
+scp -q "$tmp" "$target:.pi/agent/mcp.json"
+r_run 'chmod 600 ~/.pi/agent/mcp.json'
 
 # --- skills: recreate symlinks to ~/.agents/skills (already lnk-synced) -----
 r_run 'mkdir -p ~/.pi/agent/skills'
