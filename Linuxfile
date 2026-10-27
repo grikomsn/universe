@@ -20,6 +20,8 @@ cmake
 ffmpeg
 # Quickly rewrite git repository history
 git-filter-repo
+# GitHub CLI (auth, PRs, and git credential helper for github.com)
+gh
 # GNU Privacy Guard (OpenPGP)
 gnupg
 # Graph visualization software from AT&T and Bell Labs
