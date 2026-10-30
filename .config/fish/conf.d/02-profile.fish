@@ -63,11 +63,16 @@ if test -d $HOME/.lmstudio
     fish_add_path $LM_STUDIO_INSTALL/bin
 end
 
-# mkcert
-if status is-login; and type -q mkcert
-    set -l root_ca "$(mkcert -CAROOT)/rootCA.pem"
-    if test -f $root_ca
-        set -gx NODE_EXTRA_CA_CERTS $root_ca
+# mkcert: check where `mkcert -CAROOT` resolves to ($CAROOT if set, else the
+# macOS or XDG data dir) instead of spawning it, which cost ~30ms per login
+if status is-login
+    set -l root_cas $CAROOT/rootCA.pem
+    set -q CAROOT; or set root_cas "$HOME/Library/Application Support/mkcert/rootCA.pem" $XDG_DATA_HOME/mkcert/rootCA.pem $HOME/.local/share/mkcert/rootCA.pem
+    for root_ca in $root_cas
+        if test -f $root_ca
+            set -gx NODE_EXTRA_CA_CERTS $root_ca
+            break
+        end
     end
 end
 
