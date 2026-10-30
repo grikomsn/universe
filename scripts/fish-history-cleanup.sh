@@ -175,12 +175,12 @@ else
   create_python_script | python3 - "$INPUT_FILE" >"$OUTPUT_FILE"
 
   # Backup and replace
-  cp "$INPUT_FILE" "${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
+  backup_file="${INPUT_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
+  cp "$INPUT_FILE" "$backup_file"
   mv "$OUTPUT_FILE" "$INPUT_FILE"
-  OUTPUT_LINES=$(grep -c "^- cmd:" "$INPUT_FILE" 2>/dev/null || echo 0)
+  OUTPUT_LINES=$(grep -c "^- cmd:" "$INPUT_FILE" 2>/dev/null || true)
   OUTPUT_FILE_LINES=$(wc -l <"$INPUT_FILE")
-  backup_file="${INPUT_FILE}".backup.*
-  echo "Backup saved to $(ls -t $backup_file | head -n 1)" >&2
+  echo "Backup saved to $backup_file" >&2
   echo "Wrote: $OUTPUT_LINES commands, $OUTPUT_FILE_LINES total lines" >&2
 fi
 
