@@ -4,14 +4,8 @@ path = ~/.gitconfig-common
 [core]
 hooksPath = ~/.githooks
 
-# Generic helper first: an empty `helper =` resets the list for every URL
-# matched after it, so it must precede the github.com overrides below.
-[credential]
-helper =
-helper = git-credential-manager
-
-[credential "https://dev.azure.com"]
-useHttpPath = true
+# No generic credential helper: Git Credential Manager is not packaged for
+# Fedora, so only GitHub (via gh) has one.
 
 [credential "https://gist.github.com"]
 helper =
