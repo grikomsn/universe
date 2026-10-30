@@ -1,12 +1,13 @@
 .agents
-.config/fish
 .bash_profile
 .bashrc
+.claude/settings.json
+.claude/skills
+.config/fish
 .gitattributes
+.gitconfig-common
+.pi/agent/settings.json
 .profile
 .zprofile
 .zshenv
 .zshrc
-.pi/agent/settings.json
-.claude/skills
-.gitconfig-common

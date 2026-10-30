@@ -1,0 +1,25 @@
+{
+  "agentPushNotifEnabled": true,
+  "enableWorkflows": true,
+  "env": {
+    "API_TIMEOUT_MS": "1200000",
+    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "DISABLE_TELEMETRY": "1"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "/bin/sh -c 'rex __internal session-start --agent claude 2>/dev/null || true'",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
+  "inputNeededNotifEnabled": true,
+  "skipWorkflowUsageWarning": true
+}
