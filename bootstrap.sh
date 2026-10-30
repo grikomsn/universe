@@ -2,8 +2,8 @@
 
 # bootstrap.sh - runs automatically after `lnk init -r <url>` on a fresh clone.
 # Keep it non-destructive and cross-platform: restores skills-CLI-managed
-# skills from the lockfile, syncs editor extensions, and installs parity
-# packages + language globals.
+# skills from the lockfile, syncs editor extensions, installs parity
+# packages + language globals, and generates fish completions.
 
 set -euo pipefail
 
@@ -28,6 +28,10 @@ fi
 
 if [[ -f "$repo/scripts/globals.sh" ]]; then
   bash "$repo/scripts/globals.sh" || true
+fi
+
+if [[ -f "$repo/scripts/completions.sh" ]]; then
+  bash "$repo/scripts/completions.sh" || true
 fi
 
 if [[ -f "$repo/scripts/vscode-sync.sh" ]]; then

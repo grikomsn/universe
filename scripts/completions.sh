@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# completions.sh - regenerate fish completions for installed CLIs into the
+# lnk-managed fish config. The output is gitignored: it is large, churns on
+# every tool update, and is reproducible from the tools themselves.
+# acli.fish stays tracked because acli no longer ships a completion command.
+
+repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+dir="$repo/.config/fish/completions"
+mkdir -p "$dir"
+
+generate() {
+  local name="$1"
+  shift
+  command -v "$1" >/dev/null || return 0
+  if "$@" >"$dir/$name.fish.tmp" 2>/dev/null && [[ -s "$dir/$name.fish.tmp" ]]; then
+    mv "$dir/$name.fish.tmp" "$dir/$name.fish"
+    echo "generated $name.fish"
+  else
+    rm -f "$dir/$name.fish.tmp"
+    echo "warn: could not generate $name.fish" >&2
+  fi
+}
+
+generate bun bun completions
+generate codex codex completion fish
+generate gh-pr-review gh pr-review completion fish
+generate lnk lnk completion fish
+generate pool pool completion fish
+generate rex rex completion fish
+generate uv uv generate-shell-completion fish
