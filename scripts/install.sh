@@ -73,9 +73,6 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   else
     eval "$(/usr/local/bin/brew shellenv)"
   fi
-
-  curl -fsSL https://universe.nibras.co/Brewfile >~/.Brewfile
-  brew bundle --global
 fi
 
 if [[ "$(uname -s)" == "Linux" ]]; then
@@ -92,15 +89,12 @@ if [[ "$(uname -s)" == "Linux" ]]; then
   fi
 fi
 
-if command -v mkcert >/dev/null 2>&1; then
-  mkcert -install
-fi
-
 run_remote_installer \
   lnk \
   "${LNK_INSTALL_URL:-https://raw.githubusercontent.com/yarlson/lnk/c5db74b2f514d886e8bf5e3bf4de4ba4979ad313/install.sh}" \
   "${LNK_INSTALL_SHA256:-}"
-lnk init -r "$REPO_URL" 2>/dev/null || lnk pull
+# bootstrap.sh runs once at the end, after the toolchain installers below.
+lnk init -r "$REPO_URL" --no-bootstrap 2>/dev/null || lnk pull
 lnk pull
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -153,7 +147,7 @@ run_remote_installer rustup "${RUSTUP_INSTALL_URL:-https://sh.rustup.rs}" \
 run_remote_installer opencode "${OPENCODE_INSTALL_URL:-https://opencode.ai/v2/install}" \
   "${OPENCODE_INSTALL_SHA256:-1cde9fc3503fd89a2cec67f5f84d7a59e51fc5cdadce06819aa64af573a80136}" \
   --no-modify-path
-run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh/uv/install.sh}" \
+UV_NO_MODIFY_PATH=1 run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh/uv/install.sh}" \
   "${UV_INSTALL_SHA256:-f7a56e7afaec49a3bcbc3ac3cdbe917e7c6ce30e0d815308a12e531aa5ef23b7}"
 
 # Parallel CLI. The installer appends a PATH line to the detected shell's rc
@@ -180,14 +174,10 @@ run_remote_installer git-hunk \
 
 "$REPO_DIR/scripts/cleanup-shell-injections.sh"
 
-if [[ -f "$REPO_DIR/scripts/packages.sh" ]]; then
-  bash "$REPO_DIR/scripts/packages.sh" || true
-fi
+# Skills, packages (brew bundle / dnf from the repo manifests), language
+# globals, and editor extensions.
+bash "$REPO_DIR/bootstrap.sh"
 
-if [[ -f "$REPO_DIR/scripts/skills-restore.sh" ]]; then
-  bash "$REPO_DIR/scripts/skills-restore.sh" || true
-fi
-
-if [[ -f "$REPO_DIR/scripts/globals.sh" ]]; then
-  bash "$REPO_DIR/scripts/globals.sh" || true
+if command -v mkcert >/dev/null 2>&1; then
+  mkcert -install
 fi

@@ -43,3 +43,11 @@ remove_section \
   "$HOME/.config/fish/config.fish" \
   '^# opencode$' \
   '^fish_add_path .*/\\.opencode/bin$'
+
+# uv's installer drops this into the lnk-managed fish conf.d (gitignored via
+# *.env*); 00-core.fish already puts ~/.local/bin on PATH.
+uv_env_fish="$HOME/.config/fish/conf.d/uv.env.fish"
+if [[ -f "$uv_env_fish" ]]; then
+  rm "$uv_env_fish"
+  echo "Removed injected shell configuration $uv_env_fish"
+fi
