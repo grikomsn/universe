@@ -24,7 +24,10 @@ generate() {
   fi
 }
 
-generate bun bun completions
+# bun picks the script from $SHELL, which is not fish when run from bash/zsh.
+if command -v bun >/dev/null; then
+  generate bun env SHELL=fish bun completions
+fi
 generate codex codex completion fish
 generate deno deno completions fish
 # gh is everywhere; only generate when the extension itself is installed.
