@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # packages.sh - install platform packages from the parity manifests.
-#   Darwin: brew bundle --global (Brewfile)
+#   Darwin: brew bundle --file=Brewfile
 #   Linux:  sudo dnf install from Linuxfile (Fedora and friends)
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -15,7 +15,7 @@ Darwin)
     echo "brew not found" >&2
     exit 1
   }
-  brew bundle --global --file="$repo/Brewfile"
+  brew bundle --file="$repo/Brewfile"
   ;;
 Linux)
   linuxfile="$repo/Linuxfile"
