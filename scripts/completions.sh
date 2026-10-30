@@ -38,6 +38,5 @@ if [[ "$gh_extensions" == *gh-pr-review* ]]; then
 fi
 generate herdr herdr completion fish
 generate lnk lnk completion fish
-generate pool pool completion fish
 generate rex rex completion fish
 generate uv uv generate-shell-completion fish
