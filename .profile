@@ -16,7 +16,7 @@ fi
 unset onepassword_ssh_auth_sock
 
 path_prepend() {
-  [ -d "$1" ] || return
+  [ -d "$1" ] || return 0
   if [ -z "${PATH:-}" ]; then
     PATH="$1"
     return
