@@ -1,5 +1,6 @@
-# antigravity
-if test -d $HOME/.antigravity
+# antigravity (~/.antigravity itself always exists: vscode-migrate.sh links it
+# to ~/.vscode, so check for the CLI)
+if test -d $HOME/.antigravity/antigravity/bin
     set -gx ANTIGRAVITY_INSTALL $HOME/.antigravity
     fish_add_path $ANTIGRAVITY_INSTALL/antigravity/bin
 end

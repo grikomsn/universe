@@ -46,7 +46,7 @@ if [ -n "${HOMEBREW_PREFIX:-}" ]; then
   path_prepend "$HOMEBREW_PREFIX/opt/dotnet/libexec"
 fi
 
-if [ -d "$HOME/.antigravity" ]; then
+if [ -d "$HOME/.antigravity/antigravity/bin" ]; then
   export ANTIGRAVITY_INSTALL="$HOME/.antigravity"
   path_prepend "$ANTIGRAVITY_INSTALL/antigravity/bin"
 fi
