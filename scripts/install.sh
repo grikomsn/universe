@@ -156,6 +156,28 @@ run_remote_installer opencode "${OPENCODE_INSTALL_URL:-https://opencode.ai/v2/in
 run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh/uv/install.sh}" \
   "${UV_INSTALL_SHA256:-f7a56e7afaec49a3bcbc3ac3cdbe917e7c6ce30e0d815308a12e531aa5ef23b7}"
 
+# Parallel CLI. The installer appends a PATH line to the detected shell's rc
+# file when ~/.local/bin is missing from PATH; 00-core.fish already exports it,
+# so neutralize shell detection to keep the lnk-managed config.fish untouched.
+previous_shell="$SHELL"
+SHELL=unknown
+run_remote_installer parallel-cli \
+  "${PARALLEL_INSTALL_URL:-https://raw.githubusercontent.com/parallel-web/parallel-web-tools/v0.9.4/install-cli.sh}" \
+  "${PARALLEL_INSTALL_SHA256:-9e7e9cb10c4948e13023bfd1078b577362e4e7054c35a0d83927310f21846371}"
+SHELL="$previous_shell"
+
+# Render CLI installs to ~/.local/bin for non-root users, /usr/local/bin only
+# under sudo; no rc-file writes.
+run_remote_installer render \
+  "${RENDER_INSTALL_URL:-https://raw.githubusercontent.com/render-oss/cli/73c017c953de5918bc2a5d9f1754f0ef965a6df2/bin/install.sh}" \
+  "${RENDER_INSTALL_SHA256:-c9722bf40bb869d35cc94f74d93c8027ed7980b5adae5f9a368b68cc1603d540}"
+
+# git-hunk honors GIT_HUNK_INSTALL_DIR and defaults to ~/.local/bin; no rc-file
+# writes, no prompts.
+run_remote_installer git-hunk \
+  "${GITHUNK_INSTALL_URL:-https://raw.githubusercontent.com/nexxeln/git-hunk/2d00a577cc1a7946737e36b318923639facd25b3/install.sh}" \
+  "${GITHUNK_INSTALL_SHA256:-e960acc8c8de0156a1e0dadd75ac28af1f57850058c4433b4830596f3c8966d1}"
+
 "$REPO_DIR/scripts/cleanup-shell-injections.sh"
 
 if [[ -f "$REPO_DIR/scripts/packages.sh" ]]; then

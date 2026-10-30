@@ -1,6 +1,5 @@
 tap "abue-ammar/tinycast", trusted: true
 tap "atlassian/acli"
-tap "parallel-web/tap"
 tap "supabase/tap"
 tap "tw93/tap", trusted: { formulae: ["mole"] }
 tap "yarlson/lnk"
@@ -146,6 +145,8 @@ cask "airbuddy"
 cask "balenaetcher"
 # Display management tool
 cask "betterdisplay"
+# Anthropic's official Claude AI desktop app
+cask "claude"
 # Screen capturing tool
 cask "cleanshot"
 # Image, video and clipboard optimiser
@@ -184,10 +185,6 @@ cask "imageoptim"
 cask "jetbrains-toolbox"
 # Blocks all Keyboard and TouchBar input
 cask "keyboardcleantool"
-# Agent-centric IDE with spec-driven development
-cask "kiro"
-# Persistent AI development workspace with multi-agent support
-cask "kirocrew"
 # Cable-free audio router
 cask "loopback"
 # Open-source firewall to block unknown outgoing connections
@@ -198,8 +195,6 @@ cask "mac-mouse-fix"
 cask "macfuse"
 # Controls and monitors all fans on Apple computers
 cask "macs-fan-control"
-# PDF editor
-cask "master-pdf-editor"
 # Utility that automatically downloads firmwares and installers
 cask "mist"
 # Open-source software for live streaming and screen recording
@@ -212,8 +207,6 @@ cask "opal-composer"
 cask "openlogi"
 # Replacement for Docker Desktop
 cask "orbstack"
-# CLI for the Parallel API - search, extract, research, and enrich data
-cask "parallel-web/tap/parallel-cli", trusted: true
 # Desktop virtualization software
 cask "parallels"
 # HTTP debugging proxy
@@ -316,7 +309,6 @@ vscode "graphql.vscode-graphql-syntax"
 vscode "grikomsn.ampersand-bridge-copilot-chat"
 vscode "grikomsn.inception-copilot-chat"
 vscode "grikomsn.ollama-cloud-copilot-chat"
-vscode "grikomsn.openai-oauth-copilot-chat"
 vscode "grikomsn.opencode-bridge-for-copilot-chat"
 vscode "grikomsn.wayfindr-theme"
 vscode "jock.svg"
