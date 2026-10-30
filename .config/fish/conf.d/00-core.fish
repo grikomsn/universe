@@ -1,12 +1,12 @@
 set -gx ADBLOCK 1
 set -gx CARGO_NET_GIT_FETCH_WITH_CLI true
 set -gx DISABLE_OPENCOLLECTIVE 1
+set -gx DO_NOT_TRACK 1
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
-set -gx GPG_TTY $TTY # https://stackoverflow.com/a/57591830/4273667
 set -gx LANG "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
-set -gx PATH /usr/local/bin /usr/local/sbin $PATH
-set -gx PATH $HOME/.local/bin $PATH
+fish_add_path /usr/local/bin /usr/local/sbin
+fish_add_path $HOME/.local/bin
 
 set -l onepassword_ssh_auth_sock "$HOME/.1password/agent.sock"
 if not test -S $onepassword_ssh_auth_sock
@@ -17,10 +17,4 @@ if not test -S $onepassword_ssh_auth_sock
 end
 if test -S $onepassword_ssh_auth_sock
     set -gx SSH_AUTH_SOCK $onepassword_ssh_auth_sock
-end
-
-if test -d /opt/homebrew
-    set -gx PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
-else if test -d /home/linuxbrew/.linuxbrew
-    set -gx PATH /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin $PATH
 end
