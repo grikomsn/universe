@@ -1,5 +1,5 @@
 function dequarantine --description 'dequarantine files or directories'
-    if test (uname -o) = Darwin
+    if test (uname -s) = Darwin
         for item in $argv
             if test -d $item # if it's a directory
                 xattr -rd com.apple.quarantine $item
@@ -9,6 +9,6 @@ function dequarantine --description 'dequarantine files or directories'
         end
     else
         echo "Not supported on this platform"
-        exit 1
+        return 1
     end
 end
