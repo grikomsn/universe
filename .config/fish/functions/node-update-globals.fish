@@ -10,8 +10,9 @@ function node-update-globals --description 'update node versions via fnm, set lt
     # fnm: install latest versions, default to latest LTS, prune old versions
     if type -q fnm
         fnm install --lts
-        # fnm 1.x has no `latest` alias and `--latest` can hit prereleases; resolve latest stable
-        set -l latest_stable (fnm ls-remote | string match -r --all -- 'v\d+\.\d+\.\d+' | tail -1)
+        # fnm 1.x has no `latest` alias and `--latest` can hit prereleases; resolve latest stable.
+        # Match whole tokens only, so v27.0.0-alpha.0.0.0 is not picked up as v27.0.0
+        set -l latest_stable (fnm ls-remote | string match -r --all -- '^\S+' | string match -r --all -- '^v\d+\.\d+\.\d+$' | tail -1)
         if set -q latest_stable[1]
             fnm install $latest_stable
         end
