@@ -6,7 +6,10 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-onepassword_ssh_auth_sock="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+onepassword_ssh_auth_sock="$HOME/.1password/agent.sock"
+if [ ! -S "$onepassword_ssh_auth_sock" ]; then
+  onepassword_ssh_auth_sock="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+fi
 if [ -S "$onepassword_ssh_auth_sock" ]; then
   export SSH_AUTH_SOCK="$onepassword_ssh_auth_sock"
 fi
@@ -32,6 +35,8 @@ if [ -x /opt/homebrew/bin/brew ]; then
   export HOMEBREW_PREFIX="/opt/homebrew"
 elif [ -x /usr/local/bin/brew ]; then
   export HOMEBREW_PREFIX="/usr/local"
+elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 fi
 
 if [ -n "${HOMEBREW_PREFIX:-}" ]; then
@@ -41,9 +46,19 @@ if [ -n "${HOMEBREW_PREFIX:-}" ]; then
   path_prepend "$HOMEBREW_PREFIX/opt/dotnet/libexec"
 fi
 
+if [ -d "$HOME/.antigravity" ]; then
+  export ANTIGRAVITY_INSTALL="$HOME/.antigravity"
+  path_prepend "$ANTIGRAVITY_INSTALL/antigravity/bin"
+fi
+
 if [ -d "$HOME/.bun" ]; then
   export BUN_INSTALL="$HOME/.bun"
   path_prepend "$BUN_INSTALL/bin"
+fi
+
+if [ -d /Applications/ChatWise.app ]; then
+  export CHATWISE_INSTALL="/Applications/ChatWise.app/Contents/MacOS"
+  path_prepend "$CHATWISE_INSTALL"
 fi
 
 if [ -d "$HOME/.deno" ]; then
