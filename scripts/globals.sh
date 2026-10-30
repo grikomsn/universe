@@ -71,3 +71,19 @@ if command -v uv >/dev/null; then
 else
   echo "uv not found; skipping uv tools" >&2
 fi
+
+# --- gh extensions ---
+# Not expressible in the Brewfile; the gh-stack skill and completions.sh
+# expect these.
+if command -v gh >/dev/null && gh auth status >/dev/null 2>&1; then
+  installed_extensions="$(gh extension list 2>/dev/null || true)"
+  for extension in agynio/gh-pr-review github/gh-stack; do
+    if [[ "$installed_extensions" == *"$extension"* ]]; then
+      run_step "gh $extension" gh extension upgrade "${extension#*/gh-}"
+    else
+      run_step "gh $extension" gh extension install "$extension"
+    fi
+  done
+else
+  echo "gh not found or not logged in; skipping gh extensions" >&2
+fi
