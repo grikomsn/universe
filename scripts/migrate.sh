@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #
 # migrate.sh - Re-clone lnk repo after history rewrite and re-sync dotfiles
-# Useful when git filter-repo or force push changed the remote tree
+# Useful when git filter-repo or force push changed the remote tree.
+# Usage: migrate.sh [--force]  (--force re-clones even when HEADs match)
 
 set -euo pipefail
 
@@ -34,6 +35,11 @@ if [[ "$local_head" != "$remote_head" && "$remote_head" != "unknown" ]]; then
   mismatch=1
 fi
 
+if [[ "$mismatch" -eq 0 && "${1:-}" != "--force" ]]; then
+  echo "Local and remote HEAD match; nothing to migrate (pass --force to re-clone anyway)."
+  exit 0
+fi
+
 echo "Re-cloning lnk repo..."
 
 old_repo="${REPO_DIR}.old-$(date +%Y%m%d-%H%M%S)"
@@ -64,8 +70,9 @@ for manifest in ".lnk" ".lnk.darwin" ".lnk.linux"; do
   done <"$REPO_DIR/$manifest"
 done
 
+# The fresh clone above already is the lnk repo; `lnk init -r` would refuse
+# the non-empty directory.
 echo "Running lnk pull..."
-lnk init -r "$REPO_URL"
 lnk pull
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
