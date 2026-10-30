@@ -101,6 +101,15 @@ if test -d $HOME/.qmk_toolchains
     fish_add_path $HOME/.qmk_toolchains/bin
 end
 
+# rex (stable wins over beta when both are installed)
+for app in /Applications/Rex.app "/Applications/Rex Beta.app"
+    set -l rex_bin "$app/Contents/Helpers/Rex Server.rex/Contents/MacOS"
+    if test -x "$rex_bin/rex"
+        fish_add_path $rex_bin
+        break
+    end
+end
+
 # rust
 if test -d $HOME/.cargo
     source "$HOME/.cargo/env.fish"

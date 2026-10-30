@@ -107,6 +107,16 @@ fi
 path_prepend "$PNPM_HOME"
 
 path_prepend "$HOME/.qmk_toolchains/bin"
+
+# rex (stable wins over beta when both are installed)
+for app in /Applications/Rex.app "/Applications/Rex Beta.app"; do
+  if [ -x "$app/Contents/Helpers/Rex Server.rex/Contents/MacOS/rex" ]; then
+    path_prepend "$app/Contents/Helpers/Rex Server.rex/Contents/MacOS"
+    break
+  fi
+done
+unset app
+
 path_prepend "$HOME/.cargo/bin"
 
 export YARN_INSTALL="$HOME/.yarn"
