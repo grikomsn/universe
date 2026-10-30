@@ -16,11 +16,9 @@ node_modules
 .agents/skills/*
 !.agents/skills/rex
 
-# fleet entrypoint skills (herdr skill is generated via `herdr --skill`;
-# fleet-boxes-sync-mcp is hand-written), keep them tracked
+# fleet entrypoint skills (fleet-boxes-sync-mcp is hand-written), keep them tracked
 fleet/.agents/skills/*
 !fleet/.agents/skills/boxes-sync-mcp
-!fleet/.agents/skills/herdr
 
 !.env.example
 

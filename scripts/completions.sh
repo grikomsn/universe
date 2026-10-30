@@ -35,7 +35,6 @@ gh_extensions="$(gh extension list 2>/dev/null || true)"
 if [[ "$gh_extensions" == *gh-pr-review* ]]; then
   generate gh-pr-review gh pr-review completion fish
 fi
-generate herdr herdr completion fish
 generate lnk lnk completion fish
 generate rex rex completion fish
 generate uv uv generate-shell-completion fish

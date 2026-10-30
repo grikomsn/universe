@@ -61,8 +61,6 @@ brew "go"
 brew "graphviz"
 # GNU grep, egrep and fgrep
 brew "grep"
-# Agent multiplexer that lives in your terminal
-brew "herdr"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Tool to unpack installers created by Inno Setup
