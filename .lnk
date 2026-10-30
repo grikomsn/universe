@@ -8,3 +8,4 @@
 .zshenv
 .zshrc
 .pi/agent/settings.json
+.claude/skills
