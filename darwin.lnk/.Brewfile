@@ -143,8 +143,6 @@ cask "claude"
 cask "cleanshot"
 # Image, video and clipboard optimiser
 cask "clop"
-# OpenAI's coding agent that runs in your terminal
-cask "codex"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Server and cloud storage browser
@@ -332,7 +330,6 @@ vscode "ms-vscode.wasm-wasi-core"
 vscode "ms-vsliveshare.vsliveshare"
 vscode "mylesmurphy.prettify-ts"
 vscode "ndonfris.fish-lsp"
-vscode "openai.chatgpt"
 vscode "orta.vscode-jest"
 vscode "orta.vscode-twoslash-queries"
 vscode "oven.bun-vscode"

@@ -124,10 +124,6 @@
     "when": "terminalFocusInAny"
   },
   {
-    "key": "shift+ctrl+cmd+l",
-    "command": "chatgpt.addToThread"
-  },
-  {
     "key": "shift+ctrl+cmd+o",
     "command": "editor.action.toggleOvertypeInsertMode"
   },
