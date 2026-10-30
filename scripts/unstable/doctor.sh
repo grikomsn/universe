@@ -110,6 +110,7 @@ else
 fi
 
 section "Git signing"
+uses_1password=0
 if command -v git >/dev/null 2>&1; then
   signing_format="$(git config --get gpg.format 2>/dev/null || true)"
   signing_program="$(git config --get gpg.ssh.program 2>/dev/null || true)"
@@ -117,6 +118,10 @@ if command -v git >/dev/null 2>&1; then
   item "Format" "${signing_format:-unset}"
   item "Program" "${signing_program:-default ssh-keygen}"
   item "Key" "${signing_key:-unset}"
+  item "Commit signing" "$(git config --get commit.gpgsign 2>/dev/null || printf 'unset')"
+  if [[ "$signing_program" == */op-ssh-sign ]]; then
+    uses_1password=1
+  fi
   if [[ -n "$signing_program" && ! -x "$signing_program" ]]; then
     warn "Signing program" "not executable"
   fi
@@ -134,8 +139,10 @@ section "SSH client and agent"
 auth_sock="${SSH_AUTH_SOCK:-}"
 if [[ -n "$auth_sock" && -S "$auth_sock" ]]; then
   item "SSH_AUTH_SOCK" "$auth_sock"
-else
+elif ((uses_1password)); then
   warn "SSH_AUTH_SOCK" "unset or not a socket"
+else
+  item "SSH_AUTH_SOCK" "unset (not needed: signing does not use 1Password)"
 fi
 if command -v ssh-add >/dev/null 2>&1; then
   agent_summary="$(ssh-add -l 2>&1 || true)"
@@ -150,15 +157,21 @@ else
   op_helper="/opt/1Password/op-ssh-sign"
   op_socket="$HOME/.1password/agent.sock"
 fi
-if [[ -x "$op_helper" ]]; then
-  item "Signing helper" "$op_helper"
+# Missing 1Password pieces only matter when git signs through it; headless
+# boxes use `git-signing local` instead.
+if ((! uses_1password)); then
+  item "Status" "not used for git signing; skipped"
 else
-  warn "Signing helper" "missing: $op_helper"
-fi
-if [[ -S "$op_socket" ]]; then
-  item "Agent socket" "$op_socket"
-else
-  warn "Agent socket" "missing: $op_socket"
+  if [[ -x "$op_helper" ]]; then
+    item "Signing helper" "$op_helper"
+  else
+    warn "Signing helper" "missing: $op_helper"
+  fi
+  if [[ -S "$op_socket" ]]; then
+    item "Agent socket" "$op_socket"
+  else
+    warn "Agent socket" "missing: $op_socket"
+  fi
 fi
 
 section "Native SSH server"
