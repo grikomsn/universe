@@ -9,6 +9,8 @@ asciinema
 # Code searching, linting, rewriting (not in Fedora repos; alternatives:
 #   npm -g @ast-grep/cli, or cargo install ast-grep)
 # ast-grep
+# Clone of cat(1) with syntax highlighting (fish `cat` wrapper)
+bat
 # Searches a binary image for embedded files and executable code
 binwalk
 # Cloudflare Tunnel client (not in Fedora repos; use Cloudflare's rpm repo:
@@ -16,10 +18,19 @@ binwalk
 # cloudflared
 # Cross-platform make
 cmake
-# Play, record, convert, and stream select audio and video codecs
-ffmpeg
+# Fetch system information on the command line (Brewfile: fastfetch)
+fastfetch
+# Simple, fast and user-friendly alternative to find (Brewfile: fd)
+fd-find
+# Play, record, convert, and stream select audio and video codecs (Fedora's
+#   patent-free build; full ffmpeg needs RPM Fusion)
+ffmpeg-free
+# Command-line fuzzy finder (fish key bindings in conf.d/fzf.fish)
+fzf
 # Quickly rewrite git repository history
 git-filter-repo
+# Git extension for versioning large files (gitconfig requires the lfs filter)
+git-lfs
 # C/C++ toolchain for native build scripts (e.g. node-pty postinstall)
 gcc
 gcc-c++
@@ -35,10 +46,17 @@ graphviz
 ImageMagick
 # Tool to unpack installers created by Inno Setup
 innoextract
+# Lightweight and flexible command-line JSON processor
+jq
+# Simple terminal UI for git commands (not in Fedora repos; use the
+#   atim/lazygit copr)
+# lazygit
 # GNU make (native builds, e.g. node-gyp)
 make
 # Send files easily, securely, and reliably (not in Fedora repos; use pipx)
 # magic-wormhole
+# Syntax-aware git merge driver (not in Fedora repos; `cargo install mergiraf`)
+# mergiraf
 # Generate local development certificates
 mkcert
 # Hyperflexible text editor (Brewfile: neovim)
@@ -56,8 +74,14 @@ shfmt
 # sops
 # Fast real-time text search (Brewfile: the_silver_searcher)
 the_silver_searcher
+# Terminal multiplexer
+tmux
+# Display directories as trees
+tree
 # Share terminals over the web
 ttyd
+# Internet file retriever (Fedora's wget is provided by wget2)
+wget2-wget
 # Z shell, a UNIX command interpreter
 zsh
 # Open source programming language to build simple/reliable/efficient software
