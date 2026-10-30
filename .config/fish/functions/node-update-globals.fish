@@ -51,8 +51,9 @@ function node-update-globals --description 'update node versions via fnm, set lt
     corepack prepare --activate pnpm@latest
     corepack prepare --activate yarn@1.22.22
 
-    # npm global packages (consolidated - moved from pnpm)
-    set -l npm_pkgs fish-lsp neovim prettier serve tsx turbo vercel
+    # npm global packages, from the Brewfile's `npm` entries (corepack is handled above)
+    set -l brewfile_entries (path resolve $__fish_config_dir)/../../scripts/brewfile-entries.sh
+    set -l npm_pkgs (bash $brewfile_entries npm | string match -v corepack)
 
     # Update npm globals (skip npm update to avoid .DS_Store issues)
     if type -q npm
