@@ -1,9 +1,46 @@
-function node-update-globals --description 'update node related package managers and global packages'
+function node-update-globals --description 'update node versions via fnm, set lts default, prune old versions, update global packages'
     # Remove stray package files in home that can interfere with global installs
     for f in ~/package.json ~/package-lock.json
         if test -f $f
             echo "removing stray $f"
             rm $f
+        end
+    end
+
+    # fnm: install latest versions, default to latest LTS, prune old versions
+    if type -q fnm
+        fnm install --lts
+        # fnm 1.x has no `latest` alias and `--latest` can hit prereleases; resolve latest stable
+        set -l latest_stable (fnm ls-remote | string match -r --all -- 'v\d+\.\d+\.\d+' | tail -1)
+        if set -q latest_stable[1]
+            fnm install $latest_stable
+        end
+        fnm default lts-latest
+        fnm use lts-latest
+
+        # Cleanup: for each major version, keep only the newest installed patch
+        set -l all_versions (fnm ls | string match -r --all -- 'v\d+\.\d+\.\d+')
+        set -l majors
+        for v in $all_versions
+            set -l major (string replace -r '^v(\d+)\..*' '$1' $v)
+            if not contains $major $majors
+                set -a majors $major
+            end
+        end
+        for major in $majors
+            set -l in_major
+            for v in $all_versions
+                if string match -q "v$major.*" $v
+                    set -a in_major $v
+                end
+            end
+            set -l keep (printf '%s\n' $in_major | string replace -r '^v' '' | sort -t. -k1,1n -k2,2n -k3,3n | tail -1)
+            for v in $in_major
+                if test "$v" != "v$keep"
+                    echo "removing old node $v (superseded by v$keep in major $major)"
+                    fnm uninstall $v
+                end
+            end
         end
     end
 
