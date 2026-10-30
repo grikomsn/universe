@@ -11,9 +11,10 @@ __pycache__
 node_modules
 
 # skills-CLI-managed: restored from .agents/.skill-lock.json via scripts/skills-restore.sh
-# bb-cli is generated/hand-written, keep it tracked
+# rex is a version-independent stub from `rex skill setup` (not a skills-CLI
+# source), so keep it tracked to restore it everywhere
 .agents/skills/*
-!.agents/skills/bb-cli
+!.agents/skills/rex
 
 # fleet entrypoint skills (herdr skill is generated via `herdr --skill`;
 # fleet-boxes-sync-mcp is hand-written), keep them tracked
