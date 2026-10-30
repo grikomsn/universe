@@ -159,7 +159,7 @@ else
 fi
 # Missing 1Password pieces only matter when git signs through it; headless
 # boxes use `git-signing local` instead.
-if ((! uses_1password)); then
+if ((uses_1password == 0)); then
   item "Status" "not used for git signing; skipped"
 else
   if [[ -x "$op_helper" ]]; then
