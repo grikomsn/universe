@@ -1,0 +1,8 @@
+# gh CLI extension manifest. brew bundle cannot express gh extensions, so they
+# live here instead; one owner/repo per line, lines starting with # are comments.
+# Consumed by scripts/globals.sh on macOS and Linux.
+
+# Review GitHub pull requests from the terminal (completions via completions.sh)
+agynio/gh-pr-review
+# Stacked pull requests (used by the gh-stack skill)
+github/gh-stack
