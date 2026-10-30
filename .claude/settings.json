@@ -21,5 +21,6 @@
     ]
   },
   "inputNeededNotifEnabled": true,
-  "skipWorkflowUsageWarning": true
+  "skipWorkflowUsageWarning": true,
+  "theme": "auto"
 }
