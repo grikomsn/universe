@@ -67,6 +67,8 @@ pandoc
 python3
 # Line-oriented search tool (Rust)
 ripgrep
+# Static analysis and lint tool, for (ba)sh scripts
+ShellCheck
 # Shell script formatter and parser
 shfmt
 # Simple and flexible tool for managing secrets (not in Fedora repos; upstream

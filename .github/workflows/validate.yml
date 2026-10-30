@@ -17,10 +17,13 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install shell formatters
+      # fish 4.x from the upstream PPA: Ubuntu's fish 3.x fish_indent formats
+      # differently from the fish the repo is edited with.
+      - name: Install shell tooling
         run: |
+          sudo add-apt-repository --yes ppa:fish-shell/release-4
           sudo apt-get update
-          sudo apt-get install --yes fish shfmt
+          sudo apt-get install --yes fish shellcheck shfmt
 
       - name: Validate Bash syntax
         run: git ls-files '*.sh' | xargs -n 1 bash -n
@@ -28,8 +31,15 @@ jobs:
       - name: Validate Bash formatting
         run: git ls-files '*.sh' | xargs shfmt -d -i 2
 
+      - name: Lint Bash
+        run: git ls-files '*.sh' | xargs shellcheck -S warning
+
       - name: Validate Fish syntax
         run: git ls-files '*.fish' | xargs -n 1 fish -n
+
+      # Generated completions are excluded: their upstream style is not ours.
+      - name: Validate Fish formatting
+        run: git ls-files '*.fish' ':!:.config/fish/completions/*' | xargs fish_indent --check
 
       - name: Validate keybinding order
         run: node scripts/sort-keybinds.js --check

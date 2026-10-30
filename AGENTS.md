@@ -22,8 +22,9 @@ Validate + format after changes:
 ```bash
 git ls-files '*.sh' | xargs -n 1 bash -n
 git ls-files '*.sh' | xargs shfmt -w -i 2
+git ls-files '*.sh' | xargs shellcheck -S warning
 git ls-files '*.fish' | xargs -n 1 fish -n
-git ls-files '*.fish' | xargs fish_indent -w
+git ls-files '*.fish' ':!:.config/fish/completions/*' | xargs fish_indent -w
 node scripts/sort-keybinds.js  # after editing keybindings.json
 ```
 

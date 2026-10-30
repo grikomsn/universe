@@ -178,7 +178,8 @@ apply_firewall_runtime() {
     sudo firewall-cmd --zone="$zone" --add-icmp-block=echo-request >/dev/null
   fi
   local service
-  for service in cockpit; do
+  local unwanted_services=(cockpit)
+  for service in "${unwanted_services[@]}"; do
     if zone_has_service "$service"; then
       sudo firewall-cmd --zone="$zone" --remove-service="$service" >/dev/null
       removed_services+=" $service"

@@ -99,6 +99,8 @@ brew "premake"
 brew "python@3.12"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
 # Editor of encrypted files
