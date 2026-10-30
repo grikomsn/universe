@@ -45,6 +45,11 @@ if status is-interactive; and type -q fnm
     fnm env --use-on-cd | source
 end
 
+# ghostty
+if test -d /Applications/Ghostty.app/Contents/MacOS
+    fish_add_path /Applications/Ghostty.app/Contents/MacOS
+end
+
 # go
 set -gx GOPATH $HOME/.go
 if test -d $GOPATH

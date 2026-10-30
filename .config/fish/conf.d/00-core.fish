@@ -5,6 +5,12 @@ set -gx DO_NOT_TRACK 1
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 set -gx LANG "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
+
+# Session-scoped PATH: a global fish_user_paths shadows the universal one, so
+# every fish_add_path in conf.d rebuilds PATH from this repo on each start
+# instead of persisting into fish_variables, where entries for uninstalled
+# tools lingered forever.
+set -g fish_user_paths
 fish_add_path /usr/local/bin /usr/local/sbin
 fish_add_path $HOME/.local/bin
 

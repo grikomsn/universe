@@ -84,6 +84,8 @@ if [ -n "${FNM_PATH:-}" ]; then
   path_prepend "$FNM_PATH"
 fi
 
+path_prepend "/Applications/Ghostty.app/Contents/MacOS"
+
 export GOPATH="$HOME/.go"
 path_prepend "$GOPATH/bin"
 
