@@ -1,3 +1,8 @@
+# System defaults (Fedora's prompt, completion, and /etc/profile.d hooks).
+if [[ -f /etc/bashrc ]]; then
+  source /etc/bashrc
+fi
+
 if gpg_tty="$(tty 2>/dev/null)"; then
   export GPG_TTY="$gpg_tty"
 fi
