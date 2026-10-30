@@ -184,8 +184,14 @@ run_remote_installer git-hunk \
 
 "$REPO_DIR/scripts/cleanup-shell-injections.sh"
 
+# The installers above were told not to edit rc files, so this process does
+# not see ~/.bun/bin, ~/.local/bin (uv), ~/.deno/bin or ~/.cargo/bin yet; the
+# lnk-managed .profile adds them all.
+# shellcheck source=../.profile
+source "$REPO_DIR/.profile"
+
 # Skills, packages (brew bundle / dnf from the repo manifests), language
-# globals, and editor extensions.
+# globals, completions, and editor extensions.
 bash "$REPO_DIR/bootstrap.sh"
 
 # xcodebuild needs the full Xcode app, which only arrives with the Brewfile's
