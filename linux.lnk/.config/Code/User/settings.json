@@ -228,13 +228,13 @@
   "github.copilot.chat.languageContext.typescript.enabled": true,
   "github.copilot.chat.scopeSelection": true,
   "github.copilot.enable": {
-    "*": true,
+    "*": false,
     "markdown": true,
     "plaintext": false,
     "scminput": false,
     "typescript": true
   },
-  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": false,
   "githubPullRequests.experimental.chat": true,
   "githubPullRequests.experimental.useQuickChat": true,
   "githubPullRequests.pullBranch": "never",
@@ -353,6 +353,7 @@
   "search.quickOpen.includeSymbols": true,
   "search.showLineNumbers": true,
   "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open",
   "shellformat.useEditorConfig": true,
   "sonarlint.automaticAnalysis": true,
   "sonarlint.connectedMode.connections.sonarcloud": [
