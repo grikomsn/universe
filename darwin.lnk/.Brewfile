@@ -11,12 +11,8 @@ brew "asciinema"
 brew "ast-grep"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Text-based UI library
-brew "ncurses"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Searches a binary image for embedded files and executable code
@@ -45,16 +41,12 @@ brew "fnm"
 brew "freerdp"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# TIFF library and utilities
-brew "libtiff"
 # GitHub command-line tool
 brew "gh"
 # Multi-platform software reverse engineering framework
 brew "ghidra"
 # Distributed revision control system
 brew "git"
-# Git helper for accessing credentials via libsecret
-brew "git-credential-libsecret"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
 # Git extension for versioning large files
@@ -71,8 +63,6 @@ brew "graphviz"
 brew "grep"
 # Agent multiplexer that lives in your terminal
 brew "herdr"
-# Add GitHub support to git on the command-line
-brew "hub"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Tool to unpack installers created by Inno Setup
@@ -199,8 +189,6 @@ cask "macs-fan-control"
 cask "mist"
 # Open-source software for live streaming and screen recording
 cask "obs"
-# Get up and running with large language models locally
-cask "ollama-app"
 # Professional webcam software for the Opal C1
 cask "opal-composer"
 # Local-first alternative to Logitech Options+ for HID++ devices
