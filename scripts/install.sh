@@ -53,16 +53,19 @@ done 2>/dev/null &
 mkdir -p ~/Projects ~/Scripts ~/Temporary ~/Workspace ~/.vscode ~/.vscode-shared
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  xcode-select --install
-  read -p "Press [Enter] key after Xcode Command Line Tools are installed..."
-
-  if [[ "$(uname -m)" == "arm64" ]]; then
-    softwareupdate --install-rosetta --agree-to-license
-    read -p "Press [Enter] key after Rosetta is installed..."
+  # `xcode-select --install` exits 1 when the tools already exist, which would
+  # abort a re-run under `set -e`. The prompt reads /dev/tty: under
+  # `curl | bash` stdin is this script, so a plain `read` would swallow its
+  # next line instead of waiting.
+  if ! xcode-select -p >/dev/null 2>&1; then
+    xcode-select --install
+    read -r -p "Press [Enter] key after Xcode Command Line Tools are installed..." </dev/tty
   fi
 
-  sudo xcodebuild -license accept
-  sudo xcodebuild -runFirstLaunch
+  # softwareupdate blocks until Rosetta is installed; no prompt needed.
+  if [[ "$(uname -m)" == "arm64" && ! -f /Library/Apple/usr/share/rosetta/rosetta ]]; then
+    softwareupdate --install-rosetta --agree-to-license
+  fi
 
   run_remote_installer \
     homebrew \
@@ -177,6 +180,13 @@ run_remote_installer git-hunk \
 # Skills, packages (brew bundle / dnf from the repo manifests), language
 # globals, and editor extensions.
 bash "$REPO_DIR/bootstrap.sh"
+
+# xcodebuild needs the full Xcode app, which only arrives with the Brewfile's
+# mas entries above; with just the Command Line Tools it exits 1.
+if [[ "$(uname -s)" == "Darwin" ]] && xcodebuild -version >/dev/null 2>&1; then
+  sudo xcodebuild -license accept
+  sudo xcodebuild -runFirstLaunch
+fi
 
 if command -v mkcert >/dev/null 2>&1; then
   mkcert -install
