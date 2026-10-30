@@ -26,7 +26,14 @@ generate() {
 
 generate bun bun completions
 generate codex codex completion fish
-generate gh-pr-review gh pr-review completion fish
+generate deno deno completions fish
+# gh is everywhere; only generate when the extension itself is installed.
+# (Captured first: `| grep -q` would SIGPIPE gh and fail under pipefail.)
+gh_extensions="$(gh extension list 2>/dev/null || true)"
+if [[ "$gh_extensions" == *gh-pr-review* ]]; then
+  generate gh-pr-review gh pr-review completion fish
+fi
+generate herdr herdr completion fish
 generate lnk lnk completion fish
 generate pool pool completion fish
 generate rex rex completion fish
