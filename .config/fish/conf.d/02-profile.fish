@@ -45,9 +45,6 @@ if status is-interactive; and type -q fnm
     fnm env --use-on-cd | source
 end
 
-# fzf
-# already handled in 'completions/fzf.fish'
-
 # go
 set -gx GOPATH $HOME/.go
 if test -d $GOPATH
