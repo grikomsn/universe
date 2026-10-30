@@ -135,15 +135,25 @@ ensure_npmrc_setting "fund" "false"
 
 # Mutable installer endpoints are pinned by content hash. Update the URL and
 # corresponding default hash together when upgrading an installer.
-run_remote_installer bun "${BUN_INSTALL_URL:-https://bun.com/install}" \
+#
+# lnk has already linked the shell config into this repo, so any installer
+# that edits rc files would dirty tracked files (config.fish, conf.d/*.fish,
+# .profile, .bashrc, .zshenv). The fish and POSIX configs already set up every
+# tool's PATH, so each installer is told to leave them alone.
+
+# bun appends to config.fish, .zshrc or .bashrc depending on $SHELL.
+SHELL=unknown run_remote_installer bun "${BUN_INSTALL_URL:-https://bun.com/install}" \
   "${BUN_INSTALL_SHA256:-04882bf41679d49d9af108657a1e5515bf04fdf2940d12c0d0b1e5d79dc53be8}"
-run_remote_installer deno "${DENO_INSTALL_URL:-https://deno.land/install.sh}" \
+# deno runs an interactive rc-editing setup whenever stdout is a terminal,
+# unless CI is set.
+CI=true run_remote_installer deno "${DENO_INSTALL_URL:-https://deno.land/install.sh}" \
   "${DENO_INSTALL_SHA256:-83f19ea13f6d7884f4dc0e2f92e7e08e7589204138d9b6edfcd53c3f07b3273b}"
 run_remote_installer fnm "${FNM_INSTALL_URL:-https://fnm.vercel.app/install}" \
-  "${FNM_INSTALL_SHA256:-8431644b1c205ad25d4b09cfe10e0688944d1d2cd542f38d7b3b10e954db8ad9}"
+  "${FNM_INSTALL_SHA256:-8431644b1c205ad25d4b09cfe10e0688944d1d2cd542f38d7b3b10e954db8ad9}" \
+  --skip-shell
 run_remote_installer rustup "${RUSTUP_INSTALL_URL:-https://sh.rustup.rs}" \
   "${RUSTUP_INSTALL_SHA256:-9502b514362a21096210d498f143b8cdacda365d3dfcf45e8f5541e089ccafc0}" \
-  -y
+  -y --no-modify-path
 
 # OpenCode v2 CLI. The installer self-modifies shell rc files unless told not
 # to; cleanup-shell-injections.sh remains a backstop for older installs.
@@ -156,12 +166,9 @@ UV_NO_MODIFY_PATH=1 run_remote_installer uv "${UV_INSTALL_URL:-https://astral.sh
 # Parallel CLI. The installer appends a PATH line to the detected shell's rc
 # file when ~/.local/bin is missing from PATH; 00-core.fish already exports it,
 # so neutralize shell detection to keep the lnk-managed config.fish untouched.
-previous_shell="$SHELL"
-SHELL=unknown
-run_remote_installer parallel-cli \
+SHELL=unknown run_remote_installer parallel-cli \
   "${PARALLEL_INSTALL_URL:-https://raw.githubusercontent.com/parallel-web/parallel-web-tools/v0.9.4/install-cli.sh}" \
   "${PARALLEL_INSTALL_SHA256:-9e7e9cb10c4948e13023bfd1078b577362e4e7054c35a0d83927310f21846371}"
-SHELL="$previous_shell"
 
 # Render CLI installs to ~/.local/bin for non-root users, /usr/local/bin only
 # under sudo; no rc-file writes.
