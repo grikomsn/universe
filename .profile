@@ -122,5 +122,16 @@ path_prepend "$HOME/.cargo/bin"
 export YARN_INSTALL="$HOME/.yarn"
 path_prepend "$YARN_INSTALL/bin"
 
+# headless X11 display from scripts/unstable/headless-x11.sh, unless a real
+# display is already present
+headless_x11_env="$HOME/.local/state/headless-x11/env"
+if [ -z "${DISPLAY:-}" ] && [ -z "${WAYLAND_DISPLAY:-}" ] && [ -r "$headless_x11_env" ]; then
+  set -a
+  # shellcheck source=/dev/null
+  . "$headless_x11_env"
+  set +a
+fi
+unset headless_x11_env
+
 export PATH
 unset -f path_prepend 2>/dev/null || unset path_prepend
