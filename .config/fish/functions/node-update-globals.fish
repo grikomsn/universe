@@ -57,7 +57,8 @@ function node-update-globals --description 'update node versions via fnm, set lt
 
     # Update npm globals (skip npm update to avoid .DS_Store issues)
     if type -q npm
-        npm -g install $npm_pkgs $argv
+        # npm 12 blocks install scripts by default; these need postinstall to link their native binary
+        npm -g install --allow-scripts=agent-browser,agent-desktop $npm_pkgs $argv
     end
 
     # Ensure npm packages are not in pnpm

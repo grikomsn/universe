@@ -41,7 +41,16 @@ if command -v npm >/dev/null; then
   while IFS= read -r pkg; do
     npm_pkgs+=("$pkg@latest")
   done < <(entries npm)
-  run_step "npm globals" npm install -g "${npm_pkgs[@]}"
+  # npm 12 blocks dependency install scripts by default; these packages need
+  # their postinstall to link the native binary.
+  run_step "npm globals" npm install -g --allow-scripts=agent-browser,agent-desktop "${npm_pkgs[@]}"
+  # agent-browser drives its own Chrome for Testing; fetch it if missing. On
+  # Linux, --with-deps also installs Chrome's system libraries/fonts via sudo.
+  if command -v agent-browser >/dev/null; then
+    agent_browser_args=(install)
+    [[ "$(uname -s)" == "Linux" ]] && agent_browser_args+=(--with-deps)
+    run_step "agent-browser chrome" agent-browser "${agent_browser_args[@]}"
+  fi
 else
   echo "npm not found; skipping npm globals" >&2
 fi
