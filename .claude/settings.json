@@ -21,6 +21,13 @@
     ]
   },
   "inputNeededNotifEnabled": true,
+  "model": "sonnet",
+  "modelSettings": {
+    "claude-sonnet-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "skipWorkflowUsageWarning": true,
-  "theme": "auto"
+  "theme": "auto",
+  "tui": "fullscreen"
 }
