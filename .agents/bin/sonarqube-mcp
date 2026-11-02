@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# sonarqube-mcp - stdio MCP entrypoint that shares one SonarQube MCP
+# container across every client and project. Point an MCP config at this
+# script instead of `docker run -i --rm mcp/sonarqube`: the first caller
+# starts the container, later callers reuse it, and each client only gets a
+# thin stdio bridge to the shared HTTP endpoint.
+#
+# Env (same as the container-per-client setup):
+#   SONARQUBE_TOKEN   required, sent as a per-request header
+#   SONARQUBE_ORG     optional, sent as a per-request header
+#   SONARQUBE_CLOUD_URL / SONARQUBE_URL  server-level, baked in at creation
+#   SONARQUBE_MCP_PORT                   host port, default 64121
+#
+# To apply a changed server-level setting: docker rm -f sonarqube-mcp
+
+name="sonarqube-mcp"
+image="mcp/sonarqube"
+port="${SONARQUBE_MCP_PORT:-64121}"
+url="http://127.0.0.1:$port/mcp"
+
+: "${SONARQUBE_TOKEN:?SONARQUBE_TOKEN is required}"
+
+if ! docker info >/dev/null 2>&1; then
+  echo "sonarqube-mcp: docker daemon is not running" >&2
+  exit 1
+fi
+
+ready() {
+  # Docker accepts connections on the published port before the JVM is up,
+  # so require a real HTTP response. Any status counts; an empty reply fails.
+  curl -s -o /dev/null -m 2 -X POST "$url" 2>/dev/null
+}
+
+if ! ready; then
+  # `docker run --name` is atomic: when clients race, the losers fail the
+  # name check and fall through to waiting for readiness.
+  docker start "$name" >/dev/null 2>&1 ||
+    docker run -d --restart unless-stopped --name "$name" \
+      -p "127.0.0.1:$port:8080" \
+      -e SONARQUBE_TRANSPORT=http \
+      -e SONARQUBE_HTTP_HOST=0.0.0.0 \
+      -e SONARQUBE_HTTP_PORT=8080 \
+      -e SONARQUBE_CLOUD_URL \
+      -e SONARQUBE_URL \
+      "$image" >/dev/null 2>&1 || true
+
+  for _ in $(seq 1 60); do
+    ready && break
+    sleep 0.5
+  done
+  if ! ready; then
+    echo "sonarqube-mcp: container did not become ready on port $port" >&2
+    exit 1
+  fi
+fi
+
+args=(--transport streamablehttp "$url" --headers SONARQUBE_TOKEN "$SONARQUBE_TOKEN")
+if [[ -n "${SONARQUBE_ORG:-}" ]]; then
+  args+=(--headers SONARQUBE_ORG "$SONARQUBE_ORG")
+fi
+
+exec uvx mcp-proxy "${args[@]}"
