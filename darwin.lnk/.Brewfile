@@ -11,8 +11,12 @@ brew "asciinema"
 brew "ast-grep"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Text-based UI library
+brew "ncurses"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Searches a binary image for embedded files and executable code
@@ -41,6 +45,8 @@ brew "fnm"
 brew "freerdp"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# TIFF library and utilities
+brew "libtiff"
 # GitHub command-line tool
 brew "gh"
 # Multi-platform software reverse engineering framework
@@ -83,8 +89,6 @@ brew "mkcert"
 brew "mole"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Create, run, and share large language models (LLMs)
-brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Swiss-army knife of markup format conversion
@@ -137,6 +141,8 @@ cask "balenaetcher"
 cask "betterdisplay"
 # Anthropic's official Claude AI desktop app
 cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code"
 # Screen capturing tool
 cask "cleanshot"
 # Image, video and clipboard optimiser
@@ -163,8 +169,6 @@ cask "ghostty"
 cask "git-credential-manager"
 # Tools to protect your files
 cask "gpg-suite-no-mail"
-# Homebrew's official GUI
-cask "homebrew-app"
 # Keyboard shortcuts for every button on your screen
 cask "homerow"
 # Tool to optimise images to a smaller size
@@ -254,9 +258,9 @@ mas "Velja", id: 1607635845
 vscode "1password.op-vscode"
 vscode "aaron-bond.better-comments"
 vscode "adpyke.vscode-userscript"
+vscode "anthropic.claude-code"
 vscode "anysphere.remote-containers"
 vscode "anysphere.remote-ssh"
-vscode "anthropic.claude-code"
 vscode "astro-build.astro-vscode"
 vscode "bierner.comment-tagged-templates"
 vscode "bierner.emojisense"
@@ -295,7 +299,6 @@ vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
 vscode "grikomsn.ampersand-bridge-copilot-chat"
 vscode "grikomsn.inception-copilot-chat"
-vscode "grikomsn.ollama-cloud-copilot-chat"
 vscode "grikomsn.opencode-bridge-for-copilot-chat"
 vscode "grikomsn.wayfindr-theme"
 vscode "jock.svg"
