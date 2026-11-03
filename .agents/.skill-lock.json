@@ -6,28 +6,28 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/github/gh-stack.git",
       "skillPath": "skills/gh-stack/SKILL.md",
-      "skillFolderHash": "6bfe555e89a6b264e09d5ece7c4040226458c8e5",
+      "skillFolderHash": "1f58c48379bc9fcab68e8a37cb41aad3ad937419",
       "installedAt": "2026-04-13T20:02:01.461Z",
-      "updatedAt": "2026-09-15T07:26:17.965Z"
+      "updatedAt": "2026-11-03T07:50:41.102Z"
     },
     "parallel-web-search": {
       "source": "parallel-web/parallel-agent-skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/parallel-web/parallel-agent-skills.git",
       "skillPath": "skills/parallel-web-search/SKILL.md",
-      "skillFolderHash": "48f031bb0a2c28edb72edfcb78f0fbc65a21edb4",
+      "skillFolderHash": "4242cafa5f53e3af0cd8be23522cce2112b72ac4",
       "installedAt": "2026-07-06T13:46:42.600Z",
-      "updatedAt": "2026-09-12T05:31:01.348Z"
+      "updatedAt": "2026-11-03T07:50:42.652Z"
     },
     "grilling": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/grilling/SKILL.md",
-      "skillFolderHash": "f0732035b8b1b60ae39454e4191caef32fa91903",
+      "skillFolderHash": "f551b6e0d219fdda0b6abf277f8f915b3127d1e9",
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-09-12T05:33:47.562Z",
-      "updatedAt": "2026-09-12T05:33:47.562Z"
+      "updatedAt": "2026-11-03T07:50:44.156Z"
     },
     "git-hunk": {
       "source": "nexxeln/git-hunk",
@@ -36,26 +36,26 @@
       "skillPath": "SKILL.md",
       "skillFolderHash": "2d00a577cc1a7946737e36b318923639facd25b3",
       "installedAt": "2026-09-12T18:26:01.198Z",
-      "updatedAt": "2026-09-12T18:26:08.298Z"
+      "updatedAt": "2026-11-03T07:50:45.626Z"
     },
     "agent-browser": {
       "source": "vercel-labs/agent-browser",
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
       "skillPath": "skills/agent-browser/SKILL.md",
-      "skillFolderHash": "aee3afd3dd9c879a14816dd6dca77c938f8c9c10",
+      "skillFolderHash": "29ba9c12789b1c54ab76ad40e2472e646d141b85",
       "pluginName": "agent-browser",
       "installedAt": "2026-10-31T04:43:24.944Z",
-      "updatedAt": "2026-10-31T04:43:24.944Z"
+      "updatedAt": "2026-11-03T07:50:48.863Z"
     },
     "agent-desktop": {
       "source": "vercel-labs/agent-desktop",
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/agent-desktop.git",
       "skillPath": "skills/agent-desktop/SKILL.md",
-      "skillFolderHash": "08884bafcd7a8d0a9a3757a7ab2ba238e1d5bf2a",
+      "skillFolderHash": "c2bba5cd6a974b6a4d5b3cde7bf7028d15fc4749",
       "installedAt": "2026-10-31T04:43:30.864Z",
-      "updatedAt": "2026-10-31T04:43:30.864Z"
+      "updatedAt": "2026-11-03T07:51:02.953Z"
     }
   },
   "dismissed": {
