@@ -12,13 +12,11 @@ node_modules
 
 # skills-CLI-managed: restored from .agents/.skill-lock.json via scripts/skills-restore.sh
 # rex is a version-independent stub from `rex skill setup` (not a skills-CLI
-# source), so keep it tracked to restore it everywhere
+# source), so keep it tracked to restore it everywhere; fleet is
+# hand-written for managing the machine fleet
 .agents/skills/*
 !.agents/skills/rex
-
-# fleet entrypoint skills (fleet-boxes-sync-mcp is hand-written), keep them tracked
-fleet/.agents/skills/*
-!fleet/.agents/skills/boxes-sync-mcp
+!.agents/skills/fleet
 
 !.env.example
 

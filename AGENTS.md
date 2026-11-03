@@ -1,6 +1,6 @@
 # Agent Guidelines
 
-Repo structure: `scripts/`, `fixes/`, `.config/fish/`, `darwin.lnk/`, `linux.lnk/`, `fleet/` (multi-machine management entrypoint, see `fleet/AGENTS.md`)
+Repo structure: `scripts/`, `fixes/`, `.config/fish/`, `darwin.lnk/`, `linux.lnk/`, `fleet/` (multi-machine management entrypoint, see `fleet/AGENTS.md`; skill in `.agents/skills/fleet`)
 
 ## Commands
 

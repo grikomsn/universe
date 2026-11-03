@@ -1,0 +1,5 @@
+interface:
+  display_name: "Fleet"
+  short_description: "Probe, diff and sync config across machines over ssh or Rex"
+policy:
+  allow_implicit_invocation: false
