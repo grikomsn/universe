@@ -28,5 +28,6 @@
   },
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "switchModelsOnFlag": false
 }
