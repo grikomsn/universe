@@ -1,0 +1,29 @@
+# Fleet inventory — example. Copy to fleet.toml (git-ignored) and fill in
+# real hostnames there:
+#   cp fleet.example.toml fleet.toml
+# fleet.toml is for private data only: hostnames, tailnet names, node
+# aliases, machine-specific notes. Never commit it.
+
+[fleet]
+# Machines managed as a unit ("all my machines" in the fleet skill)
+main = ["laptop", "box-a", "box-b"]
+
+[machines.laptop]
+os = "darwin"
+tailscale = "laptop.example-tailnet.ts.net"
+role = "local machine; runs the rex home server"
+
+[machines.box-a]
+os = "linux"
+tailscale = "box-a.example-tailnet.ts.net"
+# A rex personal server advertises itself as its own tailscale node, so a
+# rex node name usually differs from its host machine's hostname:
+rex-node = "box-a-rex"
+
+[machines.box-b]
+os = "linux"
+tailscale = "box-b.example-tailnet.ts.net"
+rex-node = "box-b-rex"
+
+# Everything else on the tailnet (phones, tablets, appliances, ad-hoc
+# boxes) is just available — discover it at runtime, don't manage it here.

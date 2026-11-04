@@ -1,6 +1,6 @@
 # Agent Guidelines
 
-Repo structure: `scripts/`, `fixes/`, `.config/fish/`, `darwin.lnk/`, `linux.lnk/`, `fleet/` (multi-machine management entrypoint, see `fleet/AGENTS.md`; skill in `.agents/skills/fleet`)
+Repo structure: `scripts/`, `fixes/`, `.config/fish/`, `darwin.lnk/`, `linux.lnk/`, `fleet/` (multi-machine management entrypoint, see `fleet/AGENTS.md`; skill in `fleet/skill`, linked at `.agents/skills/fleet`; private inventory in git-ignored `fleet/fleet.toml`, tracked example at `fleet/fleet.example.toml`)
 
 ## Commands
 
