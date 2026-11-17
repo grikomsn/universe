@@ -110,6 +110,7 @@ Two machines on the same repo commit match by definition. To change one:
    |---|---|
    | a manifest | `lnk pull` (`-H linux` on Linux) |
    | skill lock, or skill versions drift | `bash scripts/skills-restore.sh` (it downloads; say so) |
+| skills added or removed | `bash scripts/skills-link.sh` (links them into `~/.claude_*/skills`) |
    | generated fish completions | `scripts/completions.sh` |
 
 ## MCP configs

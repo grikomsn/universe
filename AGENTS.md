@@ -14,6 +14,7 @@ bash scripts/vscode-migrate.sh # migrate filesystem links
 bash scripts/vscode-sync.sh   # sync extensions
 bash scripts/vscode-bisect.sh # check drift
 bash scripts/skills-restore.sh # restore skills from .agents/.skill-lock.json
+bash scripts/skills-link.sh   # link personal skills into extra Claude profiles (~/.claude_*/skills)
 bash scripts/completions.sh   # regenerate gitignored fish completions
 bash scripts/unstable/headless-x11.sh register|deregister|status # virtual X11 display (Xvfb + openbox) on headless Linux
 ```

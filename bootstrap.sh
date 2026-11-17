@@ -2,7 +2,7 @@
 
 # bootstrap.sh - runs automatically after `lnk init -r <url>` on a fresh clone.
 # Keep it non-destructive and cross-platform: restores skills-CLI-managed
-# skills from the lockfile, syncs editor extensions, installs parity
+# skills from the lockfile, links them into extra Claude profiles, syncs editor extensions, installs parity
 # packages + language globals, and generates fish completions.
 
 set -euo pipefail
@@ -11,6 +11,10 @@ repo="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [[ -f "$repo/scripts/skills-restore.sh" ]]; then
   bash "$repo/scripts/skills-restore.sh" || true
+fi
+
+if [[ -f "$repo/scripts/skills-link.sh" ]]; then
+  bash "$repo/scripts/skills-link.sh" || true
 fi
 
 if [[ -f "$repo/scripts/packages.sh" ]]; then
