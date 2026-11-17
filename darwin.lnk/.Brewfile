@@ -41,8 +41,6 @@ brew "fish"
 brew "flarectl"
 # Fast and simple Node.js version manager
 brew "fnm"
-# X11 implementation of the Remote Desktop Protocol (RDP)
-brew "freerdp"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # TIFF library and utilities
@@ -142,7 +140,7 @@ cask "betterdisplay"
 # Anthropic's official Claude AI desktop app
 cask "claude"
 # Terminal-based AI coding assistant
-cask "claude-code"
+cask "claude-code@latest"
 # Screen capturing tool
 cask "cleanshot"
 # Image, video and clipboard optimiser
@@ -215,8 +213,8 @@ cask "steam"
 cask "suspicious-package"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
-# Tiny, fully native launcher, hotkeys, and clipboard history
-cask "abue-ammar/tinycast/tinycast"
+# Application launcher and productivity tool
+cask "tinycast"
 # File system and storage management software
 cask "tuxera-ntfs"
 # Open-source code editor
@@ -298,7 +296,7 @@ vscode "golang.go"
 vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
 vscode "grikomsn.ampersand-bridge-copilot-chat"
-vscode "grikomsn.inception-copilot-chat"
+vscode "grikomsn.inco-copilot-chat"
 vscode "grikomsn.opencode-bridge-for-copilot-chat"
 vscode "grikomsn.wayfindr-theme"
 vscode "jock.svg"
@@ -346,6 +344,7 @@ vscode "sburg.vscode-javascript-booster"
 vscode "sonarsource.sonarlint-vscode"
 vscode "styled-components.vscode-styled-components"
 vscode "swiftlang.swift-vscode"
+vscode "tailscale.vscode-tailscale"
 vscode "tamasfe.even-better-toml"
 vscode "tldraw-org.tldraw-vscode"
 vscode "tomoki1207.pdf"
@@ -366,13 +365,3 @@ go "honnef.co/go/tools/cmd/staticcheck"
 uv "marker-pdf[full]"
 uv "markitdown[all]"
 uv "streamlit"
-npm "agent-browser"
-npm "agent-desktop"
-npm "corepack"
-npm "fish-lsp"
-npm "neovim"
-npm "prettier"
-npm "serve"
-npm "tsx"
-npm "turbo"
-npm "vercel"
