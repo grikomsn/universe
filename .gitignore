@@ -21,6 +21,8 @@ node_modules
 # fleet's private inventory (real hostnames, tailnet names, machine notes);
 # fleet.example.toml is the tracked, sanitized copy
 fleet/fleet.toml
+# fleet skill backups of edited files; can hold private or secret values
+*.bak-fleet-*
 
 !.env.example
 
