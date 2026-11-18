@@ -9,7 +9,7 @@
   "enableInstallTelemetry": false,
   "fullscreenScrollbar": "auto",
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.1",
   "outputPad": 1,
   "packages": [
     "npm:@ff-labs/pi-fff",
@@ -31,5 +31,10 @@
   "theme": "system",
   "transport": "auto",
   "treeFilterMode": "default",
-  "tuiMode": "regular"
+  "tuiMode": "regular",
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-provider-ampersand-bridge\",\"scope\":\"user\"}": "0.2.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.87.0",
+    "{\"source\":\"npm:pi-thinking-steps\",\"scope\":\"user\"}": "1.2.0"
+  }
 }
