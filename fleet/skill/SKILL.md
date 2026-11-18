@@ -1,6 +1,6 @@
 ---
 name: fleet
-description: Probe, diff, sync or run commands across the user's machines (macOS laptop plus Linux boxes on a Tailscale tailnet) over ssh or Rex; covers dotfile/harness/skill sync, MCP configs per harness, and freeing disk space.
+description: Probe, diff, sync or run commands across the user's machines (macOS laptop plus Linux boxes on a Tailscale tailnet) over ssh or Rex; covers dotfile/harness/skill sync, MCP configs per harness, freeing disk space, and deleting archived T3 threads.
 argument-hint: "<task, e.g. diff claude settings on all machines>"
 disable-model-invocation: true
 ---
@@ -166,6 +166,44 @@ still reads fine but can't run again until the worktree is recreated
 (`git worktree add <path> refs/fleet-backup/<name>`). The boxes have no
 `sqlite3` binary, so query read-only with `python3` and
 `sqlite3.connect("file:…?mode=ro", uri=True)`, or use T3's `t3_thread_read`.
+
+## Delete archived T3 threads
+
+T3 has no bulk delete: the app's Archived view deletes one thread at a time,
+`t3 thread` has no delete, and the T3 MCP tools can only archive. Use
+`scripts/t3-purge-archived.sh`, from this skill's directory. It sends the
+app's own `thread.delete` command through the running server, so T3's event
+log records the deletions. Never delete rows from `statev2.sqlite` by hand:
+T3 rebuilds those tables from its event log.
+
+Each machine's server keeps its own threads, so run the script on each
+machine. Its stages:
+
+1. **Dry run** (no flags): counts archived threads by kind. Top-level threads
+   have plain UUIDs; `thread:provider`, `thread:delegated-task` and
+   `thread:subagent` are child threads. Show the user the counts before going
+   further.
+2. **`--check`:** issues a 1-hour token scoped to `orchestration:read` and
+   `orchestration:operate`, opens the server connection, then revokes the
+   token. Nothing is deleted.
+3. **`--yes`** (optionally `--limit N`): deletes one thread, confirms it has
+   `deleted_at`, then deletes the rest and prints before and after counts.
+
+Run it locally with `bash scripts/t3-purge-archived.sh`, and remotely with
+`ssh HOST bash -s -- --yes <scripts/t3-purge-archived.sh`. The token is issued
+on the target machine, kept in a `mktemp -d` folder and revoked on exit, so it
+never crosses ssh or reaches the chat.
+
+The script finds:
+- **the server** from `server-runtime.json` (`port`, `serverVersion`);
+- **the CLI** at `runtime/versions/<serverVersion>/t3` on Linux, or
+  `~/.t3/bin/t3` inside the macOS desktop app;
+- **a JS runtime:** Node 22+ for its built-in WebSocket, or bun.
+
+The protocol comes from the client bundle as of
+`0.1.11-nightly.20261117.4851`. If a T3 update breaks the script, search
+`runtime/versions/<v>/client/assets/*.js` for `thread.delete`,
+`orchestration.dispatchCommand` and `orchestrationProtocol`.
 
 ## MCP configs
 
