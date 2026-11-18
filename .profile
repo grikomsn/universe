@@ -94,6 +94,10 @@ if [ -d "$HOME/.lmstudio" ]; then
   path_prepend "$LM_STUDIO_INSTALL/bin"
 fi
 
+# node: keep the compile cache off /tmp, which is a quota-capped tmpfs on
+# Linux boxes where it filled up and broke every /tmp write
+export NODE_COMPILE_CACHE="$HOME/.cache/node-compile"
+
 if [ -d "$HOME/.opencode" ]; then
   export OPENCODE_INSTALL="$HOME/.opencode"
   path_prepend "$OPENCODE_INSTALL/bin"

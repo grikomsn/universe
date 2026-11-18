@@ -76,6 +76,10 @@ if status is-login
     end
 end
 
+# node: keep the compile cache off /tmp, which is a quota-capped tmpfs on
+# Linux boxes where it filled up and broke every /tmp write
+set -gx NODE_COMPILE_CACHE $HOME/.cache/node-compile
+
 # opencode
 if test -d $HOME/.opencode
     set -gx OPENCODE_INSTALL $HOME/.opencode

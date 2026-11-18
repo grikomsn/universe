@@ -4,3 +4,4 @@
 .config/Code - Insiders/User/settings.json
 .config/ghostty
 .gitconfig
+.config/environment.d
