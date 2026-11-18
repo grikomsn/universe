@@ -1,6 +1,6 @@
 ---
 name: fleet
-description: Probe, diff, sync or run commands across the user's machines (macOS laptop plus Linux boxes on a Tailscale tailnet) over ssh or Rex; covers dotfile/harness/skill sync and MCP configs per harness.
+description: Probe, diff, sync or run commands across the user's machines (macOS laptop plus Linux boxes on a Tailscale tailnet) over ssh or Rex; covers dotfile/harness/skill sync, MCP configs per harness, and freeing disk space.
 argument-hint: "<task, e.g. diff claude settings on all machines>"
 disable-model-invocation: true
 ---
@@ -16,21 +16,32 @@ runtime, and keep them out of this repo and its commits.
 
 ## Reach machines
 
-1. **Find candidates.** Check `tailscale status --json`, using `.Self` and
-   `.Peer[]` with their `.DNSName`, `.OS` and `.Online`. Also check `rex hosts
-   list --json` and `rex hosts check`, and `Host` entries in `~/.ssh/config`.
-   - "All my machines" means every reachable workstation.
+1. **Read the inventory first.** `~/.config/lnk/fleet/fleet.toml` (git-ignored,
+   see `fleet/AGENTS.md`) lists the main machines under `[fleet].main` and each
+   machine's `tailscale` name and `rex-node`.
+   - "All my machines" means `[fleet].main`. Sync and clean up only those.
+   - A `rex-node` is the Rex server's own tailnet identity on that machine,
+     not another machine. Don't probe it or sync it; reach the host over ssh.
+2. **Find other candidates** only when the inventory is missing or the user
+   names a box it doesn't list. Check `tailscale status --json`, using `.Self`
+   and `.Peer[]` with their `.DNSName`, `.OS` and `.Online`. Also check `rex
+   hosts list --json` and `rex hosts check`, and `Host` entries in
+   `~/.ssh/config`.
    - If the user names one box and it's ambiguous, ask.
    - Skip appliances that close ssh, and report them as not probed.
-2. **Probe each candidate** with `ssh -o ConnectTimeout=10 -o BatchMode=yes HOST
+3. **Probe each candidate** with `ssh -o ConnectTimeout=10 -o BatchMode=yes HOST
    'uname -s; hostname'`. Use the full MagicDNS name with the trailing dot
    stripped. Short `0x…`-style names get parsed as IPs.
-3. **Choose a transport.**
+   - Tailscale SSH can stop and print "requires an additional check" with a
+     login URL. `BatchMode` doesn't prevent this, and the call hangs until
+     someone opens the URL. Show the user the URL and wait. Don't retry, and
+     don't fan probes out in parallel, since each one hangs the same way.
+4. **Choose a transport.**
    - **ssh answers:** use ssh.
    - **ssh refused, but a Rex host answers:** use Rex.
    - **Neither:** report the machine as not reachable.
    - **Local machine:** run commands directly.
-4. **Dedupe.** One box can appear as an ssh host and also as one or more Rex
+5. **Dedupe.** One box can appear as an ssh host and also as one or more Rex
    hosts. Compare `/etc/machine-id` (macOS: `ioreg -rd1 -c
    IOPlatformExpertDevice`, field `IOPlatformUUID`) and the inode of
    `~/.claude.json` (`stat -c %i` on Linux, `stat -f %i` on macOS). Count a
@@ -110,8 +121,51 @@ Two machines on the same repo commit match by definition. To change one:
    |---|---|
    | a manifest | `lnk pull` (`-H linux` on Linux) |
    | skill lock, or skill versions drift | `bash scripts/skills-restore.sh` (it downloads; say so) |
-| skills added or removed | `bash scripts/skills-link.sh` (links them into `~/.claude_*/skills`) |
+   | skills added or removed | `bash scripts/skills-link.sh` (links them into `~/.claude_*/skills`) |
    | generated fish completions | `scripts/completions.sh` |
+   | `linux.lnk/.config/environment.d` | `systemctl --user daemon-reexec`, then restart the user services that need it (see below) |
+
+**Environment variables** go in three places, because each kind of process
+reads a different one:
+- **fish:** `.config/fish/conf.d/02-profile.fish`.
+- **POSIX login shells:** `.profile`, which mirrors the fish profile.
+- **systemd user services on Linux,** such as `t3code.service` and its
+  agents: `linux.lnk/.config/environment.d/*.conf`. These services read
+  neither shell file.
+
+A service sees a change only after `daemon-reexec` and its own restart. Check
+with `systemctl --user show-environment`, then
+`/proc/$(systemctl --user show -p MainPID --value UNIT)/environ`. Before
+restarting `t3code.service`, check for running threads (T3 `t3_thread_list`
+with that box's `environmentId` and `statuses: ["running", "starting",
+"preparing", "queued"]`). A restart interrupts them.
+
+## Free disk space
+
+**Check `/tmp` before `/`.** On the Linux boxes, `/tmp` is a tmpfs mounted
+with `usrquota`. When writes fail with "Disk quota exceeded", `df /` can still
+show plenty of free space. Check `findmnt -no OPTIONS /tmp` and `quota -s`,
+then `du` both `/tmp` and `/`. Use `sudo -n`: some boxes need a sudo password.
+Membership in the `docker` group is enough for `docker` commands.
+
+These were the largest items, and each one is removed differently. Moving a
+large item to `~/.fleet-removed-*` on the same filesystem frees nothing, so
+keep a cheap way to restore it instead:
+
+| What | Check first | Remove |
+|---|---|---|
+| Caches in `/tmp`: `jest_rs`, `node-compile-cache`, `claude-<uid>/*` older than 2 days, leftover installers | `lsof +D /tmp`; deleted-but-open files (`lsof +L1`) | `mv` to `~/.fleet-removed-tmp-<ts>/`. That crosses filesystems, so it frees the quota. |
+| T3 worktrees `~/.t3/worktrees/<project>/t3-*` left detached by delegated tasks | Clean `status --porcelain --ignored` apart from `node_modules`/build output; no process with its cwd inside; is HEAD on a branch (match by subject or `git patch-id`)? | `git update-ref refs/fleet-backup/<name> HEAD`, record name, sha and subject in the backup folder, then `git worktree remove` |
+| Docker images and build cache | Images no container uses; images without `RepoDigests` were built on the box | `docker save \| gzip` the box-built ones, save `docker images` to the backup folder, then `docker image prune -a -f` and `docker builder prune -a -f`. Leave volumes unless asked. |
+| Package caches (`~/.npm/_cacache`, uv, Playwright, Cypress) | none | Offer only. They rebuild on demand. |
+
+**T3 threads survive a worktree removal.** Threads live in
+`~/.t3/userdata/statev2.sqlite`, table `orchestration_v2_projection_threads`,
+with the path at `payload_json.worktreePath`. A thread whose worktree is gone
+still reads fine but can't run again until the worktree is recreated
+(`git worktree add <path> refs/fleet-backup/<name>`). The boxes have no
+`sqlite3` binary, so query read-only with `python3` and
+`sqlite3.connect("file:…?mode=ro", uri=True)`, or use T3's `t3_thread_read`.
 
 ## MCP configs
 
