@@ -1,10 +1,22 @@
 set -gx ADBLOCK 1
+set -gx ASTRO_TELEMETRY_DISABLED 1
 set -gx CARGO_NET_GIT_FETCH_WITH_CLI true
+set -gx CHECKPOINT_DISABLE 1
 set -gx DISABLE_OPENCOLLECTIVE 1
 set -gx DO_NOT_TRACK 1
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
+set -gx EXPO_NO_TELEMETRY 1
+set -gx GATSBY_TELEMETRY_DISABLED 1
+set -gx GH_TELEMETRY false
+set -gx HOMEBREW_NO_ANALYTICS 1
 set -gx LANG "en_US.UTF-8"
 set -gx LC_ALL "en_US.UTF-8"
+set -gx NEXT_TELEMETRY_DISABLED 1
+set -gx NUXT_TELEMETRY_DISABLED 1
+set -gx PRISMA_DISABLE_TELEMETRY 1
+set -gx T3CODE_OTEL_SDK_DISABLED true
+set -gx T3CODE_TELEMETRY_ENABLED false
+set -gx WRANGLER_SEND_METRICS false
 
 # Session-scoped PATH: a global fish_user_paths shadows the universal one, so
 # every fish_add_path in conf.d rebuilds PATH from this repo on each start

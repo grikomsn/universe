@@ -57,6 +57,9 @@ fi
 
 # --- go tools ---
 if command -v go >/dev/null; then
+  # off (not the default "local") also stops on-disk counter collection; do it
+  # before go install so those builds aren't counted. Needs go >= 1.23.
+  run_step "go telemetry off" go telemetry off
   while IFS= read -r pkg; do
     # auto: distro Go (e.g. Fedora's GOTOOLCHAIN=local) may be older than
     # what @latest tools require; let go fetch the toolchain it needs.

@@ -1,10 +1,22 @@
 export ADBLOCK=1
+export ASTRO_TELEMETRY_DISABLED=1
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
+export CHECKPOINT_DISABLE=1
 export DISABLE_OPENCOLLECTIVE=1
 export DO_NOT_TRACK=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export EXPO_NO_TELEMETRY=1
+export GATSBY_TELEMETRY_DISABLED=1
+export GH_TELEMETRY=false
+export HOMEBREW_NO_ANALYTICS=1
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+export NEXT_TELEMETRY_DISABLED=1
+export NUXT_TELEMETRY_DISABLED=1
+export PRISMA_DISABLE_TELEMETRY=1
+export T3CODE_OTEL_SDK_DISABLED=true
+export T3CODE_TELEMETRY_ENABLED=false
+export WRANGLER_SEND_METRICS=false
 
 onepassword_ssh_auth_sock="$HOME/.1password/agent.sock"
 if [ ! -S "$onepassword_ssh_auth_sock" ]; then
