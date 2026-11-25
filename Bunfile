@@ -1,0 +1,8 @@
+# bun global package manifest. brew bundle cannot express bun globals, so they
+# live here instead; one package per line, lines starting with # are comments.
+# Consumed by scripts/globals.sh and node-update-globals.fish on macOS and Linux.
+
+# pi coding agent harness
+@earendil-works/pi-coding-agent
+# git.cafe CLI (`cafe`); then `cafe auth login` and `cafe auth http setup`
+@gitcafe/cli

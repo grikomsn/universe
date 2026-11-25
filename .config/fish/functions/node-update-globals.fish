@@ -90,8 +90,9 @@ function node-update-globals --description 'update node versions via fnm, set lt
         # yarn global upgrade
     end
 
-    # bun global packages
-    set -l bun_pkgs @earendil-works/pi-coding-agent
+    # bun global packages, from the repo's Bunfile
+    set -l bunfile (path resolve $__fish_config_dir)/../../Bunfile
+    set -l bun_pkgs (string match -rv '^\s*(#|$)' <$bunfile)
 
     # Update bun globals
     if type -q bun

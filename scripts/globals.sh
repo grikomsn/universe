@@ -55,6 +55,18 @@ else
   echo "npm not found; skipping npm globals" >&2
 fi
 
+# --- bun globals (Bunfile; brew bundle cannot express them) ---
+[[ -x "$HOME/.bun/bin/bun" ]] && PATH="$HOME/.bun/bin:$PATH"
+if command -v bun >/dev/null; then
+  bun_pkgs=()
+  while IFS= read -r pkg; do
+    bun_pkgs+=("$pkg@latest")
+  done < <(grep -vE '^[[:space:]]*(#|$)' "$script_dir/../Bunfile")
+  run_step "bun globals" bun install --global "${bun_pkgs[@]}"
+else
+  echo "bun not found; skipping bun globals" >&2
+fi
+
 # --- go tools ---
 if command -v go >/dev/null; then
   # off (not the default "local") also stops on-disk counter collection; do it
