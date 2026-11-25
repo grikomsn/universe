@@ -11,6 +11,11 @@ hooksPath = ~/.githooks
 helper =
 helper = !/usr/bin/gh auth git-credential
 
+[credential "https://git.cafe"]
+helper =
+helper = !~/.bun/bin/bun ~/.bun/bin/cafe auth http credential --host git.cafe
+useHttpPath = true
+
 [credential "https://github.com"]
 helper =
 helper = !/usr/bin/gh auth git-credential

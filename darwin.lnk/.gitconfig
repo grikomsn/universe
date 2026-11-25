@@ -14,6 +14,11 @@ useHttpPath = true
 helper =
 helper = !/opt/homebrew/bin/gh auth git-credential
 
+[credential "https://git.cafe"]
+helper =
+helper = !~/.bun/bin/bun ~/.bun/bin/cafe auth http credential --host git.cafe
+useHttpPath = true
+
 [credential "https://github.com"]
 helper =
 helper = !/opt/homebrew/bin/gh auth git-credential
