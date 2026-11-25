@@ -13,10 +13,11 @@ node_modules
 # skills-CLI-managed: restored from .agents/.skill-lock.json via scripts/skills-restore.sh
 # rex is a version-independent stub from `rex skill setup` (not a skills-CLI
 # source), so keep it tracked to restore it everywhere; fleet is
-# hand-written for managing the machine fleet
+# hand-written for managing the machine fleet; lulu-cleanup is hand-written
 .agents/skills/*
 !.agents/skills/rex
 !.agents/skills/fleet
+!.agents/skills/lulu-cleanup
 
 # fleet's private inventory (real hostnames, tailnet names, machine notes);
 # fleet.example.toml is the tracked, sanitized copy

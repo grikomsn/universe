@@ -1,0 +1,5 @@
+interface:
+  display_name: "LuLu cleanup"
+  short_description: "Prune stale and version-pinned LuLu firewall rules via its Rules window"
+policy:
+  allow_implicit_invocation: false
