@@ -1,4 +1,5 @@
 tap "abue-ammar/tinycast", trusted: true
+tap "anomalyco/tap"
 tap "atlassian/acli"
 tap "supabase/tap"
 tap "tw93/tap", trusted: { formulae: ["mole"] }
@@ -133,7 +134,7 @@ cask "airbuddy"
 cask "balenaetcher"
 # Display management tool
 cask "betterdisplay"
-# Desktop client for the self-hosted Vaultwarden (Bitwarden-compatible) vault
+# Open source desktop password manager with encrypted vault and autofilling
 cask "bitwarden"
 # Anthropic's official Claude AI desktop app
 cask "claude"
@@ -157,14 +158,14 @@ cask "font-geist-mono-nerd-font"
 cask "font-inter"
 cask "font-inter-tight"
 cask "font-sf-mono-for-powerline"
-# GIT client
+# Git client
 cask "fork"
-# Terminal emulator that uses platform-native UI and GPU acceleration
-cask "ghostty"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager"
 # Tools to protect your files
 cask "gpg-suite-no-mail"
+# Local voice dictation
+cask "anomalyco/tap/hex", trusted: true
 # Keyboard shortcuts for every button on your screen
 cask "homerow"
 # Tool to optimise images to a smaller size
@@ -293,7 +294,6 @@ vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
 vscode "grikomsn.ampersand-bridge-copilot-chat"
 vscode "grikomsn.inco-copilot-chat"
-vscode "grikomsn.opencode-bridge-for-copilot-chat"
 vscode "grikomsn.wayfindr-theme"
 vscode "jock.svg"
 vscode "llvm-vs-code-extensions.lldb-dap"
@@ -361,3 +361,5 @@ go "honnef.co/go/tools/cmd/staticcheck"
 uv "marker-pdf[full]"
 uv "markitdown[all]"
 uv "streamlit"
+npm "agent-desktop"
+npm "corepack"
