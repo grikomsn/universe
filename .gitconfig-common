@@ -1,5 +1,5 @@
 # Shared git config, included by darwin.lnk/.gitconfig and linux.lnk/.gitconfig.
-# Platform files hold only binary paths (gh, op-ssh-sign, credential helpers).
+# Platform files hold only binary paths (gh, credential helpers).
 
 [commit]
 gpgsign = true
@@ -54,4 +54,5 @@ gpgsign = true
 [user]
 name = Griko Nibras
 email = griko@nibras.co
-signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJFr9Y5Dy8P44I9h8VWymBjov/G3YOlDa3GjgU8F5A9R
+# Sign with the key file so no agent is needed; ssh-keygen is git's default.
+signingkey = ~/.ssh/id_ed25519

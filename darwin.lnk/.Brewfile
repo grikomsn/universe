@@ -127,16 +127,14 @@ brew "atlassian/acli/acli", trusted: true
 brew "supabase/tap/supabase", trusted: true
 # Git-native dotfiles management that doesn't suck
 brew "yarlson/lnk/lnk", trusted: true
-# Password manager that keeps all passwords secure behind one password
-cask "1password"
-# Command-line interface for 1Password
-cask "1password-cli"
 # AirPods companion app
 cask "airbuddy"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # Display management tool
 cask "betterdisplay"
+# Desktop client for the self-hosted Vaultwarden (Bitwarden-compatible) vault
+cask "bitwarden"
 # Anthropic's official Claude AI desktop app
 cask "claude"
 # Terminal-based AI coding assistant
@@ -231,7 +229,6 @@ cask "whatsapp"
 cask "yaak"
 # Video communication and virtual meeting platform
 cask "zoom"
-mas "1Password for Safari", id: 1569813296
 mas "Affinity Designer", id: 824171161
 mas "Boxy SVG", id: 611658502
 mas "ColorSlurp", id: 1287239339
@@ -253,7 +250,6 @@ mas "TestFlight", id: 899247664
 mas "The Unarchiver", id: 425424353
 mas "Transporter", id: 1450874784
 mas "Velja", id: 1607635845
-vscode "1password.op-vscode"
 vscode "aaron-bond.better-comments"
 vscode "adpyke.vscode-userscript"
 vscode "anthropic.claude-code"

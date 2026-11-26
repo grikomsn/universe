@@ -26,13 +26,12 @@ set -g fish_user_paths
 fish_add_path /usr/local/bin /usr/local/sbin
 fish_add_path $HOME/.local/bin
 
-set -l onepassword_ssh_auth_sock "$HOME/.1password/agent.sock"
-if not test -S $onepassword_ssh_auth_sock
-    set -l macos_onepassword_ssh_auth_sock "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    if test -S $macos_onepassword_ssh_auth_sock
-        set onepassword_ssh_auth_sock $macos_onepassword_ssh_auth_sock
+# System ssh-agent; same lookup as .profile.
+if not test -S "$SSH_AUTH_SOCK"; and set -q XDG_RUNTIME_DIR
+    for ssh_auth_sock in $XDG_RUNTIME_DIR/gcr/ssh $XDG_RUNTIME_DIR/ssh-agent.socket
+        if test -S $ssh_auth_sock
+            set -gx SSH_AUTH_SOCK $ssh_auth_sock
+            break
+        end
     end
-end
-if test -S $onepassword_ssh_auth_sock
-    set -gx SSH_AUTH_SOCK $onepassword_ssh_auth_sock
 end

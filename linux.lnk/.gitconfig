@@ -20,9 +20,6 @@ useHttpPath = true
 helper =
 helper = !/usr/bin/gh auth git-credential
 
-[gpg "ssh"]
-program = "/opt/1Password/op-ssh-sign"
-
-# Last, so ~/.gitconfig-private (e.g. `git-signing local`) overrides the above.
+# Last, so ~/.gitconfig-private (machine-local settings) overrides the above.
 [include]
 path = ~/.gitconfig-private

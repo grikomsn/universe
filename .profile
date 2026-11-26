@@ -18,14 +18,18 @@ export T3CODE_OTEL_SDK_DISABLED=true
 export T3CODE_TELEMETRY_ENABLED=false
 export WRANGLER_SEND_METRICS=false
 
-onepassword_ssh_auth_sock="$HOME/.1password/agent.sock"
-if [ ! -S "$onepassword_ssh_auth_sock" ]; then
-  onepassword_ssh_auth_sock="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+# System ssh-agent. macOS: launchd already sets SSH_AUTH_SOCK. Linux: ssh
+# logins miss the systemd user environment, so look for GNOME's gcr-ssh-agent,
+# then OpenSSH's ssh-agent.socket user unit.
+if [ ! -S "${SSH_AUTH_SOCK:-}" ] && [ -n "${XDG_RUNTIME_DIR:-}" ]; then
+  for ssh_auth_sock in "$XDG_RUNTIME_DIR/gcr/ssh" "$XDG_RUNTIME_DIR/ssh-agent.socket"; do
+    if [ -S "$ssh_auth_sock" ]; then
+      export SSH_AUTH_SOCK="$ssh_auth_sock"
+      break
+    fi
+  done
+  unset ssh_auth_sock
 fi
-if [ -S "$onepassword_ssh_auth_sock" ]; then
-  export SSH_AUTH_SOCK="$onepassword_ssh_auth_sock"
-fi
-unset onepassword_ssh_auth_sock
 
 path_prepend() {
   [ -d "$1" ] || return 0
