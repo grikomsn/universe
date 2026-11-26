@@ -4,6 +4,7 @@
 .claude/settings.json
 .claude/skills
 .config/fish
+.config/git/allowed_signers
 .gitattributes
 .gitconfig-common
 .pi/agent/settings.json

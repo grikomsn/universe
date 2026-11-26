@@ -28,6 +28,10 @@ gitbutlerCommitter = 1
 [gpg]
 format = ssh
 
+[gpg "ssh"]
+# Lets `git log --show-signature` verify our own SSH signatures.
+allowedSignersFile = ~/.config/git/allowed_signers
+
 [init]
 defaultBranch = main
 
